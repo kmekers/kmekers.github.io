@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <nav class="sidebar">
+        <!-- Group 1: Top Logo + Top Nav -->
+        <div>
+            <div class="sidebar-logo-container">
+                 <img src="images/logoabove.png" alt="Top Logo" class="sidebar-logo-top">
+            </div>
+            <ul class="sidebar-nav-top">
+                <li>
+                    <a href="index.html" class="nav-item active">
+                        <i class="fa-solid fa-house nav-icon"></i>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="pages/ai-consolidatie.html" class="nav-item">
+                        <i class="fa-solid fa-brain nav-icon"></i>
+                        <span class="nav-text">Ai consolidatie</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="pages/staatsblad.html" class="nav-item">
+                        <i class="fa-solid fa-newspaper nav-icon"></i>
+                        <span class="nav-text">Staatsblad</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="pages/geschiedenis.html" class="nav-item">
+                        <i class="fa-solid fa-clock-rotate-left nav-icon"></i>
+                        <span class="nav-text">Geschiedenis</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Group 2: Bottom Nav ONLY -->
+        <ul class="sidebar-nav-bottom">
+             <li>
+                <a href="pages/instellingen.html" class="nav-item">
+                    <i class="fa-solid fa-gear nav-icon"></i>
+                    <span class="nav-text">Instellingen</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-arrow-right-from-bracket nav-icon"></i>
+                    <span class="nav-text">Uitloggen</span>
+                </a>
+            </li>
+            <li>
+                <a href="pages/extra-info.html" class="nav-item">
+                    <i class="fa-solid fa-info-circle nav-icon"></i>
+                    <span class="nav-text">Extra Info</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="content-wrapper">
+        <main class="main-content">
+
+            <h1>Dashboard</h1>
+
+            <!-- Nieuwe kaart voor Staatsblad validatie status -->
+            <div class="card card-notification status-card" id="staatsblad-validation-complete" style="display: none;">
+                <div class="card-content">
+                    <i class="fa-solid fa-check-circle notification-icon success"></i>
+                    <p>Alle recente staatsblad wijzigingen zijn gevalideerd en verwerkt.</p>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Eerste kaart: Herstel de Staatsblad-kaart inhoud -->
+                <div class="card staatsblad-card">
+                     <div class="card-header">
+                         <i class="fa-solid fa-triangle-exclamation warning-icon"></i>
+                         <!-- TODO: Dynamisch aantal wijzigingen -->
+                         <h2>2 nieuwe wijzigingen gedetecteerd</h2>
+                     </div>
+                     <div class="card-content">
+                         <!-- TODO: Dynamisch laden van items -->
+                         <div class="update-item">
+                             <div class="update-info">
+                                 <span class="update-date">4 april 2025:</span>
+                                 <span class="update-title">Samenwerkingsakkoord Luchtvaartactiviteiten</span>
+                             </div>
+                             <span class="update-bl">bl. 43070</span>
+                         </div>
+                         <div class="update-item">
+                             <div class="update-info">
+                                 <span class="update-date">4 april 2025:</span>
+                                 <span class="update-title">Samenwerkingsakkoord BLEU Verdeling</span>
+                             </div>
+                             <span class="update-bl">bl. 43071</span>
+                         </div>
+                     </div>
+                     <div class="card-footer">
+                         <a href="pages/staatsblad.html" class="details-link">
+                             Bekijk alle details <i class="fa-solid fa-arrow-right"></i>
+                         </a>
+                     </div>
+                </div>
+                <!-- Tweede kaart: Herstel de AI Consolidatie Upload-kaart inhoud -->
+                <div class="card upload-card">
+                     <!-- Card content holds everything -->
+                     <div class="card-content upload-card-content">
+
+                         <!-- Main Area: Uploader ONLY -->
+                         <div class="upload-main-area">
+                             <!-- Upload Area -->
+                             <div class="upload-area">
+                                 <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                                 <h3>Start AI Consolidatie</h3>
+                                 <p>Sleep hier een bestand of klik om te uploaden.</p>
+                                 <input type="file" id="fileUpload" style="display: none;" accept=".pdf,.doc,.docx">
+                             </div>
+                         </div> <!-- End upload-main-area -->
+
+                         <!-- Loader Message (Initially Hidden - Full Width) -->
+                         <div class="loader-message" style="display: none;">
+                             <i class="fa-solid fa-spinner fa-spin"></i>
+                             <span>Er wordt een plan gemaakt voor de agent...</span>
+                         </div>
+
+                         <!-- Feedback Section (Initially Hidden - Full Width) -->
+                         <div class="feedback-section" style="display: none;">
+                            <div class="chat-window">
+                                 <!-- Chat messages appear here -->
+                            </div>
+                            <div class="processing-feedback" style="display: none;">
+                                <p>De agent is aan het werk...</p>
+                                <div class="progress-steps">
+                                    <div class="step" data-step="1"><span>1</span> Document analyse</div>
+                                    <div class="step" data-step="2"><span>2</span> Wijzigingen toepassen</div>
+                                    <div class="step validation-step" data-step="3"><span>3</span> Validatie</div>
+                                    <div class="step" data-step="4"><span>4</span> Afronden</div>
+                                </div>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar"></div>
+                                </div>
+                            </div>
+                            <div class="chat-input-area">
+                                <textarea class="chat-input" placeholder="Geef 1 keer feedback..."></textarea>
+                                <button class="reset-button" id="resetUploadButton" title="Opnieuw starten">
+                                    <i class="fa-solid fa-arrow-rotate-left"></i>
+                                </button>
+                                <button class="send-button">Verstuur</button>
+                            </div>
+                         </div>
+
+                         <!-- Confirmation Card (Initially Hidden - Full Width) -->
+                         <div class="confirmation-card" style="display: none;">
+                              <i class="fa-solid fa-circle-check confirmation-icon"></i>
+                              <h3>Verwerking voltooid!</h3>
+                              <p>De agent heeft het document succesvol verwerkt. Je kunt nu het geconsolideerde document bekijken.</p>
+                              <a href="pages/ai-consolidatie.html" class="button-link confirmation-button">
+                                  Naar AI consolidatie
+                              </a>
+                         </div>
+
+                         <!-- Complexity Section (at the bottom) -->
+                         <div class="complexity-section">
+                             <!-- Complexity Toggle (Checkbox + Label) -->
+                             <div class="complexity-toggle">
+                                 <input type="checkbox" id="complexCheckbox" name="complex">
+                                 <label for="complexCheckbox">Complexe consolidatie?</label>
+                             </div>
+
+                             <!-- Complex Info Area (Initially Hidden) -->
+                             <div class="complex-info-area" style="display: none;">
+                                 <label for="complexInfoText">Geef extra context voor de agent:</label>
+                                 <textarea id="complexInfoText" placeholder="Bijv. specifieke aandachtspunten, vorige versies, context..."></textarea>
+                             </div>
+                         </div> <!-- End complexity-section -->
+
+                     </div> <!-- End card-content -->
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="page-footer">
+            <img src="images/logobelow.jpg" alt="Bottom Logo" class="footer-logo">
+        </footer>
+    </div>
+
+    <script src="js/sidebar.js"></script>
+    <script src="js/dashboard-uploader.js"></script>
+</body>
+</html> 

@@ -1,0 +1,1052 @@
+/* Global CSS Variables */
+:root {
+  --primary-yellow: #FFD60A; /* Adjusted yellow from image */
+  --text-dark: #1F2937;      /* Dark text for active item */
+  --text-secondary: #4B5563; /* Default text color */
+  --icon-color: #4B5563;     /* Default icon color */
+  --background-light: #FFFFFF;
+  --border-color: #E5E7EB;   /* Separator line color */
+  --notification-red: #DC2626;
+  --notification-text: #FFFFFF;
+
+  --border-color-light: #F3F4F6; /* Lighter version of border-color */
+  --text-light: #9CA3AF;        /* Lighter text color */
+  --primary-blue: #3B82F6;      /* Example blue */
+  --primary-blue-dark: #2563EB; /* Darker example blue */
+
+  --font-family-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family-sans);
+    background-color: #f6f5f3; /* Updated background color */
+    color: var(--text-dark);
+    display: flex; /* Make body the main flex container */
+    min-height: 100vh; /* Ensure body takes full height */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Content Wrapper Styles */
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allows wrapper to take remaining horizontal space */
+    min-height: 100vh; /* Ensure wrapper takes full viewport height */
+    transition: margin-left 0.3s ease; /* Als je een inklapbare sidebar hebt */
+    padding-left: var(--sidebar-width, 250px);
+    background-color: #f6f5f3; /* Updated background color */
+}
+
+.main-content {
+    flex-grow: 1; /* Allows main content to push footer down vertically */
+    padding: 30px;
+    /* Ensure no margin-left here */
+    /* margin-left: 250px; */
+}
+
+
+/* Footer Styles */
+.page-footer {
+    padding: 15px 30px;
+    text-align: right;
+    margin-top: auto; /* Pushes footer to bottom within the flex column */
+    background-color: transparent; /* Or set a background */
+    flex-shrink: 0; /* Prevent footer from shrinking */
+}
+
+.footer-logo {
+    max-height: 55px;
+    width: auto;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* --- Standaard Paginatitel Stijl --- */
+.main-content > h1,
+.page-header > h1 { /* Voeg .page-header > h1 hier toe */
+    font-size: 1.8em;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0; /* Reset margin hier */
+    padding: 0; /* Reset padding */
+    /* Voeg eventueel andere resets toe indien nodig */
+    /* font-family: inherit; */ /* Zeker zijn van font */
+}
+
+/* --- Layout voor Header met Titel en Acties --- */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px; /* Ruimte onder de hele header sectie */
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* Specifieke margin voor H1 die NIET in .page-header zit */
+.main-content > h1:not(.page-header *) { /* Selecteert H1 direct in main, maar NIET binnen .page-header */
+     margin-bottom: 30px;
+}
+
+.page-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* Dashboard Grid Layout */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 25px;
+    margin-top: 25px; /* Add space below heading/notification */
+}
+
+/* Base Card Styles */
+.card {
+    background-color: var(--background-light);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+    display: flex; /* Keep flex */
+    flex-direction: column; /* Keep column */
+    /* Height will be determined by align-items: stretch on the grid */
+    min-height: 350px; /* Example minimum height, adjust as needed */
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color-light); /* Use the defined light border */
+    /* Make header non-shrinkable */
+    flex-shrink: 0;
+}
+
+.card-header h2 {
+    margin: 0 0 0 10px;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.card-content {
+    flex-grow: 1; /* Allows content to fill remaining vertical space */
+    font-size: 0.95em;
+    color: var(--text-secondary);
+    /* Add display flex for internal alignment if needed, e.g., for upload card */
+    display: flex;
+    flex-direction: column;
+}
+
+.card-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color-light); /* Use the defined light border */
+    /* Make footer non-shrinkable */
+    flex-shrink: 0;
+}
+
+/* Staatsblad Card Specific Styles */
+.staatsblad-card .warning-icon {
+    color: var(--primary-yellow);
+    font-size: 1.3em;
+    flex-shrink: 0; /* Prevent icon shrinking */
+}
+
+.staatsblad-card .update-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed var(--border-color-light); /* Use the defined light border */
+}
+.staatsblad-card .update-item:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+
+.staatsblad-card .update-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.staatsblad-card .update-date {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 3px;
+}
+
+.staatsblad-card .update-title {
+    color: var(--text-secondary);
+}
+
+.staatsblad-card .update-bl {
+    font-size: 0.9em;
+    color: var(--text-light); /* Use the defined light text */
+    white-space: nowrap;
+    margin-left: 15px;
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.staatsblad-card .details-link {
+    color: var(--primary-blue); /* Use the defined blue */
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9em;
+    transition: color 0.2s ease;
+    display: inline-flex; /* Better alignment for icon */
+    align-items: center;
+}
+
+.staatsblad-card .details-link:hover {
+    color: var(--primary-blue-dark); /* Use the defined dark blue */
+}
+
+.staatsblad-card .details-link i {
+    margin-left: 5px;
+    font-size: 0.8em;
+}
+
+
+/* === AI Consolidatie Upload Card - REBUILT === */
+
+/* Inherit base card styles, ensure flex column */
+.upload-card {
+    /* min-height: 400px; */ /* Keep or adjust if needed */
+    /* Base styles like background, border-radius, padding (25px), box-shadow, border are inherited */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Content area within the card */
+.upload-card-content {
+    flex-grow: 1; /* Takes up available space */
+    display: flex;
+    flex-direction: column;
+    /* Padding is inherited from .card, no need to reset to 0 */
+}
+
+/* --- Initial Upload View --- */
+.upload-main-area {
+    flex-grow: 1; /* Takes space above the complexity section */
+    display: flex; /* Center the upload-area */
+    justify-content: center;
+    align-items: center;
+}
+
+.upload-area {
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    padding: 40px; /* Generous padding inside */
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Take full width within the centered flex container */
+    max-width: 500px; /* Optional: Limit max width */
+    min-height: 200px; /* Ensure minimum height */
+}
+
+.upload-area:hover {
+    background-color: #f9fafb;
+    border-color: var(--text-dark);
+}
+
+.upload-icon {
+    font-size: 2.8em;
+    color: var(--primary-yellow);
+    margin-bottom: 15px;
+}
+
+.upload-area h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.upload-area p {
+    margin: 0;
+    font-size: 0.9em;
+    color: var(--text-secondary);
+}
+
+/* --- Complexity Section (Mimics card-footer) --- */
+.complexity-section {
+    margin-top: 20px; /* Space above the border, matches footer */
+    padding-top: 15px; /* Space below the border, matches footer */
+    border-top: 1px solid var(--border-color-light); /* Match footer */
+    flex-shrink: 0; /* Prevent shrinking */
+    /* Padding left/right comes from parent .card */
+}
+
+.complexity-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 18px; /* Approximate height of details link */
+}
+/* Add margin when text area is shown */
+.complexity-section.complex-active .complexity-toggle {
+    margin-bottom: 15px;
+}
+
+.complexity-toggle input[type="checkbox"] {
+    margin: 0;
+    padding: 0;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    flex-shrink: 0;
+    accent-color: var(--primary-blue); /* Blue checkbox */
+    vertical-align: middle; /* Try aligning with middle of text */
+}
+
+.complexity-toggle label {
+    margin: 0;
+    padding: 0;
+    font-size: 0.9em; /* Match details-link */
+    font-weight: 500; /* Match details-link */
+    color: var(--primary-blue); /* Match details-link */
+    cursor: pointer;
+    line-height: 1.2; /* Allow natural line height for alignment */
+    transition: color 0.2s ease, filter 0.2s ease;
+}
+.complexity-toggle label:hover {
+     filter: brightness(90%);
+}
+
+/* Complex Info Area (Below Toggle) */
+.complex-info-area {
+    display: flex; /* Hidden/shown via JS */
+    flex-direction: column;
+    /* No extra padding needed, spacing handled by margin on toggle */
+}
+
+.complex-info-area label {
+    font-size: 0.9em;
+    font-weight: 500;
+    color: var(--text-secondary); /* Different color for this label */
+    margin-bottom: 10px;
+}
+
+.complex-info-area textarea {
+    min-height: 100px;
+    border: 1px solid var(--border-color);
+    background-color: var(--background-light);
+    border-radius: 6px;
+    padding: 10px;
+    font-family: inherit;
+    font-size: 0.9em;
+    resize: none;
+}
+
+
+/* --- Loader, Feedback, Confirmation States --- */
+/* These should replace the initial content */
+/* We remove absolute positioning and rely on JS to hide/show sections */
+
+.upload-card-content .loader-message,
+.upload-card-content .feedback-section,
+.upload-card-content .confirmation-card {
+    display: none; /* Hidden by default */
+    flex-grow: 1; /* Take up space when shown */
+    flex-direction: column;
+    /* Add specific alignment/padding as needed for each state */
+}
+
+/* Example: Center loader/confirmation */
+.upload-card-content .loader-message,
+.upload-card-content .confirmation-card {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* Padding is inherited from .card */
+}
+
+/* === End AI Consolidatie Upload Card === */
+
+
+/* --- Ensure other styles don't interfere --- */
+/* (Double check no global styles are overriding padding/margins unexpectedly) */
+
+/* Plan Section Styles */
+.plan-section {
+    width: 100%;
+    padding: 15px;
+    text-align: left;
+}
+
+.plan-section h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.plan-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.plan-item {
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+    color: var(--text-secondary);
+    font-size: 0.95em;
+}
+
+.plan-item::before {
+    content: "\f00c"; /* Font Awesome check icon */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    color: var(--primary-blue);
+    font-size: 0.8em;
+}
+
+/* Feedback Section Styles */
+.feedback-section {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px; /* Space between plan and feedback */
+    border-top: 1px solid var(--border-color-light);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allow feedback section to take space if needed */
+    min-height: 250px; /* Give feedback section minimum space */
+}
+
+.chat-window {
+    height: auto; /* Let height be determined by content up to max */
+    min-height: 150px; /* Minimum chat window height */
+    max-height: 300px; /* Maximum chat window height before scroll */
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    flex-grow: 1;
+    display: flex; /* Use flex column for messages */
+    flex-direction: column;
+    gap: 8px; /* Add gap between messages */
+}
+
+.chat-message {
+    padding: 8px 12px;
+    border-radius: 10px;
+    max-width: 85%; /* Slightly wider max */
+    font-size: 0.9em;
+    line-height: 1.5; /* Slightly more line spacing */
+}
+
+.chat-message.agent {
+    background-color: var(--border-color-light);
+    color: var(--text-secondary);
+    align-self: flex-start;
+    white-space: pre-line; /* Crucial: Respects newline characters (\n) in the text */
+    text-align: left; /* Ensure text aligns left within the bubble */
+}
+
+/* ADDED User message style */
+.chat-message.user {
+    background-color: var(--primary-yellow); /* Changed from blue to yellow */
+    color: var(--text-dark); /* Use dark text on yellow for contrast */
+    align-self: flex-end; /* Align user messages right */
+}
+
+.chat-input-area {
+    display: flex;
+    gap: 10px;
+    margin-top: auto; /* Push input to bottom */
+    align-items: center; /* Align items vertically */
+}
+
+.chat-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    resize: none; /* Prevent manual resizing */
+    font-family: inherit;
+    font-size: 0.9em;
+    height: 50px; /* Adjust initial height */
+}
+
+/* Reset Button Styles */
+.reset-button {
+    padding: 0 12px; /* Adjust padding for icon */
+    height: 50px; /* Match other button/input height */
+    border: 1px solid var(--border-color); /* Subtle border */
+    background-color: var(--background-light); /* Match card background */
+    color: var(--text-secondary); /* Icon color */
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em; /* Icon size */
+    line-height: 48px; /* Adjust for vertical centering with border */
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.reset-button:hover {
+    background-color: var(--border-color-light); /* Slight background change */
+    border-color: var(--text-light);
+    color: var(--text-dark); /* Darker icon on hover */
+}
+
+.send-button {
+    padding: 0 20px;
+    border: none;
+    background-color: var(--primary-yellow); /* Changed to yellow */
+    color: var(--text-dark); /* Use dark text on yellow */
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600; /* Slightly bolder */
+    transition: background-color 0.2s ease, color 0.2s ease;
+    flex-shrink: 0;
+    height: 50px; /* Ensure height matches */
+    line-height: 50px; /* Ensure line-height matches */
+}
+
+.send-button:hover {
+    background-color: #e6c000; /* Darker yellow for hover */
+    color: var(--text-dark);
+}
+
+/* Processing Feedback Indicator Styles - REFINED */
+.processing-feedback {
+    padding: 20px 15px; /* Adjusted padding */
+    text-align: center;
+    border: 1px solid var(--border-color-light);
+    border-radius: 8px;
+    margin-top: 15px;
+    background-color: #fff;
+    overflow: hidden; /* Prevent box-shadow overflow if needed */
+}
+
+.processing-feedback p {
+    margin-top: 0;
+    margin-bottom: 25px; /* More space before steps */
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 1.05em; /* Slightly larger text */
+}
+
+/* --- Step Indicator Styling --- */
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items at the top */
+    margin-bottom: 20px; /* More space before progress bar */
+    position: relative; /* Needed for potential connector lines if desired */
+}
+
+.progress-steps .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1; /* Each step takes equal width */
+    padding: 0 5px; /* Small horizontal padding */
+    position: relative; /* For potential pseudo-elements */
+    transition: color 0.4s ease, opacity 0.4s ease;
+    color: var(--text-light); /* Default text color */
+    opacity: 0.6; /* Default opacity */
+}
+
+/* The Numbered Circle */
+.progress-steps .step span {
+    display: flex; /* Use flex to center number inside */
+    justify-content: center;
+    align-items: center;
+    width: 28px; /* Slightly larger circle */
+    height: 28px;
+    border-radius: 50%;
+    background-color: var(--border-color);
+    color: var(--text-secondary);
+    margin-bottom: 8px; /* Space between circle and text */
+    font-weight: bold;
+    font-size: 0.9em;
+    border: 2px solid transparent; /* Placeholder for emphasis border */
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    position: relative; /* Ensure circle is above potential lines */
+    z-index: 1;
+}
+
+/* The Text Below Circle */
+.progress-steps .step .step-label { /* Added a class for easier targeting if needed */
+    font-size: 0.8em;
+    line-height: 1.3;
+}
+
+/* --- Active and Completed States --- */
+.progress-steps .step.active,
+.progress-steps .step.completed {
+    color: var(--text-dark); /* Darker text for active/completed */
+    opacity: 1;
+}
+
+.progress-steps .step.active span,
+.progress-steps .step.completed span {
+    background-color: var(--primary-yellow);
+    color: var(--text-dark);
+}
+
+/* --- Emphasis for Validation Step (using border/shadow) --- */
+.progress-steps .step.validation-step.active span,
+.progress-steps .step.validation-step.completed span {
+    /* Use box-shadow for emphasis without affecting size */
+    box-shadow: 0 0 0 3px rgba(255, 214, 10, 0.5); /* Yellow glow */
+    /* Alternatively, use border:
+    border: 2px solid var(--primary-yellow); */
+}
+
+.progress-steps .step.validation-step.active {
+    font-weight: 600; /* Make text bold when validation is active */
+}
+/* --- End Emphasis --- */
+
+
+/* --- Progress Bar Styling --- */
+.progress-bar-container {
+    width: 90%; /* Make slightly less wide than steps */
+    margin: 0 auto; /* Center the bar */
+    height: 6px; /* Slightly thinner bar */
+    background-color: var(--border-color-light);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: var(--primary-yellow);
+    border-radius: 3px;
+    transition: width 0.6s ease-out; /* Slightly slower transition */
+}
+
+
+/* Confirmation Card Styles */
+.confirmation-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 50px 30px; /* Increased padding */
+    flex-grow: 1;
+    background-color: #fdfdfd; /* Very slightly off-white background */
+    border-radius: 8px; /* Match inner elements if needed */
+    /* Optional: Add a subtle border */
+    /* border: 1px solid var(--border-color-light); */
+}
+
+.confirmation-icon {
+    font-size: 4.5em; /* Slightly larger icon */
+    color: var(--primary-yellow);
+    margin-bottom: 25px; /* More space below icon */
+}
+
+.confirmation-card h3 {
+    margin: 0 0 15px 0; /* More space below heading */
+    font-size: 1.4em; /* Slightly larger heading */
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.confirmation-card p {
+    margin: 0 0 30px 0; /* More space below paragraph */
+    font-size: 1em;
+    color: var(--text-secondary);
+    max-width: 450px; /* Slightly wider text */
+    line-height: 1.6; /* Improve paragraph readability */
+}
+
+/* Style the button specifically if needed */
+.confirmation-button { /* Use the class added in HTML */
+    display: inline-block;
+    padding: 14px 30px; /* Larger padding */
+    background-color: var(--primary-yellow);
+    color: var(--text-dark);
+    border-radius: 8px; /* Slightly more rounded */
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05em; /* Slightly larger button text */
+    transition: background-color 0.2s ease, transform 0.1s ease; /* Add transform transition */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.confirmation-button:hover {
+    background-color: #e6c000;
+    transform: translateY(-1px); /* Slight lift on hover */
+}
+
+/* Ensure button-link base styles don't conflict if needed */
+/* .button-link { ... } */
+
+/* Ensure feedback section hides correctly */
+.feedback-section.hidden {
+    display: none;
+}
+
+/* Nieuwe stijlen voor notificatie/status kaart */
+.card.card-notification.status-card {
+    background-color: #f0fdf4; /* Lichte groene achtergrond (Tailwind green-50) */
+    border-left: 4px solid #22c55e; /* Groene border (Tailwind green-500) */
+    margin-bottom: 25px; /* Ruimte onder de kaart */
+}
+
+.card-notification .card-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px; /* Iets minder padding dan standaard kaart */
+}
+
+.card-notification .notification-icon {
+    font-size: 1.8em;
+    flex-shrink: 0;
+}
+
+.card-notification .notification-icon.success {
+    color: #22c55e; /* Groen */
+}
+
+.card-notification p {
+    margin: 0;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+/* === NIEUW: Geschiedenis Pagina Stijlen === */
+.history-list-container {
+    margin-top: 20px; /* Ruimte onder de H1 */
+}
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Ruimte tussen geschiedenis items */
+}
+
+/* Pas .history-item aan voor <details> */
+.history-item {
+    display: block; /* Details is block */
+    background-color: var(--background-light);
+    border: 1px solid var(--border-color-light);
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    overflow: hidden; /* Voorkom dat content buiten border valt */
+}
+
+/* Stijl de summary */
+.history-item-summary {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    cursor: pointer;
+    list-style: none; /* Verwijder standaard marker */
+    transition: background-color 0.2s ease;
+}
+.history-item-summary::-webkit-details-marker { display: none; }
+.history-item-summary::marker { display: none; }
+
+.history-item-summary:hover {
+    background-color: #f9fafb; /* Lichte hover */
+}
+
+.history-item-icon {
+    flex-shrink: 0;
+}
+
+.history-item-icon .success-icon {
+    color: var(--status-gevalideerd, #22C55E); /* Gebruik gevalideerd groen */
+    font-size: 1.4em;
+}
+
+.history-item-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.history-item-title {
+    font-weight: 500;
+    color: var(--text-dark);
+    font-size: 0.95em;
+}
+
+.history-item-timestamp {
+    font-size: 0.8em;
+    color: var(--text-secondary);
+}
+
+.history-item-actions {
+    flex-shrink: 0;
+    /* Verplaats margin naar chevron */
+    /* margin-left: auto; */
+}
+
+/* Stijl voor de chevron */
+.history-chevron {
+    margin-left: auto; /* Duwt chevron naar rechts */
+    color: var(--text-light);
+    transition: transform 0.3s ease;
+}
+
+/* Roteer chevron als open */
+.history-item[open] > .history-item-summary .history-chevron {
+    transform: rotate(90deg);
+}
+
+/* Stijl voor de uitgeklapte content */
+.history-item-expanded-content {
+    padding: 15px 20px;
+    border-top: 1px solid var(--border-color-light);
+    background-color: #fdfdfe; /* Heel lichte achtergrond */
+}
+
+/* Stijl voor de info banner */
+.info-banner {
+    display: inline-flex; /* Laat het zich aanpassen aan de inhoud */
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    background-color: var(--primary-blue-lightest, #EFF6FF); /* Lichte blauwe achtergrond */
+    border: 1px solid var(--primary-blue-light, #BFDBFE); /* Lichte blauwe border */
+    border-radius: 6px;
+    color: var(--primary-blue-dark, #1E40AF); /* Donkerblauwe tekst */
+    font-size: 0.9em;
+}
+
+.info-banner i {
+    font-size: 1.1em; /* Iets groter icoon */
+}
+
+/* === EINDE Geschiedenis Pagina Stijlen === */
+
+/* --- PDF Modal Stijlen --- */
+.pdf-modal {
+    position: fixed; /* Blijft op dezelfde plek, zelfs bij scrollen */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.65); /* Donkere overlay */
+    display: flex; /* Gebruik flexbox voor centreren */
+    justify-content: center;
+    align-items: center;
+    z-index: 1050; /* Zorg dat het boven andere elementen komt (bv. sidebar) */
+    opacity: 0; /* Start onzichtbaar voor fade-in */
+    visibility: hidden; /* Start verborgen */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Stijl voor wanneer de modal zichtbaar is */
+.pdf-modal.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content-pdf {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    position: relative;
+    width: 85%; /* Breedte van de modal */
+    height: 90vh; /* Hoogte van de modal (viewport height) */
+    max-width: 1200px; /* Maximale breedte */
+    display: flex; /* Gebruik flexbox voor iframe */
+    flex-direction: column; /* Stapel knop en iframe */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.modal-content-pdf .close-modal-btn {
+    position: absolute;
+    top: -15px; /* Iets boven de modal */
+    right: -15px; /* Iets rechts van de modal */
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+    line-height: 35px; /* Verticaal centreren icoon */
+    text-align: center;
+    cursor: pointer;
+    z-index: 10; /* Boven iframe */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    transition: background-color 0.2s ease;
+}
+
+.modal-content-pdf .close-modal-btn:hover {
+    background-color: #555;
+}
+
+#pdf-viewer {
+    flex-grow: 1; /* Laat iframe de beschikbare ruimte vullen */
+    border: none; /* Geen lelijke iframe rand */
+    width: 100%;
+    height: 100%; /* Neem hoogte binnen flex container */
+}
+
+/* Algemene Knopstijlen */
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    white-space: nowrap; /* Voorkom dat tekst op knoppen breekt */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.button i.fas,
+.button i.fa-solid {
+    margin-right: 8px; /* Ruimte tussen icoon en tekst */
+}
+
+.button:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
+}
+
+.button:focus, .button:focus-visible {
+    outline: 2px solid var(--primary-blue-dark); /* Gebruik een focus outline kleur die past bij je thema */
+    outline-offset: 2px;
+}
+
+.button:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+/* Secundaire Knopstijl (voor de printknop en vergelijkbare acties) */
+.button.button-secondary {
+    background-color: var(--background-light, #f8f9fa); /* Lichte achtergrond, fallback als variabele niet bestaat */
+    border-color: var(--border-color, #ced4da); /* Lichte rand, fallback */
+    color: var(--text-dark, #212529); /* Donkere tekst, fallback */
+}
+
+.button.button-secondary:hover {
+    background-color: var(--background-medium, #e9ecef); /* Iets donkerder bij hover */
+    border-color: var(--border-color-dark, #adb5bd); /* Iets donkerdere rand bij hover */
+}
+
+/* Nieuwe Gele Knopstijl (Warning/Primary Action) */
+.button.button-warning {
+    background-color: var(--primary-yellow, #FFD60A);
+    border-color: var(--primary-yellow, #FFD60A);
+    color: var(--text-dark, #1F2937); /* Donkere tekst voor goede leesbaarheid op geel */
+}
+
+.button.button-warning:hover {
+    background-color: #fcc400; /* Iets donkerder geel voor hover, pas aan indien nodig */
+    border-color: #fcc400; /* Iets donkerder geel voor hover */
+    color: var(--text-dark, #1F2937);
+}
+
+.button.button-warning:focus, .button.button-warning:focus-visible {
+    outline: 2px solid #e6b800; /* Donkerdere gele focus outline */
+    outline-offset: 2px;
+}
+
+/* Voorbeeld van een primaire knopstijl (als je die ook gebruikt) */
+/*
+.button.button-primary {
+    background-color: var(--primary-blue, #007bff);
+    border-color: var(--primary-blue, #007bff);
+    color: #ffffff;
+}
+
+.button.button-primary:hover {
+    background-color: var(--primary-blue-dark, #0056b3);
+    border-color: var(--primary-blue-dark, #0056b3);
+}
+*/
+
+/* --- Focus Mode Stijlen --- */
+body.focus-mode {
+    overflow: hidden; /* Verberg de scrollbar van de body zelf */
+}
+
+body.focus-mode .sidebar,
+body.focus-mode .page-controls-header,
+body.focus-mode .page-footer {
+    display: none !important;
+}
+
+body.focus-mode .content-wrapper {
+    margin-left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    padding: 0 !important;
+    position: fixed; /* Neemt de hele viewport over */
+    top: 0;
+    left: 0;
+    overflow-y: auto; /* Scrollen binnen de content wrapper indien nodig, maar scrollbar wordt verborgen */
+    background-color: var(--background-content, #fff); /* Zorg voor een achtergrond */
+    z-index: 200; /* Zorgt dat het boven de (nu verborgen) sidebar komt */
+
+    /* Verberg scrollbar voor Firefox */
+    scrollbar-width: none;
+    /* Verberg scrollbar voor IE/Edge (oudere versies) */
+    -ms-overflow-style: none;
+}
+
+/* Verberg scrollbar voor WebKit browsers (Chrome, Safari, Edge) */
+body.focus-mode .content-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+body.focus-mode .main-content {
+    padding: 20px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+body.focus-mode .page-main-title { /* Nieuwe regel voor styling titel in focus mode */
+    margin-top: 20px; /* Of een andere waarde die goed oogt */
+    /* Je kunt ook de bestaande margin-top van .page-main-title overschrijven indien nodig */
+}
+
+/* Zorg ervoor dat de focus knoppen in de header de juiste styling hebben */
+.page-controls-header .button-icon-only {
+    margin-left: 10px; /* Ruimte tussen print en focus knop */
+} 

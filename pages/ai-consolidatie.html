@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI consolidatie</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <!-- Link het nieuwe specifieke CSS bestand -->
+    <link rel="stylesheet" href="../css/ai-consolidatie.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <nav class="sidebar">
+        <!-- Group 1: Top Logo + Top Nav -->
+        <div>
+            <div class="sidebar-logo-container">
+                 <!-- Update src to the correct top logo path -->
+                 <img src="../images/logoabove.png" alt="Top Logo" class="sidebar-logo-top">
+            </div>
+            <ul class="sidebar-nav-top">
+                <li>
+                    <a href="../index.html" class="nav-item">
+                        <i class="fa-solid fa-house nav-icon"></i>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <!-- Active state for current page -->
+                    <a href="ai-consolidatie.html" class="nav-item active">
+                        <i class="fa-solid fa-brain nav-icon"></i>
+                        <span class="nav-text">Ai consolidatie</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="staatsblad.html" class="nav-item">
+                        <i class="fa-solid fa-newspaper nav-icon"></i>
+                        <span class="nav-text">Staatsblad</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="geschiedenis.html" class="nav-item">
+                        <i class="fa-solid fa-clock-rotate-left nav-icon"></i>
+                        <span class="nav-text">Geschiedenis</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Group 2: Bottom Nav ONLY -->
+        <ul class="sidebar-nav-bottom">
+             <li>
+                <a href="instellingen.html" class="nav-item">
+                    <i class="fa-solid fa-gear nav-icon"></i>
+                    <span class="nav-text">Instellingen</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-arrow-right-from-bracket nav-icon"></i>
+                    <span class="nav-text">Uitloggen</span>
+                </a>
+            </li>
+            <li>
+                <a href="extra-info.html" class="nav-item">
+                    <i class="fa-solid fa-info-circle nav-icon"></i>
+                    <span class="nav-text">Extra Info</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="content-wrapper">
+        <main class="main-content">
+
+            <!-- Header met Titel en Acties -->
+            <div class="page-header">
+                <h1>AI consolidatie overzicht</h1>
+                <div class="page-actions">
+                    <!-- Verander class naar button-yellow -->
+                    <a href="#" class="button button-yellow">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> Start AI consolidatie
+                    </a>
+                    <!-- Secundaire knop blijft hetzelfde -->
+                    <a href="#" class="button button-secondary">
+                        <i class="fa-solid fa-pencil"></i> Start manuele consolidatie
+                    </a>
+                </div>
+            </div>
+
+            <!-- Lijst met Consolidatie Items -->
+            <div class="consolidation-list">
+
+                <!-- Item 1: Gebruik <details> en <summary> -->
+                <details class="consolidation-item" data-consolidation-id="mb-huisartsenzones-2018" data-metadata-checked="false">
+                    <summary class="consolidation-summary">
+                        <!-- Hoofdtitel -->
+                        <span>Het ministerieel besluit van 17 oktober 2018 betreffende de huisartsenzones</span>
+                        <!-- NIEUW: Info over gedetecteerde wijzigingen -->
+                        <span class="detected-changes-info">(1 artikelwijziging gedetecteerd)</span>
+                        <!-- Pijltje -->
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </summary>
+                    <!-- Hier komt de inhoud -->
+                    <div class="consolidation-content">
+                        <h3 class="consolidation-content-title"> Wijzigingen artikel 1</h3>
+
+                        <!-- NIEUW: Container voor beide tab-navigaties -->
+                        <div class="tab-headers-container">
+                            <div class="tab-header-group left-header-group">
+                                <div class="tab-nav top-tab-nav">
+                                    <button class="tab-button active" data-tab-target="#origineel-1">Artikel 1 origineel</button>
+                                    <button class="tab-button" data-tab-target="#instructies-1">Instructies</button>
+                                </div>
+                            </div>
+                            <div class="tab-header-group right-header-group">
+                                <div class="tab-nav right-tab-nav">
+                                    <button class="tab-button active" data-tab-target="#ai-diff-1">Artikel 1 verschil</button>
+                                    <button class="tab-button" data-tab-target="#bewerken-1">Geconsolideerde Tekst (Bewerken)</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Container voor de content panelen (tabs zijn hier nu UIT) -->
+                        <div class="diff-view-container">
+                            <!-- Linker Paneel (zonder tab-nav) -->
+                            <div class="left-panel">
+                                <div id="origineel-1" class="tab-content active">
+                                    <div class="text-display-area">
+                                        <!-- HERSTELDE ORIGINELE TEKST -->
+Per huisartsenkring worden de gebieden opgesomd die deel uitmaken van het werkingsgebied van deze huisartsenkring. Dit werkingsgebied is de huisartsenzone zoals vermeld in artikel 1, 4°, van het besluit van de Vlaamse Regering van 26 juni 2015 betreffende de huisartsenkringen :
+1° Artsenkring Houtland : Gistel, Ichtegem, Koekelare, Kortemark, Oudenburg, Torhout;
+2° Artsenkring Zennevallei : Beersel, Drogenbos, Halle, Linkebeek, Pepingen, Sint-Genesius-Rode, Sint-Pieters-Leeuw;
+3° Brusselse Huisartsenkring : Anderlecht, Brussel (1000, 1020 1040, 1050, 1120, 1130), Elsene, Etterbeek, Evere, Ganshoren, Jette, Koekelberg, Oudergem, Schaarbeek, Sint-Agatha-Berchem, Sint-Gillis, Sint-Jans-Molenbeek, Sint-Joost-ten-Node, Sint-Lambrechts-Woluwe, Sint-Pieters-Woluwe, Ukkel, Vorst, Watermaal-Bosvoorde;
+4° ...;
+5° ...;
+6° ...;
+7° Herkenrode Huisartsen: Alken, Diepenbeek, Hasselt, Herk-de-Stad, Zonhoven;
+8° Huisartsen Midden West-Vlaanderen : Ardooie, Hooglede, Houthulst, Ledegem, Lichtervelde, Moorslede, Roeselare, Staden, Zonnebeke;
+9° Huisartsen Regio Mortsel : Boechout, Edegem, Hove, Kontich, Lint, Mortsel;
+10° Huisartsen Tongeren : Herstappe, Tongeren;
+11° Huisartsen van de Ijzerstreek en Westkust : Alveringem, De Panne, Diksmuide, Koksijde, Lo-Reninge, Middelkerke, Nieuwpoort, Veurne;
+12° Huisartsen van 't Oosten van West-Vlaanderen : Dentergem, Meulebeke, Oostrozebeke, Pittem, Ruiselede, Tielt, Wingene;
+13° Huisartsen Westhoek : Heuvelland, Ieper, Langemark-Poelkapelle, Mesen, Poperinge, Vleteren;
+14° Huisartsenkoepel Dr. Hemerijckx : Geraardsbergen, Ninove;
+15° Huisartsenkoepel Waasland : Beveren, Kruibeke, Sint-Gillis-Waas, Sint-Niklaas, Stekene, Temse, Waasmunster, Zwijndrecht;
+16° Huisartsenkring Aalst: Aalst, Affligem, Denderleeuw, Erpe-Mere, Haaltert, Lede, Liedekerke;
+17° Huisartsenkring Alden Biesen : Bilzen, Hoeselt, Riemst;
+18° Huisartsenkring Antwerpen Oost : Antwerpen (2100, 2140), Borsbeek, Wommelgem;
+19° Huisartsenkring Antwerpen Zuid : Antwerpen (2020, 2050, 2610, 2660);
+20° ...;
+21° Huisartsenkring Bree - Oudsbergen : Bree, Oudsbergen;
+22° ...;
+23° Huisartsenkring Diest : Diest;
+24° Huisartsenkring Dijle & Netevallei : Bonheiden, Heist-op-den-Berg, Keerbergen, Mechelen, Putte, Sint-Katelijne-Waver, Tremelo;
+25° Huisartsenkring Dilsen-Stokkem : Dilsen-Stokkem;
+26° Huisartsenkring Hoeilaart : Hoeilaart;
+27° Huisartsenkring Hoeilaart & Overijse : Overijse;
+28° Huisartsenkring Hoppeland : Asse, Merchtem, Opwijk;
+29° Huisartsenkring Huisartsen Noordrand : Grimbergen, Kampenhout, Kapelle-op-den-Bos, Londerzeel, Machelen, Meise, Steenokkerzeel, Vilvoorde, Wemmel, Zemst;
+30° ...;
+31° Huisartsenkring Izegem - Ingelmunster - Lendelede : Ingelmunster, Izegem, Lendelede;
+32° ...;
+33° ...;
+34° Huisartsenkring Kinema : Kinrooi, Maaseik;
+35° Huisartsenkring Lanaken : Lanaken;
+36° Huisartsenkring Maasmechelen : Maasmechelen;
+37° ...;
+38° Huisartsenkring Middenkust : Bredene, Oostende;
+39° ...;
+40° Huisartsenkring Noord Antwerpen : Antwerpen (2030, 2040, 2170, 2180), Schoten, Stabroek;
+41° ...;
+42° Huisartsenkring Pajottenland : Bever, Dilbeek, Lennik, Pajottegem, Roosdaal, Ternat;
+43° Huisartsenkring Pallieterland en Omgeving : Berlaar, Duffel, Lier, Nijlen, Ranst;
+44° Huisartsenkring Panacea : Brakel, Herzele, Lierde, Oosterzele, Sint-Lievens-Houtem, Zottegem;
+45° Huisartsenkring Ronse : Horebeke, Maarkedal, Ronse;
+46° Huisartsenkring Schelde en Leie : De Pinte, Deinze, Nazareth-De Pinte, Sint-Martens-Latem, Zulte;
+47° Huisartsenkring Schelde-Rupel : Aartselaar, Boom, Bornem, Hemiksem, Niel, Puurs - Sint-Amands, Rumst, Schelle, Willebroek;
+48° Huisartsenkring Dionysius: Borgloon, Gingelom, Heers, Nieuwerkerken, Sint-Truiden, Wellen;
+49° ...;
+50° Huisartsenkring Tervuren : Tervuren;
+51° Huisartsenkring van Brugge en Omgeving: Beernem, Blankenberge, Brugge, Damme, De Haan, Jabbeke, Knokke-Heist, Oostkamp, Zedelgem, Zuienkerke;
+52° ...;
+53° ...;
+54° Huisartsenkring West-midWest : Beringen, Halen, Heusden-Zolder, Houthalen-Helchteren, Leopoldsburg, Lummen, Tessenderlo-Ham;
+55° ...;
+56° Huisartsenkring Wezembeek-Oppem en Kraainem : Kraainem, Wezembeek-Oppem;
+57° Huisartsenkring Zuid-West-Vlaanderen : Anzegem, Avelgem, Deerlijk, Harelbeke, Kortrijk, Kuurne, Menen, Spiere-Helkijn, Waregem, Wervik, Wevelgem, Wielsbeke, Zwevegem;
+58° Huisartsenvereniging Minerva: Antwerpen (2000, 2018, 2060, 2600);
+59° Huisartsenkring vereniging zonder winstoogmerk Huisartsen Zuid-Oost Hageland : Boutersem, Geetbets, Glabbeek, Hoegaarden, Kortenaken, Landen, Linter, Tienen, Zoutleeuw;
+60° Huisartsenkring Noordrand Antwerpen : Brasschaat, Brecht, Essen, Kalmthout, Kapellen, Wuustwezel;
+61° Huisartsenvereniging der Durmestreek : Lokeren, Moerbeke;
+62° ...;
+63° Huisartsenvereniging Gent : Destelbergen, Gent (9000, 9030, 9031, 9032, 9040, 9041, 9042, 9050, 9051, 9052), Melle;
+64° Huisartsenkring Scheldekracht : Laarne, Lochristi, Merelbeke-Melle, Wetteren, Wichelen;
+65° Huisartsenvereniging Hagewacht : Aarschot, Begijnendijk, Bekkevoort, Scherpenheuvel-Zichem, Tielt-Winge;
+66° Huisartsenvereniging Malle Zoersel : Malle, Zandhoven, Zoersel;
+67° Huisartsenvereniging Regio Turnhout : Arendonk, Baarle-Hertog, Beerse, Dessel, Hoogstraten, Kasterlee, Lille, Merksplas, Oud-Turnhout, Ravels, Retie, Rijkevorsel, Turnhout, Vosselaar;
+68° Huisartsenvereniging Voorkempen : Schilde, Wijnegem;
+69° Kring Huisartsen Oost-Brabant: Bertem, Bierbeek, Boortmeerbeek, Haacht, Herent, Holsbeek, Huldenberg, Kortenberg, Leuven, Lubbeek, Oud-Heverlee, Rotselaar;
+70° ...;
+71° Lommelse Huisartsenkring : Lommel;
+72° Noord-Limburgse Huisartsenkring : Bocholt, Hamont-Achel, Hechtel-Eksel, Peer, Pelt;
+73° ...;
+74° Oudenaardse Vereniging van Omnipractici : Gavere, Kluisbergen, Kruisem, Oudenaarde, Wortegem-Petegem, Zwalm;
+75° Prometheus : As, Genk, Zutendaal;
+75° /1 Verenigde Meetjeslandse Huisartsenkring: Aalter, Assenede, Eeklo, Evergem, Kaprijke, Lievegem, Maldegem, Sint-Laureins, Zelzate;
+76° Vereniging Huisartsen van de Medische Eenheidskring Dendermonde : Berlare, Buggenhout, Dendermonde, Hamme, Lebbeke, Zele;
+77° Huisartsenvereniging in de Kempen : Balen, Geel, Grobbendonk, Herentals, Herenthout, Herselt, Hulshout, Laakdal, Meerhout, Mol, Olen, Vorselaar, Westerlo;
+78° ...;
+79° Zaventemse Huisartsenorganisatie : Zaventem.
+                                    </div>
+                                </div>
+                                <div id="instructies-1" class="tab-content">
+                                    <div class="text-display-area">
+                                        <!-- Instructies tekst blijft hier -->
+Artikel 1. In artikel 1 van het ministerieel besluit van 17 oktober 2018 betreffende de huisartsenzones, gewijzigd bij de ministeriële besluiten van 22 november 2019, 24 november 2020, 16 november 2021 en 19 december 2022 worden de volgende wijzigingen aangebracht:
+
+1° aan punt 7° wordt na het woord "Diepenbeek" de zinsnede ", Hasselt, " toegevoegd;
+
+2° punt 8° wordt vervangen door wat volgt: "8° Huisartsen TRIHAK: Ardooie, Dentergem, Hooglede, Houthulst, Ingelmunster, Izegem, Ledegem, Lendelede, Lichtervelde, Moorslede, Oostrozebeke, Pittem, Roeselare, Staden, Tielt, Wingene, Zonnebeke;";
+
+3° punt 10° wordt vervangen door wat volgt:
+
+"10° Huisartsen Tongeren: Herstappe, Tongeren-Borgloon;";
+
+4° punt 12° en punt 14° worden opgeheven;
+
+5° punt 15° wordt vervangen door wat volgt: "15° Huisartsenkoepel Waasland: Beveren-Kruibeke-Zwijndrecht, Sint-Gillis-Waas, Sint-Niklaas, Stekene, Temse, Waasmunster;";
+
+6° punt 16° wordt vervangen door wat volgt: "16° Huisartsenkring Aalst: Aalst, Affligem, Denderleeuw, Erpe-Mere, Geraardsbergen, Haaltert, Lede, Liedekerke, Ninove;";
+
+7° punt 17° wordt vervangen door wat volgt: "17° Huisartsenkring Alden Biesen: Bilzen-Hoeselt, Riemst;";
+
+8° in punt 18° wordt de zinsnede ", Borsbeek" opgeheven;
+
+9° punt 25°, punt 31° en punt 35° worden opgeheven;
+
+10° punt 36° wordt vervangen door wat volgt:
+
+"36° Huisartsenkring Maasland: Dilsen-Stokkem, Lanaken, Maasmechelen;";
+
+11° punt 42° wordt vervangen door wat volgt: "42° Huisartsenkring Pajottenland: Bever, Dilbeek, Lennik, Pajottegem, Roosdaal, Ternat;";
+
+12° punt 46° wordt vervangen door wat volgt: "46° Huisartsenkring Schelde en Leie : Deinze, Nazareth-De Pinte, Sint-Martens-Latem, Zulte;";
+
+13° in punt 48° wordt de zinsnede "Borgloon," en de zinsnede ", Kortessem" opgeheven;
+
+14° punt 54° wordt vervangen door wat volgt: "54° Huisartsenkring West-midWest : Beringen, Halen, Heusden-Zolder, Houthalen-Helchteren, Leopoldsburg, Lummen, Tessenderlo-Ham;";
+
+15° in punt 61° wordt de zinsnede ", Moerbeke" opgeheven;
+
+16° in punt 63° wordt de zinsnede ", Melle" opgeheven;
+
+17° punt 64° wordt vervangen door wat volgt: "64° Huisartsenkring Scheldekracht : Laarne, Lochristi, Merelbeke-Melle, Wetteren, Wichelen;";
+
+18° in punt 75° /1 wordt de zinsnede ", Wachtebeke" opgeheven.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Rechter Paneel (zonder tab-nav) -->
+                            <div class="right-panel">
+                                <div id="ai-diff-1" class="tab-content active">
+                                    <div class="text-display-area">
+                                        <!-- TEKST MET DIFF MARKERINGEN HIER -->
+Per huisartsenkring worden de gebieden opgesomd die deel uitmaken van het werkingsgebied van deze huisartsenkring. Dit werkingsgebied is de huisartsenzone zoals vermeld in artikel 1, 4°, van het besluit van de Vlaamse Regering van 26 juni 2015 betreffende de huisartsenkringen :
+1° Artsenkring Houtland : Gistel, Ichtegem, Koekelare, Kortemark, Oudenburg, Torhout;
+2° Artsenkring Zennevallei : Beersel, Drogenbos, Halle, Linkebeek, Pepingen, Sint-Genesius-Rode, Sint-Pieters-Leeuw;
+3° Brusselse Huisartsenkring : Anderlecht, Brussel (1000, 1020 1040, 1050, 1120, 1130), Elsene, Etterbeek, Evere, Ganshoren, Jette, Koekelberg, Oudergem, Schaarbeek, Sint-Agatha-Berchem, Sint-Gillis, Sint-Jans-Molenbeek, Sint-Joost-ten-Node, Sint-Lambrechts-Woluwe, Sint-Pieters-Woluwe, Ukkel, Vorst, Watermaal-Bosvoorde;
+4° ...;
+5° ...;
+6° ...;
+7° Herkenrode Huisartsen: Alken, Diepenbeek, <span class="diff-added">Hasselt, </span>Herk-de-Stad, Zonhoven;
+8° <span class="diff-removed">Huisartsen Midden West-Vlaanderen : Ardooie, Hooglede, Houthulst, Ledegem, Lichtervelde, Moorslede, Roeselare, Staden, Zonnebeke</span><span class="diff-added">Huisartsen TRIHAK: Ardooie, Dentergem, Hooglede, Houthulst, Ingelmunster, Izegem, Ledegem, Lendelede, Lichtervelde, Moorslede, Oostrozebeke, Pittem, Roeselare, Staden, Tielt, Wingene, Zonnebeke</span>;
+9° Huisartsen Regio Mortsel : Boechout, Edegem, Hove, Kontich, Lint, Mortsel;
+10° Huisartsen Tongeren : <span class="diff-removed">Herstappe, Tongeren</span><span class="diff-added">Herstappe, Tongeren-Borgloon</span>;
+11° Huisartsen van de Ijzerstreek en Westkust : Alveringem, De Panne, Diksmuide, Koksijde, Lo-Reninge, Middelkerke, Nieuwpoort, Veurne;
+<span class="diff-removed">12° Huisartsen van 't Oosten van West-Vlaanderen : Dentergem, Meulebeke, Oostrozebeke, Pittem, Ruiselede, Tielt, Wingene;</span>
+13° Huisartsen Westhoek : Heuvelland, Ieper, Langemark-Poelkapelle, Mesen, Poperinge, Vleteren;
+<span class="diff-removed">14° Huisartsenkoepel Dr. Hemerijckx : Geraardsbergen, Ninove;</span>
+15° Huisartsenkoepel Waasland : <span class="diff-removed">Beveren, Kruibeke, Sint-Gillis-Waas, Sint-Niklaas, Stekene, Temse, Waasmunster, Zwijndrecht</span><span class="diff-added">Beveren-Kruibeke-Zwijndrecht, Sint-Gillis-Waas, Sint-Niklaas, Stekene, Temse, Waasmunster</span>;
+16° Huisartsenkring Aalst: Aalst, Affligem, Denderleeuw, Erpe-Mere, <span class="diff-added">Geraardsbergen, </span>Haaltert, Lede, Liedekerke<span class="diff-added">, Ninove</span>;
+17° Huisartsenkring Alden Biesen : <span class="diff-removed">Bilzen, Hoeselt,</span><span class="diff-added">Bilzen-Hoeselt, </span>Riemst;
+18° Huisartsenkring Antwerpen Oost : Antwerpen (2100, 2140), <span class="diff-removed">Borsbeek, </span>Wommelgem;
+19° Huisartsenkring Antwerpen Zuid : Antwerpen (2020, 2050, 2610, 2660);
+20° ...;
+21° Huisartsenkring Bree - Oudsbergen : Bree, Oudsbergen;
+22° ...;
+23° Huisartsenkring Diest : Diest;
+24° Huisartsenkring Dijle & Netevallei : Bonheiden, Heist-op-den-Berg, Keerbergen, Mechelen, Putte, Sint-Katelijne-Waver, Tremelo;
+<span class="diff-removed">25° Huisartsenkring Dilsen-Stokkem : Dilsen-Stokkem;</span>
+26° Huisartsenkring Hoeilaart : Hoeilaart;
+27° Huisartsenkring Hoeilaart & Overijse : Overijse;
+28° Huisartsenkring Hoppeland : Asse, Merchtem, Opwijk;
+29° Huisartsenkring Huisartsen Noordrand : Grimbergen, Kampenhout, Kapelle-op-den-Bos, Londerzeel, Machelen, Meise, Steenokkerzeel, Vilvoorde, Wemmel, Zemst;
+30° ...;
+<span class="diff-removed">31° Huisartsenkring Izegem - Ingelmunster - Lendelede : Ingelmunster, Izegem, Lendelede;</span>
+32° ...;
+33° ...;
+34° Huisartsenkring Kinema : Kinrooi, Maaseik;
+<span class="diff-removed">35° Huisartsenkring Lanaken : Lanaken;</span>
+36° <span class="diff-removed">Huisartsenkring Maasmechelen : Maasmechelen</span><span class="diff-added">Huisartsenkring Maasland: Dilsen-Stokkem, Lanaken, Maasmechelen</span>;
+37° ...;
+38° Huisartsenkring Middenkust : Bredene, Oostende;
+39° ...;
+40° Huisartsenkring Noord Antwerpen : Antwerpen (2030, 2040, 2170, 2180), Schoten, Stabroek;
+41° ...;
+42° Huisartsenkring Pajottenland : Bever, Dilbeek, <span class="diff-removed">Galmaarden, Gooik, Herne, </span>Lennik, <span class="diff-added">Pajottegem, </span>Roosdaal, Ternat;
+43° Huisartsenkring Pallieterland en Omgeving : Berlaar, Duffel, Lier, Nijlen, Ranst;
+44° Huisartsenkring Panacea : Brakel, Herzele, Lierde, Oosterzele, Sint-Lievens-Houtem, Zottegem;
+45° Huisartsenkring Ronse : Horebeke, Maarkedal, Ronse;
+46° Huisartsenkring Schelde en Leie : <span class="diff-removed">De Pinte, </span>Deinze, <span class="diff-removed">Nazareth</span><span class="diff-added">Nazareth-De Pinte</span>, Sint-Martens-Latem, Zulte;
+47° Huisartsenkring Schelde-Rupel : Aartselaar, Boom, Bornem, Hemiksem, Niel, Puurs - Sint-Amands, Rumst, Schelle, Willebroek;
+48° Huisartsenkring Dionysius: <span class="diff-removed">Borgloon, </span>Gingelom, Heers, <span class="diff-removed">Kortessem, </span>Nieuwerkerken, Sint-Truiden, Wellen;
+49° ...;
+50° Huisartsenkring Tervuren : Tervuren;
+51° Huisartsenkring van Brugge en Omgeving: Beernem, Blankenberge, Brugge, Damme, De Haan, Jabbeke, Knokke-Heist, Oostkamp, Zedelgem, Zuienkerke;
+52° ...;
+53° ...;
+54° Huisartsenkring West-midWest : Beringen, Halen, <span class="diff-removed">Ham, </span>Heusden-Zolder, Houthalen-Helchteren, Leopoldsburg, Lummen, <span class="diff-removed">Tessenderlo</span><span class="diff-added">Tessenderlo-Ham</span>;
+55° ...;
+56° Huisartsenkring Wezembeek-Oppem en Kraainem : Kraainem, Wezembeek-Oppem;
+57° Huisartsenkring Zuid-West-Vlaanderen : Anzegem, Avelgem, Deerlijk, Harelbeke, Kortrijk, Kuurne, Menen, Spiere-Helkijn, Waregem, Wervik, Wevelgem, Wielsbeke, Zwevegem;
+58° Huisartsenvereniging Minerva: Antwerpen (2000, 2018, 2060, 2600);
+59° Huisartsenkring vereniging zonder winstoogmerk Huisartsen Zuid-Oost Hageland : Boutersem, Geetbets, Glabbeek, Hoegaarden, Kortenaken, Landen, Linter, Tienen, Zoutleeuw;
+60° Huisartsenkring Noordrand Antwerpen : Brasschaat, Brecht, Essen, Kalmthout, Kapellen, Wuustwezel;
+61° Huisartsenvereniging der Durmestreek : Lokeren<span class="diff-removed">, Moerbeke</span>;
+62° ...;
+63° Huisartsenvereniging Gent : Destelbergen, Gent (9000, 9030, 9031, 9032, 9040, 9041, 9042, 9050, 9051, 9052)<span class="diff-removed">, Melle</span>;
+64° Huisartsenkring Scheldekracht : Laarne, Lochristi, <span class="diff-removed">Merelbeke</span><span class="diff-added">Merelbeke-Melle</span>, Wetteren, Wichelen;
+65° Huisartsenvereniging Hagewacht : Aarschot, Begijnendijk, Bekkevoort, Scherpenheuvel-Zichem, Tielt-Winge;
+66° Huisartsenvereniging Malle Zoersel : Malle, Zandhoven, Zoersel;
+67° Huisartsenvereniging Regio Turnhout : Arendonk, Baarle-Hertog, Beerse, Dessel, Hoogstraten, Kasterlee, Lille, Merksplas, Oud-Turnhout, Ravels, Retie, Rijkevorsel, Turnhout, Vosselaar;
+68° Huisartsenvereniging Voorkempen : Schilde, Wijnegem;
+69° Kring Huisartsen Oost-Brabant: Bertem, Bierbeek, Boortmeerbeek, Haacht, Herent, Holsbeek, Huldenberg, Kortenberg, Leuven, Lubbeek, Oud-Heverlee, Rotselaar;
+70° ...;
+71° Lommelse Huisartsenkring : Lommel;
+72° Noord-Limburgse Huisartsenkring : Bocholt, Hamont-Achel, Hechtel-Eksel, Peer, Pelt;
+73° ...;
+74° Oudenaardse Vereniging van Omnipractici : Gavere, Kluisbergen, Kruisem, Oudenaarde, Wortegem-Petegem, Zwalm;
+75° Prometheus : As, Genk, Zutendaal;
+75° /1 Verenigde Meetjeslandse Huisartsenkring: Aalter, Assenede, Eeklo, Evergem, Kaprijke, Lievegem, Maldegem, Sint-Laureins, <span class="diff-removed">Wachtebeke, </span>Zelzate;
+76° Vereniging Huisartsen van de Medische Eenheidskring Dendermonde : Berlare, Buggenhout, Dendermonde, Hamme, Lebbeke, Zele;
+77° Huisartsenvereniging in de Kempen : Balen, Geel, Grobbendonk, Herentals, Herenthout, Herselt, Hulshout, Laakdal, Meerhout, Mol, Olen, Vorselaar, Westerlo;
+78° ...;
+79° Zaventemse Huisartsenorganisatie : Zaventem.
+                                    </div>
+                                </div>
+                                <div id="bewerken-1" class="tab-content">
+                                    <!-- VERVANG div door textarea en voeg tekst toe -->
+                                    <textarea class="text-display-area editable-textarea">
+Per huisartsenkring worden de gebieden opgesomd die deel uitmaken van het werkingsgebied van deze huisartsenkring. Dit werkingsgebied is de huisartsenzone zoals vermeld in artikel 1, 4°, van het besluit van de Vlaamse Regering van 26 juni 2015 betreffende de huisartsenkringen :
+1° Artsenkring Houtland : Gistel, Ichtegem, Koekelare, Kortemark, Oudenburg, Torhout;
+2° Artsenkring Zennevallei : Beersel, Drogenbos, Halle, Linkebeek, Pepingen, Sint-Genesius-Rode, Sint-Pieters-Leeuw;
+3° Brusselse Huisartsenkring : Anderlecht, Brussel (1000, 1020 1040, 1050, 1120, 1130), Elsene, Etterbeek, Evere, Ganshoren, Jette, Koekelberg, Oudergem, Schaarbeek, Sint-Agatha-Berchem, Sint-Gillis, Sint-Jans-Molenbeek, Sint-Joost-ten-Node, Sint-Lambrechts-Woluwe, Sint-Pieters-Woluwe, Ukkel, Vorst, Watermaal-Bosvoorde;
+4° ...;
+5° ...;
+6° ...;
+7° Herkenrode Huisartsen: Alken, Diepenbeek, Hasselt, Herk-de-Stad, Zonhoven;
+8° Huisartsen TRIHAK: Ardooie, Dentergem, Hooglede, Houthulst, Ingelmunster, Izegem, Ledegem, Lendelede, Lichtervelde, Moorslede, Oostrozebeke, Pittem, Roeselare, Staden, Tielt, Wingene, Zonnebeke;
+9° Huisartsen Regio Mortsel : Boechout, Edegem, Hove, Kontich, Lint, Mortsel;
+10° Huisartsen Tongeren : Herstappe, Tongeren-Borgloon;
+11° Huisartsen van de Ijzerstreek en Westkust : Alveringem, De Panne, Diksmuide, Koksijde, Lo-Reninge, Middelkerke, Nieuwpoort, Veurne;
+12° ...;
+13° Huisartsen Westhoek : Heuvelland, Ieper, Langemark-Poelkapelle, Mesen, Poperinge, Vleteren;
+14° ...;
+15° Huisartsenkoepel Waasland : Beveren-Kruibeke-Zwijndrecht, Sint-Gillis-Waas, Sint-Niklaas, Stekene, Temse, Waasmunster;
+16° Huisartsenkring Aalst: Aalst, Affligem, Denderleeuw, Erpe-Mere, Geraardsbergen, Haaltert, Lede, Liedekerke, Ninove;
+17° Huisartsenkring Alden Biesen : Bilzen-Hoeselt, Riemst;
+18° Huisartsenkring Antwerpen Oost : Antwerpen (2100, 2140), Wommelgem;
+19° Huisartsenkring Antwerpen Zuid : Antwerpen (2020, 2050, 2610, 2660);
+20° ...;
+21° Huisartsenkring Bree - Oudsbergen : Bree, Oudsbergen;
+22° ...;
+23° Huisartsenkring Diest : Diest;
+24° Huisartsenkring Dijle & Netevallei : Bonheiden, Heist-op-den-Berg, Keerbergen, Mechelen, Putte, Sint-Katelijne-Waver, Tremelo;
+25° ...;
+26° Huisartsenkring Hoeilaart : Hoeilaart;
+27° Huisartsenkring Hoeilaart & Overijse : Overijse;
+28° Huisartsenkring Hoppeland : Asse, Merchtem, Opwijk;
+29° Huisartsenkring Huisartsen Noordrand : Grimbergen, Kampenhout, Kapelle-op-den-Bos, Londerzeel, Machelen, Meise, Steenokkerzeel, Vilvoorde, Wemmel, Zemst;
+30° ...;
+31° ...;
+32° ...;
+33° ...;
+34° Huisartsenkring Kinema : Kinrooi, Maaseik;
+35° ...;
+36° Huisartsenkring Maasland: Dilsen-Stokkem, Lanaken, Maasmechelen;
+37° ...;
+38° Huisartsenkring Middenkust : Bredene, Oostende;
+39° ...;
+40° Huisartsenkring Noord Antwerpen : Antwerpen (2030, 2040, 2170, 2180), Schoten, Stabroek;
+41° ...;
+42° Huisartsenkring Pajottenland: Bever, Dilbeek, Lennik, Pajottegem, Roosdaal, Ternat;
+43° Huisartsenkring Pallieterland en Omgeving : Berlaar, Duffel, Lier, Nijlen, Ranst;
+44° Huisartsenkring Panacea : Brakel, Herzele, Lierde, Oosterzele, Sint-Lievens-Houtem, Zottegem;
+45° Huisartsenkring Ronse : Horebeke, Maarkedal, Ronse;
+46° Huisartsenkring Schelde en Leie : Deinze, Nazareth-De Pinte, Sint-Martens-Latem, Zulte;
+47° Huisartsenkring Schelde-Rupel : Aartselaar, Boom, Bornem, Hemiksem, Niel, Puurs - Sint-Amands, Rumst, Schelle, Willebroek;
+48° Huisartsenkring Dionysius: Gingelom, Heers, Nieuwerkerken, Sint-Truiden, Wellen;
+49° ...;
+50° Huisartsenkring Tervuren : Tervuren;
+51° Huisartsenkring van Brugge en Omgeving: Beernem, Blankenberge, Brugge, Damme, De Haan, Jabbeke, Knokke-Heist, Oostkamp, Zedelgem, Zuienkerke;
+52° ...;
+53° ...;
+54° Huisartsenkring West-midWest : Beringen, Halen, Heusden-Zolder, Houthalen-Helchteren, Leopoldsburg, Lummen, Tessenderlo-Ham;
+55° ...;
+56° Huisartsenkring Wezembeek-Oppem en Kraainem : Kraainem, Wezembeek-Oppem;
+57° Huisartsenkring Zuid-West-Vlaanderen : Anzegem, Avelgem, Deerlijk, Harelbeke, Kortrijk, Kuurne, Menen, Spiere-Helkijn, Waregem, Wervik, Wevelgem, Wielsbeke, Zwevegem;
+58° Huisartsenvereniging Minerva: Antwerpen (2000, 2018, 2060, 2600);
+59° Huisartsenkring vereniging zonder winstoogmerk Huisartsen Zuid-Oost Hageland : Boutersem, Geetbets, Glabbeek, Hoegaarden, Kortenaken, Landen, Linter, Tienen, Zoutleeuw;
+60° Huisartsenkring Noordrand Antwerpen : Brasschaat, Brecht, Essen, Kalmthout, Kapellen, Wuustwezel;
+61° Huisartsenvereniging der Durmestreek : Lokeren;
+62° ...;
+63° Huisartsenvereniging Gent : Destelbergen, Gent (9000, 9030, 9031, 9032, 9040, 9041, 9042, 9050, 9051, 9052);
+64° Huisartsenkring Scheldekracht : Laarne, Lochristi, Merelbeke-Melle, Wetteren, Wichelen;
+65° Huisartsenvereniging Hagewacht : Aarschot, Begijnendijk, Bekkevoort, Scherpenheuvel-Zichem, Tielt-Winge;
+66° Huisartsenvereniging Malle Zoersel : Malle, Zandhoven, Zoersel;
+67° Huisartsenvereniging Regio Turnhout : Arendonk, Baarle-Hertog, Beerse, Dessel, Hoogstraten, Kasterlee, Lille, Merksplas, Oud-Turnhout, Ravels, Retie, Rijkevorsel, Turnhout, Vosselaar;
+68° Huisartsenvereniging Voorkempen : Schilde, Wijnegem;
+69° Kring Huisartsen Oost-Brabant: Bertem, Bierbeek, Boortmeerbeek, Haacht, Herent, Holsbeek, Huldenberg, Kortenberg, Leuven, Lubbeek, Oud-Heverlee, Rotselaar;
+70° ...;
+71° Lommelse Huisartsenkring : Lommel;
+72° Noord-Limburgse Huisartsenkring : Bocholt, Hamont-Achel, Hechtel-Eksel, Peer, Pelt;
+73° ...;
+74° Oudenaardse Vereniging van Omnipractici : Gavere, Kluisbergen, Kruisem, Oudenaarde, Wortegem-Petegem, Zwalm;
+75° Prometheus : As, Genk, Zutendaal;
+75° /1 Verenigde Meetjeslandse Huisartsenkring: Aalter, Assenede, Eeklo, Evergem, Kaprijke, Lievegem, Maldegem, Sint-Laureins, Zelzate;
+76° Vereniging Huisartsen van de Medische Eenheidskring Dendermonde : Berlare, Buggenhout, Dendermonde, Hamme, Lebbeke, Zele;
+77° Huisartsenvereniging in de Kempen : Balen, Geel, Grobbendonk, Herentals, Herenthout, Herselt, Hulshout, Laakdal, Meerhout, Mol, Olen, Vorselaar, Westerlo;
+78° ...;
+79° Zaventemse Huisartsenorganisatie : Zaventem.
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- NIEUW: Gecombineerde footer voor acties -->
+                        <div class="consolidation-actions-footer">
+                            <div class="action-group-left">
+                                <button class="button button-secondary button-blue-secondary open-pdf-modal-btn"
+                                        data-pdf-src="../pdf/Ministerieel besluit betreffende de huisartsenzones.pdf">
+                                    <i class="fa-solid fa-file-lines"></i> Decreet
+                                </button>
+                                <button class="button button-secondary button-blue-secondary">
+                                    <i class="fa-solid fa-clock"></i> Toekomstige versie
+                                </button>
+                                <button class="button button-secondary button-blue-secondary open-metadata-button" id="open-metadata-modal-1">
+                                    <i class="fa-solid fa-info-circle"></i> Metadata
+                                </button>
+                            </div>
+                            <div class="action-group-right">
+                                <button class="button button-danger reject-button">
+                                    <i class="fa-solid fa-times"></i> Afkeuren
+                                </button>
+                                <button class="button button-success validate-button-initial validate-button">
+                                    <i class="fa-solid fa-check"></i> Valideren
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Item 2: Decreet Natuurbehoud -->
+                <details class="consolidation-item" data-consolidation-id="decreet-natuurbehoud-aanpassing" data-metadata-checked="false">
+                    <summary class="consolidation-summary">
+                        <div class="summary-left">
+                            <span>Decreet betreffende het natuurbehoud en het natuurlijk milieu - Aanpassing [Datum]</span>
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </div>
+                        <!-- VERWIJDER DEZE DIV -->
+                        <!--
+                        <div class="summary-right">
+                            <button class="button button-secondary button-blue-secondary">
+                                <i class="fa-solid fa-clock"></i> Toekomstige versie
+                            </button>
+                            <button class="button button-secondary button-blue-secondary open-metadata-button">
+                                <i class="fa-solid fa-info-circle"></i> Metadata
+                            </button>
+                        </div>
+                        -->
+                    </summary>
+                    <!-- Hier komt later de inhoud -->
+                    <div class="consolidation-content">
+                        <h3 class="consolidation-content-title">Voorgestelde Wijzigingen Artikel X</h3>
+
+                        <!-- NIEUW: Container voor beide tab-navigaties -->
+                        <div class="tab-headers-container">
+                            <div class="tab-header-group left-header-group">
+                                <div class="tab-nav top-tab-nav">
+                                    <button class="tab-button active" data-tab-target="#origineel-2">Origineel Artikel X</button>
+                                    <button class="tab-button" data-tab-target="#instructies-2">Instructies</button>
+                                </div>
+                            </div>
+                            <div class="tab-header-group right-header-group">
+                                <div class="tab-nav right-tab-nav">
+                                    <button class="tab-button active" data-tab-target="#ai-diff-2">Voorgesteld Artikel X (AI Diff)</button>
+                                    <button class="tab-button" data-tab-target="#bewerken-2">Geconsolideerde Tekst (Bewerken)</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Container voor de content panelen -->
+                        <div class="diff-view-container">
+                            <div class="left-panel">
+                                <div id="origineel-2" class="tab-content active"> <div class="text-display-area"></div> </div>
+                                <div id="instructies-2" class="tab-content"> <div class="text-display-area"></div> </div>
+                            </div>
+                            <div class="right-panel">
+                                <div id="ai-diff-2" class="tab-content active"> <div class="text-display-area"></div> </div>
+                                <div id="bewerken-2" class="tab-content"> <div class="text-display-area"></div> </div>
+                            </div>
+                        </div>
+
+                        <!-- NIEUW: Gecombineerde footer voor acties -->
+                        <div class="consolidation-actions-footer">
+                            <div class="action-group-left">
+                                <button class="button button-secondary button-blue-secondary">
+                                    <i class="fa-solid fa-file-lines"></i> Wetgevingsdocument
+                                </button>
+                                <button class="button button-secondary button-blue-secondary">
+                                    <i class="fa-solid fa-clock"></i> Toekomstige versie
+                                </button>
+                                <button class="button button-secondary button-blue-secondary">
+                                    <i class="fa-solid fa-info-circle"></i> Metadata
+                                </button>
+                            </div>
+                            <div class="action-group-right">
+                                <button class="button button-danger reject-button"><i class="fa-solid fa-times"></i> Afkeuren</button>
+                                <button class="button button-success validate-button-initial validate-button"><i class="fa-solid fa-check"></i> Valideren</button>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Voeg hier dynamisch meer items toe -->
+            </div>
+
+        </main>
+
+        <footer class="page-footer">
+            <img src="../images/logobelow.jpg" alt="Bottom Logo" class="footer-logo">
+        </footer>
+    </div>
+
+    <!-- NIEUW: PDF Modal Structuur (ook hier toevoegen) -->
+    <div id="pdf-modal" class="pdf-modal" style="display: none;">
+        <div class="modal-content-pdf">
+            <button class="close-modal-btn" aria-label="Sluiten">
+                <i class="fas fa-times"></i>
+            </button>
+            <iframe id="pdf-viewer" src="" frameborder="0"></iframe>
+        </div>
+    </div>
+    <!-- Einde PDF Modal Structuur -->
+
+    <!-- NIEUW: Metadata Modal Structuur -->
+    <div id="metadata-modal" class="metadata-modal" style="display: none;">
+        <div class="modal-content-metadata">
+            <button class="close-modal-btn" aria-label="Sluiten">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2>Metadata</h2>
+
+            <!-- Tab Navigatie -->
+            <div class="modal-tab-nav">
+                <button class="modal-tab-button active" data-modal-tab-target="#meta-algemeen">Document</button>
+                <button class="modal-tab-button" data-modal-tab-target="#meta-artikels">Artikel</button>
+                <button class="modal-tab-button" data-modal-tab-target="#meta-inhoud">Inhoud</button>
+                <button class="modal-tab-button" data-modal-tab-target="#meta-trefwoorden">Trefwoorden</button>
+                <!-- VERWIJDER DEZE KNOP -->
+                <!-- <button class="modal-tab-button" data-modal-tab-target="#meta-relaties">Relaties</button> -->
+            </div>
+
+            <!-- Tab Content Panelen -->
+            <div class="modal-tab-content-container">
+                <div id="meta-algemeen" class="modal-tab-content active">
+                    <!-- NIEUWE INHOUD voor Document Tab -->
+                    <form class="metadata-form">
+                        <div class="form-grid">
+
+                            <!-- Rij 1: Aard -->
+                            <div class="form-group span-2">
+                                <label for="meta-aard">Aard <span class="required">*</span></label>
+                                <select id="meta-aard" name="aard" required>
+                                    <option value="" disabled selected>Selecteer aard...</option>
+                                    <option value="besluit-vl-regering">Besluit van de Vlaamse Regering</option>
+                                    <option value="wet">Wet</option>
+                                    <option value="decreet">Decreet</option>
+                                    <option value="mb">Ministerieel Besluit</option>
+                                    <!-- Voeg hier meer opties toe via API -->
+                                </select>
+                            </div>
+
+                            <!-- Rij 2: Datum & KB Nummer -->
+                            <div class="form-group">
+                                <label for="meta-datum">Datum <span class="required">*</span></label>
+                                <div class="input-with-icon">
+                                    <input type="date" id="meta-datum" name="datum" value="1999-12-17" required>
+                                    <i class="fa-solid fa-calendar-days input-icon"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="meta-kb-nummer">KB Nummer</label>
+                                <input type="text" id="meta-kb-nummer" name="kb_nummer" placeholder="Optioneel">
+                            </div>
+
+                            <!-- Rij 3: Opschrift -->
+                            <div class="form-group span-2">
+                                <label for="meta-opschrift">Opschrift <span class="required">*</span></label>
+                                <textarea id="meta-opschrift" name="opschrift" rows="4" required>betreffende de toegang tot de grondhandelingsmarkt op de Vlaamse regionale luchthavens</textarea>
+                            </div>
+
+                            <!-- Rij 4: BS Datum, Pagina, Numac -->
+                            <div class="form-group">
+                                <label for="meta-bs-datum">BS Datum</label>
+                                <div class="input-with-icon">
+                                    <input type="date" id="meta-bs-datum" name="bs_datum" value="2000-03-07">
+                                     <i class="fa-solid fa-calendar-days input-icon"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="meta-bs-pagina">BS Pagina</label>
+                                <input type="text" id="meta-bs-pagina" name="bs_pagina" value="6842">
+                            </div>
+                            <div class="form-group">
+                                <label for="meta-numac">Numac</label>
+                                <input type="text" id="meta-numac" name="numac" value="2000035177">
+                            </div>
+
+                            <!-- Rij 5: Commentaar -->
+                             <div class="form-group span-2">
+                                <label for="meta-commentaar">Commentaar</label>
+                                <textarea id="meta-commentaar" name="commentaar" rows="3" placeholder="Interne opmerkingen..."></textarea>
+                            </div>
+
+                            <!-- Rij 6: Checkboxes -->
+                            <div class="form-group checkbox-group span-2">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="meta-gedrukt" name="gedrukt" checked>
+                                    <label for="meta-gedrukt">Gedrukt</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="meta-gecoordineerd" name="gecoordineerd" checked>
+                                    <label for="meta-gecoordineerd">Gecoördineerd</label>
+                                </div>
+                            </div>
+
+                            <!-- Rij 7: In werking -->
+                            <div class="form-group">
+                                <label for="meta-inwerking">In werking</label>
+                                <div class="input-with-icon">
+                                    <input type="date" id="meta-inwerking" name="inwerking" value="2000-03-07">
+                                     <i class="fa-solid fa-calendar-days input-icon"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="meta-inwerking-select">of selecteer</label>
+                                <select id="meta-inwerking-select" name="inwerking_select">
+                                    <option value="datum-gespecificeerd" selected>Datum gespecificeerd</option>
+                                    <option value="onbepaald">Onbepaald</option>
+                                    <option value="publicatie">Dag van publicatie</option>
+                                    <!-- Andere opties -->
+                                </select>
+                            </div>
+
+                            <!-- Rij 8: Geldig tot -->
+                            <div class="form-group">
+                                <label for="meta-geldigtot">Geldig tot</label>
+                                <div class="input-with-icon">
+                                    <input type="date" id="meta-geldigtot" name="geldigtot" placeholder="dd/mm/jjjj">
+                                     <i class="fa-solid fa-calendar-days input-icon"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="meta-geldigtot-select">of selecteer</label>
+                                <select id="meta-geldigtot-select" name="geldigtot_select">
+                                    <option value="datum-gespecificeerd" selected>Datum gespecificeerd</option>
+                                    <option value="onbepaald">Onbepaald</option>
+                                    <!-- Andere opties -->
+                                </select>
+                            </div>
+
+                             <!-- Rij 9: Vlaco ID -->
+                            <div class="form-group">
+                                <label for="meta-vlaco-id">Vlaco ID</label>
+                                <input type="text" id="meta-vlaco-id" name="vlaco_id" value="1007182" readonly class="readonly-input">
+                            </div>
+
+                        </div>
+                    </form>
+                    <!-- EINDE NIEUWE INHOUD -->
+
+                    <!-- NIEUW: Documentrelaties Sectie -->
+                    <div class="document-relations-section">
+                        <h3 class="relations-title">Documentrelaties</h3>
+                        <div class="relations-table-container">
+                            <table class="relations-table">
+                                <thead>
+                                    <tr>
+                                        <th>Relatietype</th>
+                                        <th>Datum</th>
+                                        <th>Aard</th>
+                                        <th>Volgnummer</th>
+                                        <th>Opschrift</th>
+                                        <th>BS Datum</th>
+                                        <th>BS Pagina</th>
+                                        <th>Actie</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Voorbeeld Rijen (deze zouden dynamisch geladen moeten worden) -->
+                                    <tr>
+                                        <td>Gewijzigd bij</td>
+                                        <td>29/04/2025</td>
+                                        <td>M.B.</td>
+                                        <td>20250429.U002</td>
+                                        <td>tot goedkeuring van het compendium voor de monsterneming, meting en analy...</td>
+                                        <td></td>
+                                        <td>0</td>
+                                        <td><button class="action-btn remove-relation-btn" title="Relatie verwijderen"><i class="fa-solid fa-minus"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gewijzigd bij</td>
+                                        <td>06/09/2024</td>
+                                        <td>B.V.R.</td>
+                                        <td>20240906.Q015</td>
+                                        <td>tot wijziging van het besluit van de Vlaamse Regering van 1 juni 1995 houdend...</td>
+                                        <td>30/10/2024</td>
+                                        <td>124545</td>
+                                        <td><button class="action-btn remove-relation-btn" title="Relatie verwijderen"><i class="fa-solid fa-minus"></i></button></td>
+                                    </tr>
+                                    <tr class="highlighted-row"> <!-- Voorbeeld van highlight -->
+                                        <td>Gewijzigd bij</td>
+                                        <td>07/05/2024</td>
+                                        <td>M.B.</td>
+                                        <td>20240507.U002</td>
+                                        <td>tot goedkeuring van het compendium voor de monsterneming, meting en analy...</td>
+                                        <td>08/10/2024</td>
+                                        <td>118584</td>
+                                        <td><button class="action-btn remove-relation-btn" title="Relatie verwijderen"><i class="fa-solid fa-minus"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gewijzigd bij</td>
+                                        <td>06/09/2024</td>
+                                        <td>B.V.R.</td>
+                                        <td>20240906.Q010</td>
+                                        <td>tot wijziging van het besluit van de Vlaamse Regering van 1 juni 1995 houdend...</td>
+                                        <td>04/10/2024</td>
+                                        <td>116280</td>
+                                        <td><button class="action-btn remove-relation-btn" title="Relatie verwijderen"><i class="fa-solid fa-minus"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gewijzigd bij</td>
+                                        <td>21/06/2024</td>
+                                        <td>B.V.R.</td>
+                                        <td>20240621.Q026</td>
+                                        <td>tot wijziging van het besluit van de Vlaamse Regering van 1 juni 1995 houdend...</td>
+                                        <td>26/09/2024</td>
+                                        <td>110135</td>
+                                        <td><button class="action-btn remove-relation-btn" title="Relatie verwijderen"><i class="fa-solid fa-minus"></i></button></td>
+                                    </tr>
+                                    <!-- Voeg hier meer rijen toe -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- Paginatie voor relaties -->
+                        <div class="relations-pagination">
+                            <span class="pagination-info">235 resultaten</span>
+                            <div class="pagination-controls">
+                                <button class="pagination-btn prev-btn" title="Vorige" disabled>
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </button>
+                                <span class="page-indicator">Pagina 1 van 12</span>
+                                <button class="pagination-btn next-btn" title="Volgende">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </button>
+                            </div>
+                            <div class="results-per-page">
+                                <label for="relations-per-page">Aantal resultaten per pagina:</label>
+                                <select id="relations-per-page" name="relations_per_page">
+                                    <option value="10">10</option>
+                                    <option value="20" selected>20</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- EINDE Documentrelaties Sectie -->
+                </div>
+                <div id="meta-artikels" class="modal-tab-content">
+                    <!-- NIEUWE INHOUD voor Artikel Tab -->
+                    <div class="artikel-metadata-container">
+                        <!-- Bovenste sectie: Datum en Versie -->
+                        <div class="artikel-top-section">
+                            <div class="form-group">
+                                <label for="artikel-inwerking">Inwerkingtredingsdatum</label>
+                                <div class="input-with-icon">
+                                    <input type="date" id="artikel-inwerking" name="artikel_inwerking">
+                                    <i class="fa-solid fa-calendar-days input-icon"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="artikel-inwerking-select">of selecteer</label>
+                                <select id="artikel-inwerking-select" name="artikel_inwerking_select">
+                                    <option value="datum-gespecificeerd" selected>Datum gespecificeerd</option>
+                                    <option value="datum-bepalen-vl-regering">Datum te bepalen door de Vlaamse Regering</option>
+                                    <option value="datum-bepalen-minister">Datum te bepalen door de minister</option>
+                                    <option value="datum-afhankelijk-extern">Datum afhankelijk van externe gebeurtenis</option>
+                                    <option value="tien-dagen-na-publicatie-bs">Tien dagen na publicatie in het Belgisch Staatsblad</option>
+                                    <option value="tien-dagen-na-publicatie-wijz-bs">Tien dagen na publicatie van de wijzigende tekst in het Belgisch Staatsblad</option>
+                                    <option value="datum-publicatie-bs">Datum van publicatie in het Belgisch Staatsblad</option>
+                                    <option value="datum-publicatie-wijz-bs">Datum van publicatie van de wijzigende tekst in het Belgisch Staatsblad</option>
+                                    <option value="datum-bepalen-koning">Datum te bepalen door de Koning</option>
+                                    <option value="onbepaald">Onbepaald</option>
+                                </select>
+                            </div>
+                            <div class="form-group version-display-group">
+                                <label>Versie</label>
+                                <span class="article-version-display">versie 12</span>
+                            </div>
+                        </div>
+
+                        <!-- Onderste sectie: Artikel Relaties -->
+                        <div class="document-relations-section article-relations-section"> <!-- Hergebruik class, voeg specifieke toe -->
+                            <h3 class="relations-title">Artikel Relaties</h3>
+                            <div class="relations-table-container">
+                                <table class="relations-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Relatietype</th>
+                                            <th>Datum</th>
+                                            <th>Aard</th>
+                                            <th>Volgnummer</th>
+                                            <th>Opschrift</th>
+                                            <th>BS Datum</th>
+                                            <th>BS Pagina</th>
+                                            <th>Actie</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Voorbeeld Rijen (deze zouden dynamisch geladen moeten worden) -->
+                                        <tr>
+                                            <td>Wijzigt</td>
+                                            <td>07/05/2024</td>
+                                            <td>M.B.</td>
+                                            <td>20240507.U002</td>
+                                            <td>tot goedkeuring van het compendium voor de monsterneming, meting en analy...</td>
+                                            <td>08/10/2024</td>
+                                            <td>118584</td>
+                                            <td><button class="action-btn remove-relation-btn" title="Relatie verwijderen"><i class="fa-solid fa-minus"></i></button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Vervangt</td>
+                                            <td>23/01/2023</td>
+                                            <td>M.B.</td>
+                                            <td>20230123.U003</td>
+                                            <td>tot goedkeuring van het compendium voor de monsterneming, meting en analy...</td>
+                                            <td>27/02/2023</td>
+                                            <td>25100</td>
+                                            <td><button class="action-btn remove-relation-btn" title="Relatie verwijderen"><i class="fa-solid fa-minus"></i></button></td>
+                                        </tr>
+                                        <!-- Voeg hier meer rijen toe -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Paginatie voor relaties -->
+                            <div class="relations-pagination">
+                                <span class="pagination-info">2 resultaten</span> <!-- Voorbeeld -->
+                                <div class="pagination-controls">
+                                    <button class="pagination-btn prev-btn" title="Vorige" disabled>
+                                        <i class="fa-solid fa-chevron-left"></i>
+                                    </button>
+                                    <span class="page-indicator">Pagina 1 van 1</span> <!-- Voorbeeld -->
+                                    <button class="pagination-btn next-btn" title="Volgende" disabled>
+                                        <i class="fa-solid fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                                <div class="results-per-page">
+                                    <label for="article-relations-per-page">Aantal resultaten per pagina:</label>
+                                    <select id="article-relations-per-page" name="article_relations_per_page">
+                                        <option value="10">10</option>
+                                        <option value="20" selected>20</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- EINDE NIEUWE INHOUD -->
+                </div>
+                <div id="meta-inhoud" class="modal-tab-content">
+                    <!-- Inhoud voor Inhoud komt hier -->
+                    <p>Metadata specifiek voor artikels...</p>
+                </div>
+                <div id="meta-trefwoorden" class="modal-tab-content">
+                    <!-- VOLLEDIG HERWERKTE UI/UX Trefwoorden Tab -->
+                    <div class="trefwoorden-grid">
+
+                        <!-- Linker Kolom: Suggesties -->
+                        <div class="trefwoorden-kolom suggestie-kolom">
+                            <div class="kolom-header">
+                                <h4>Suggesties</h4>
+                                <button id="suggest-keywords-btn" class="button button-yellow button-xsmall">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i> Laden
+                                </button>
+                            </div>
+
+                            <!-- Loader -->
+                            <div id="keyword-loader" class="keyword-loader" style="display: none;">
+                                <div class="loader-dots">
+                                    <div class="loader-dot"></div>
+                                    <div class="loader-dot"></div>
+                                    <div class="loader-dot"></div>
+                                </div>
+                            </div>
+
+                            <!-- Suggestie Lijst & Paginatie -->
+                            <div id="suggested-keywords-area" class="suggested-keywords-area" style="display: none;">
+                                <div class="keyword-list-container suggested-list-container">
+                                     <!-- Empty state voor suggesties -->
+                                     <div id="suggested-empty-state" class="empty-state" style="display: none;">
+                                        <i class="fa-regular fa-lightbulb"></i>
+                                        <span>Geen suggesties gevonden.</span>
+                                    </div>
+                                    <ul id="suggested-keyword-list" class="keyword-list suggested-keyword-list">
+                                        <!-- Gesuggereerde trefwoorden -->
+                                    </ul>
+                                </div>
+                                <div id="keyword-pagination" class="keyword-pagination">
+                                    <button id="prev-keyword-page" class="button button-secondary button-xsmall" disabled>
+                                        <i class="fa-solid fa-chevron-left"></i>
+                                    </button>
+                                    <span id="keyword-page-info">Pagina 1 / 1</span>
+                                    <button id="next-keyword-page" class="button button-secondary button-xsmall" disabled>
+                                        <i class="fa-solid fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                             <!-- Placeholder als nog niet geladen -->
+                             <div id="suggested-placeholder" class="empty-state">
+                                <i class="fa-regular fa-clock"></i>
+                                <span>Klik op 'Laden' voor AI suggesties.</span>
+                            </div>
+                        </div>
+
+                        <!-- Rechter Kolom: Geselecteerd -->
+                        <div class="trefwoorden-kolom selectie-kolom">
+                             <div class="kolom-header">
+                                <h4>Geselecteerde Trefwoorden</h4>
+                                <!-- Sectie voor handmatig toevoegen (geen dropdown meer) -->
+                                <div class="add-keyword-section">
+                                    <input type="text" id="keyword-input" class="keyword-input" placeholder="Typ trefwoord en druk Enter..." autocomplete="off">
+                                    <!-- '+' knop opent nu de modal -->
+                                    <button id="open-all-keywords-modal-btn" class="button button-secondary button-xsmall" aria-label="Toon alle trefwoorden">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="keyword-list-container final-list-container">
+                                <!-- Empty state voor geselecteerde lijst -->
+                                <div id="selected-empty-state" class="empty-state">
+                                    <i class="fa-regular fa-folder-open"></i>
+                                    <span>Nog geen trefwoorden geselecteerd.</span>
+                                    <span>Voeg ze toe vanuit suggesties of handmatig.</span>
+                                </div>
+                                <ul id="keyword-list" class="keyword-list final-keyword-list">
+                                    <!-- Geselecteerde trefwoorden -->
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- EINDE HERWERKTE UI/UX -->
+                </div>
+                <!-- VERWIJDER DIT CONTENT PANEEL -->
+                <!-- <div id="meta-relaties" class="modal-tab-content"> -->
+                    <!-- Inhoud voor Relaties komt hier -->
+                    <!-- <p>Gerelateerde documenten...</p> -->
+                <!-- </div> -->
+            </div>
+
+        </div>
+    </div>
+    <!-- Einde Metadata Modal Structuur -->
+
+    <!-- NIEUW: Afkeur Modal Structuur -->
+    <div id="reject-modal" class="reject-modal" style="display: none;">
+        <div class="modal-content-reject">
+             <button class="close-modal-btn" aria-label="Sluiten">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2>Reden van Afkeuring</h2>
+            <p>Geef hieronder de reden op waarom dit voorstel wordt afgekeurd.</p>
+            <textarea id="reject-reason" placeholder="Typ hier uw reden..." rows="6"></textarea>
+            <div class="reject-modal-actions">
+                <button class="button button-secondary cancel-rejection-btn">Annuleren</button>
+                <button class="button button-danger submit-rejection-btn">Verzenden</button>
+            </div>
+        </div>
+    </div>
+    <!-- Einde Afkeur Modal Structuur -->
+
+    <!-- NIEUW: Modal voor Alle Trefwoorden -->
+    <div id="all-keywords-modal" class="all-keywords-modal" style="display: none;">
+        <div class="modal-content-all-keywords">
+             <button class="close-modal-btn" aria-label="Sluiten">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2>Alle Beschikbare Trefwoorden</h2>
+            <div class="all-keywords-modal-search">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" id="all-keywords-search-input" placeholder="Zoek trefwoorden...">
+            </div>
+            <div class="all-keywords-modal-list-container">
+                <ul id="all-keywords-modal-list">
+                    <!-- Volledige lijst komt hier via JS -->
+                </ul>
+            </div>
+            <div class="all-keywords-modal-actions">
+                 <button class="button button-secondary close-all-keywords-modal-btn">Annuleren</button>
+                 <button id="add-selected-keywords-btn" class="button button-primary">Selecteren</button>
+            </div>
+        </div>
+    </div>
+    <!-- Einde Modal Alle Trefwoorden -->
+
+    <script src="../js/sidebar.js"></script>
+    <!-- Voeg specifieke JS voor deze pagina toe -->
+    <script src="../js/ai-consolidatie.js"></script>
+    <!-- Voeg script toe dat de PDF modal logica bevat -->
+    <script src="../js/staatsblad.js"></script>
+</body>
+</html> 

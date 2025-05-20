@@ -1,0 +1,341 @@
+/* Variabelen specifiek voor het architectuurdiagram (kunnen ook in :root in styles.css) */
+:root {
+    --diagram-layer-external-bg: #f0f9ff; /* Sky-50 */
+    --diagram-layer-core-bg: #fffbeb;     /* Amber-50 */
+    --diagram-layer-frontend-bg: #f0fdf4; /* Emerald-50 */
+
+    --diagram-icon-external-color: #0ea5e9; /* Sky-500 */
+    --diagram-icon-core-color: #f59e0b;     /* Amber-500 */
+    --diagram-icon-frontend-color: #10b981; /* Emerald-500 */
+
+    --diagram-text-muted: #6b7280; /* Gray-500 */
+    --diagram-border-light: #e5e7eb; /* Gray-300 */
+}
+
+/* --- Gedeelde Paginakop Stijlen --- */
+/* (Deze sectie moet identiek zijn in storymap.css) */
+.breadcrumb {
+    font-size: 0.9em;
+}
+
+.breadcrumb a {
+    color: var(--primary-blue); /* Gebruik variabele uit styles.css */
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb .fas {
+    margin-right: 8px; /* Iets meer ruimte */
+}
+
+.page-controls-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px; /* Iets meer ruimte */
+    padding: 0 4px; /* Kleine padding om te voorkomen dat elementen aan de rand plakken */
+}
+
+.page-main-title {
+    font-size: 1.875rem; /* text-3xl */
+    font-weight: 700;    /* bold */
+    text-align: center;
+    color: var(--text-dark); /* Gebruik variabele uit styles.css */
+    margin-top: 1rem;
+    margin-bottom: 2.5rem; /* mb-10 */
+}
+
+/* --- Architectuur Diagram Specifieke Stijlen --- */
+.architecture-diagram-wrapper {
+    max-width: 80rem; /* max-w-7xl */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem; /* Padding voor kleinere schermen */
+}
+
+.architecture-layers-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Standaard 1 kolom voor mobiel */
+    gap: 1.5rem; /* Ruimte tussen lagen */
+    margin-bottom: 2.5rem; /* Ruimte voor de flow summary */
+}
+
+@media (min-width: 768px) { /* md: breakpoint */
+    .architecture-layers-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 kolommen op grotere schermen */
+        align-items: stretch; /* Lagen vullen de hoogte van de rij */
+        gap: 2rem;
+    }
+}
+
+.architecture-layer {
+    background-color: #fff; /* Basis achtergrond */
+    border: 1px solid var(--diagram-border-light);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column; /* Content stapelt verticaal */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.architecture-layer.layer-external { background-color: var(--diagram-layer-external-bg); }
+.architecture-layer.layer-core { background-color: var(--diagram-layer-core-bg); }
+.architecture-layer.layer-frontend { background-color: var(--diagram-layer-frontend-bg); }
+
+.layer-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--diagram-border-light);
+}
+
+.layer-icon {
+    margin-right: 0.75rem;
+    font-size: 1.75rem; /* Iets groter icoon */
+    line-height: 1;
+}
+.layer-icon.icon-external { color: var(--diagram-icon-external-color); }
+.layer-icon.icon-core { color: var(--diagram-icon-core-color); }
+.layer-icon.icon-frontend { color: var(--diagram-icon-frontend-color); }
+
+.architecture-layer-title { /* Was .layer-title-text */
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 600;   /* semibold */
+    color: var(--text-dark);
+    line-height: 1.3;
+}
+
+.components-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Ruimte tussen componenten/flows binnen een groep */
+    flex-grow: 1; /* Zorgt dat deze groep de beschikbare ruimte vult */
+}
+
+.architecture-component {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0; /* Iets donkerder dan layer border voor contrast */
+    border-radius: 6px;
+    padding: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.architecture-component > div:first-child { /* Container voor icoon en titel */
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.component-icon {
+    margin-right: 0.65rem;
+    font-size: 1.25rem;
+    width: 24px; /* Vaste breedte voor uitlijning */
+    text-align: center;
+}
+/* Specifieke component icoon kleuren (kunnen ook hier of in :root) */
+.component-icon.icon-external { color: var(--diagram-icon-external-color); }
+.component-icon.icon-core { color: var(--diagram-icon-core-color); }
+.component-icon.icon-frontend { color: var(--diagram-icon-frontend-color); }
+.component-icon.icon-data { color: var(--primary-purple, #8B5CF6); } /* Voorbeeld voor datastore */
+.component-icon.icon-api { color: var(--primary-teal, #14B8A6); } /* Voorbeeld voor API */
+
+
+.component-title-text {
+    font-size: 1rem; /* 16px */
+    font-weight: 600;
+    color: var(--text-darker, #111827); /* Iets donkerder voor titels */
+}
+
+.component-description-text {
+    font-size: 0.875rem; /* 14px */
+    color: var(--text-secondary, #4B5563);
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+}
+.component-description-text:last-child {
+    margin-bottom: 0;
+}
+.component-description-text i.fas { /* Iconen in beschrijvingen */
+    margin-right: 4px;
+    font-size: 0.8em;
+    color: var(--text-muted);
+}
+.component-description-text.with-margin-top {
+    margin-top: 0.75rem;
+}
+
+
+.component-tech-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.component-tech-item {
+    font-size: 0.75rem; /* 12px */
+    background-color: #e9ecef; /* Lichte achtergrond */
+    color: #495057;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+}
+
+.flow-connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.75rem 0;
+}
+
+.flow-connector i.fas { /* De pijl zelf */
+    font-size: 1.25rem;
+    color: var(--diagram-text-muted);
+    margin-bottom: 0.25rem;
+}
+
+.flow-label-text {
+    font-size: 0.75rem; /* 12px */
+    color: var(--diagram-text-muted);
+    background-color: #f8f9fa;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #e9ecef;
+    text-align: center;
+}
+
+.architecture-flow-summary {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border: 1px solid var(--diagram-border-light);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+.architecture-flow-summary strong {
+    color: var(--text-dark);
+}
+.architecture-flow-summary .fas {
+    margin: 0 0.25rem;
+    font-size: 0.8em;
+}
+
+.diagram-footer {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--diagram-border-light);
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* --- Print Stijlen voor Architectuur --- */
+@media print {
+    @page {
+        size: A4 landscape;
+        margin: 1cm;
+    }
+
+    body {
+        font-size: 8pt; /* Kleiner voor print */
+        color: #000;
+        background-color: #fff !important;
+    }
+
+    /* Elementen die volledig verborgen moeten worden in print */
+    .sidebar,
+    .page-footer, /* Algemene pagina footer */
+    .page-controls-header, /* BELANGRIJK: Verberg de hele header-container */
+    .page-main-title {    /* BELANGRIJK: Verberg de hoofdtitel */
+        display: none !important;
+    }
+    /* De volgende specifieke regels zijn nu overbodig: */
+    /* .page-controls-header .button { display: none !important; } */
+    /* .page-controls-header .breadcrumb { display: none !important; } */
+    /* .page-controls-header { margin-bottom: 0.5cm !important; } */
+    /* .page-main-title.architectuur-title-print-hide { display: none !important; } */
+
+
+    .content-wrapper {
+        margin-left: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+    .main-content {
+        padding: 0 !important;
+        margin-top: 0 !important; /* Zekerstellen dat er geen bovenmarge is */
+    }
+
+    /* .page-main-title is hierboven al afgehandeld met display: none !important; */
+    /* De oude specifieke .page-main-title print regels kunnen weg of blijven uitgecommentarieerd */
+
+
+    .architecture-diagram-wrapper {
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+        margin-top: 0 !important; /* Zekerstellen dat er geen bovenmarge is */
+    }
+
+    .architecture-layers-grid {
+        display: flex !important; /* Gebruik flex voor betere controle op print */
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: stretch !important; /* Behoud stretch */
+        gap: 0.75cm !important;
+        page-break-inside: avoid !important;
+        width: 100% !important;
+    }
+
+    .architecture-layer {
+        flex: 1; /* Verdeel ruimte gelijkmatig */
+        min-width: 0; /* Nodig voor flex items */
+        padding: 0.5cm !important;
+        border: 1px solid #bbb !important;
+        box-shadow: none !important;
+        background-color: #fdfdfd !important; /* Lichte achtergrond om lagen te onderscheiden */
+        page-break-inside: avoid !important;
+    }
+    .layer-header {
+        margin-bottom: 0.4cm !important;
+        padding-bottom: 0.2cm !important;
+    }
+    .architecture-layer-title { font-size: 10pt !important; }
+    .layer-icon { font-size: 1.2em !important; }
+
+
+    .components-group { gap: 0.4cm !important; }
+    .architecture-component {
+        padding: 0.3cm !important;
+        border: 1px solid #ccc !important;
+        page-break-inside: avoid !important;
+    }
+    .component-title-text { font-size: 8pt !important; }
+    .component-description-text { font-size: 7pt !important; line-height: 1.3 !important; }
+    .component-tech-item { font-size: 6pt !important; padding: 1px 3px !important; }
+
+    .flow-connector i.fas { font-size: 1em !important; }
+    .flow-label-text { font-size: 6pt !important; padding: 1px 3px !important; }
+
+    .architecture-flow-summary {
+        padding: 0.5cm !important;
+        font-size: 7pt !important;
+        page-break-before: auto; /* Kan helpen, of 'avoid' als het klein is */
+    }
+    .diagram-footer {
+        font-size: 6pt !important;
+        margin-top: 0.5cm !important;
+        padding-top: 0.3cm !important;
+    }
+} 

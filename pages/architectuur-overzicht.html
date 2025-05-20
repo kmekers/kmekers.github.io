@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High-Level Systeemarchitectuur</title>
+    <!-- Link naar je CSS bestanden -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="stylesheet" href="../css/architectuur-overzicht.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <nav class="sidebar">
+        <!-- Group 1: Top Logo + Top Nav -->
+        <div>
+            <div class="sidebar-logo-container">
+                 <img src="../images/logoabove.png" alt="Top Logo" class="sidebar-logo-top">
+            </div>
+            <ul class="sidebar-nav-top">
+                <li>
+                    <a href="../index.html" class="nav-item">
+                        <i class="fa-solid fa-house nav-icon"></i>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="ai-consolidatie.html" class="nav-item">
+                        <i class="fa-solid fa-brain nav-icon"></i>
+                        <span class="nav-text">Ai consolidatie</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="staatsblad.html" class="nav-item">
+                        <i class="fa-solid fa-newspaper nav-icon"></i>
+                        <span class="nav-text">Staatsblad</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="geschiedenis.html" class="nav-item">
+                        <i class="fa-solid fa-clock-rotate-left nav-icon"></i>
+                        <span class="nav-text">Geschiedenis</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Group 2: Bottom Nav ONLY -->
+        <ul class="sidebar-nav-bottom">
+             <li>
+                <a href="instellingen.html" class="nav-item">
+                    <i class="fa-solid fa-gear nav-icon"></i>
+                    <span class="nav-text">Instellingen</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-item"> <!-- Placeholder/JS action -->
+                    <i class="fa-solid fa-arrow-right-from-bracket nav-icon"></i>
+                    <span class="nav-text">Uitloggen</span>
+                </a>
+            </li>
+            <li>
+                <!-- Markeer Extra Info als parent active, of de huidige pagina als dat logischer is -->
+                <a href="extra-info.html" class="nav-item active"> 
+                    <i class="fa-solid fa-info-circle nav-icon"></i>
+                    <span class="nav-text">Extra Info</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="content-wrapper">
+        <main class="main-content">
+            <!-- Broodkruimelpad en Printknop Container -->
+            <div class="page-controls-header">
+                <div class="breadcrumb">
+                    <a href="extra-info.html"><i class="fas fa-arrow-left"></i> Terug naar Extra Info</a>
+                </div>
+                <div> <!-- Wrapper voor knoppen rechts -->
+                    <button id="print-architecture-button" class="button button-warning">
+                        <i class="fas fa-print"></i> Print Overzicht
+                    </button>
+                    <button id="enter-focus-mode-button-architectuur" class="button button-icon-only" title="Focus modus">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="architecture-diagram-wrapper">
+                <h1 class="page-main-title">
+                    High-level systeemarchitectuur
+                </h1>
+
+                <div class="architecture-layers-grid">
+
+                    <div class="architecture-layer layer-external">
+                        <h2 class="architecture-layer-title">Externe bronnen & input</h2>
+                        <div class="components-group">
+                            <div class="architecture-component">
+                                <div>
+                                    <i class="fas fa-landmark component-icon icon-external"></i>
+                                    <h3 class="component-title-text">Belgisch staatsblad</h3>
+                                </div>
+                                <p class="component-description-text">Dagelijkse publicaties van nieuwe wetgeving en besluiten.</p>
+                            </div>
+                            <div class="flow-connector">
+                                <i class="fas fa-arrow-down"></i>
+                                <span class="flow-label-text">Scraping</span>
+                            </div>
+                            <div class="architecture-component">
+                                <div>
+                                    <i class="fas fa-cogs component-icon icon-external"></i>
+                                    <h3 class="component-title-text">Initiële verwerking</h3>
+                                </div>
+                                <p class="component-description-text">Rule-based software detecteert publicaties, extraheert data (datum, artikel) en bereidt voor op batchverwerking.</p>
+                            </div>
+                            <div class="flow-connector">
+                                <i class="fas fa-arrow-down"></i>
+                                <span class="flow-label-text">Voorbereide Data</span>
+                            </div>
+                            <div class="architecture-component">
+                                <div>
+                                    <i class="fas fa-cloud component-icon icon-external"></i>
+                                    <h3 class="component-title-text">Vlaamse codex api</h3>
+                                </div>
+                                <p class="component-description-text">Levert artikels, documenten en vorige metadata. Ontvangt wijzigingen per artikel.</p>
+                            </div>
+                            <div class="flow-connector">
+                                <i class="fas fa-arrow-down"></i>
+                                <span class="flow-label-text">Input Data</span>
+                            </div>
+                            <div class="architecture-component">
+                                <div>
+                                    <i class="fas fa-paperclip component-icon icon-external"></i>
+                                    <h3 class="component-title-text">Andere bronnen</h3>
+                                </div>
+                                <p class="component-description-text">Bijlagen, ondersteunende documenten, etc.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="architecture-layer layer-core">
+                        <h2 class="architecture-layer-title">Kern systeem</h2>
+                        <div class="components-group">
+                            <div class="architecture-component">
+                                <div>
+                                    <i class="fas fa-brain component-icon icon-core"></i>
+                                    <h3 class="component-title-text">Ai agent</h3>
+                                </div>
+                                <p class="component-description-text">Consolideert wetgeving per artikel. Maakt gebruik van verschillende tools voor analyse en voorstelgeneratie.</p>
+                            </div>
+                            <div class="flow-connector">
+                                <i class="fas fa-arrow-down"></i>
+                                <span class="flow-label-text">Geconsolideerde Voorstellen & Analyse</span>
+                            </div>
+                            <div class="architecture-component">
+                                <div>
+                                    <i class="fas fa-server component-icon icon-core"></i>
+                                    <h3 class="component-title-text">Backend systeem</h3>
+                                </div>
+                                <div class="component-sub-group">
+                                    <h4 class="sub-group-title-text">Kerncomponenten</h4>
+                                    <p class="component-description-text"><i class="fas fa-database"></i>Database (Gebruikt het origineel datamodel)</p>
+                                    <p class="component-description-text"><i class="fas fa-project-diagram"></i>Rule-based Logica (Automatisering, Wijzigingen tonen)</p>
+                                    <p class="component-description-text"><i class="fas fa-user-shield"></i>Gebruikersauthenticatie</p>
+                                    <p class="component-description-text"><i class="fas fa-upload"></i>Batchverwerking & Push naar API's</p>
+                                </div>
+                                <p class="component-description-text with-margin-top">Connecteert via API met Front end. Beheert metadata (combinatie van rule-based, AI en gebruikersvalidatie). Vergelijkt origineel artikel met AI-artikel om verschillen ('diffs') te genereren en te tonen.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="architecture-layer layer-frontend">
+                        <h2 class="architecture-layer-title">Frontend & gebruiker</h2>
+                        <div class="components-group">
+                            <div class="architecture-component">
+                                <div>
+                                    <i class="fas fa-user-tie component-icon icon-frontend"></i>
+                                    <h3 class="component-title-text">Gebruiker (medewerker)</h3>
+                                </div>
+                                <p class="component-description-text">Controleert, valideert, geeft feedback en beheert het consolidatieproces.</p>
+                            </div>
+                            <div class="flow-connector">
+                                <i class="fas fa-arrow-down"></i>
+                                <span class="flow-label-text">Interactie</span>
+                            </div>
+                            <div class="architecture-component">
+                                <div>
+                                    <i class="fas fa-desktop component-icon icon-frontend"></i>
+                                    <h3 class="component-title-text">Frontend applicatie</h3>
+                                </div>
+                                <div class="component-sub-group">
+                                    <h4 class="sub-group-title-text">Modules</h4>
+                                    <p class="component-description-text"><i class="fas fa-tachometer-alt"></i>Dashboard (Overzicht, Meldingen)</p>
+                                    <p class="component-description-text"><i class="fas fa-newspaper"></i>Staatsblad View (Verwerking input)</p>
+                                    <p class="component-description-text"><i class="fas fa-edit"></i>AI Consolidatie View (Diff, Validatie, Metadata beheer)</p>
+                                    <p class="component-description-text"><i class="fas fa-history"></i>Geschiedenis (Gevalideerde items)</p>
+                                </div>
+                                <p class="component-description-text with-margin-top">Interface voor validatie, feedback en beheer. Toont wijzigingen en AI-voorstellen.</p>
+                            </div>
+                            <div class="flow-connector">
+                                <i class="fas fa-arrow-down"></i>
+                                <span class="flow-label-text">Feedback & Validatiedata</span>
+                            </div>
+                            <div class="architecture-component">
+                                <div>
+                                    <i class="fas fa-archive component-icon icon-frontend"></i>
+                                    <h3 class="component-title-text">Data opslag (feedback)</h3>
+                                </div>
+                                <p class="component-description-text">Geregistreerde feedback van gebruikers voor analyse en potentiële systeemverbeteringen.</p>
+                            </div>
+                            <div class="flow-connector">
+                                <i class="fas fa-arrow-down"></i>
+                                <span class="flow-label-text">Push naar codex & verificatie</span>
+                            </div>
+                            <div class="architecture-component">
+                                <div>
+                                    <i class="fas fa-cogs component-icon icon-frontend"></i>
+                                    <h3 class="component-title-text">Finale verwerking & publicatie</h3>
+                                </div>
+                                <p class="component-description-text">Na de feedback wordt de data gepusht naar de originele database van de Vlaamse codex. De Ai consolidatie kan dan een laatste x geverifieerd worden in de huidige beheerssoftware. Hierna staat die klaar om naar de API gepusht te worden.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="architecture-flow-summary">
+                    <p class="flow-summary-text">
+                        <strong>Belangrijkste informatiestromen (vereenvoudigd):</strong><br>
+                        Externe Bronnen <i class="fas fa-arrow-right"></i> Initiële Verwerking <i class="fas fa-arrow-right"></i> Backend Database & AI Agent <i class="fas fa-arrows-alt-h"></i> Flask API <i class="fas fa-arrows-alt-h"></i> Frontend Applicatie <i class="fas fa-arrows-alt-h"></i> Gebruiker.
+                        <br>Feedback van Gebruiker <i class="fas fa-arrow-right"></i> Backend (Feedback Opslag).
+                        <br>Backend (Batch) <i class="fas fa-arrow-right"></i> (Eigen/Vlaamse Codex) API.
+                    </p>
+                </div>
+
+                <footer class="diagram-footer">
+                    <p class="diagram-footer-text">Architectuurdiagram v1.2 - Voor Business Overzicht</p>
+                </footer>
+            </div>
+
+        </main>
+
+        <footer class="page-footer">
+            <img src="../images/logobelow.jpg" alt="Bottom Logo" class="footer-logo">
+        </footer>
+    </div>
+
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/focus-mode.js"></script>
+    <!-- Eventuele specifieke JS voor deze pagina -->
+    <script src="../js/architectuur-overzicht.js"></script>
+</body>
+</html> 

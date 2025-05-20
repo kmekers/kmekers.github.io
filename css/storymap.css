@@ -1,0 +1,426 @@
+/* Gedeelde Stijlen voor Paginakop (Broodkruimel, Knoppenbalk, Titel) */
+/* Deze moeten identiek zijn aan die in architectuur-overzicht.css */
+.breadcrumb {
+    font-size: 0.9em;
+}
+
+.breadcrumb a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb .fas {
+    margin-right: 8px;
+}
+
+.page-controls-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding: 0 4px;
+}
+
+.page-main-title {
+    font-size: 1.875rem; /* text-3xl */
+    font-weight: 700;
+    text-align: center;
+    color: var(--text-dark);
+    margin-top: 1rem;
+    margin-bottom: 2.5rem; /* mb-10 */
+    /* clear: both; --- This might be needed if legend was floated and H1 was after, but legend is removed */
+}
+
+/* Legend Card Styles */
+.storymap-legend-card {
+    float: right;
+    width: 280px; /* Adjusted width slightly */
+    border: 1px solid var(--border-color-light, #e9ecef);
+    padding: 15px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    background-color: var(--background-light, #fff);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.storymap-legend-card h4 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1.05em; /* Slightly adjusted font size */
+    color: var(--text-dark, #1F2937);
+    border-bottom: 1px solid var(--border-color, #E5E7EB);
+    padding-bottom: 8px;
+}
+
+.storymap-legend-card p {
+    margin-bottom: 6px;
+    font-size: 0.85em; /* Slightly adjusted font size */
+    color: var(--text-secondary, #4B5563);
+    display: flex; /* Align icon and text nicely */
+    align-items: center;
+}
+
+.storymap-legend-card p i.fas {
+    margin-right: 8px;
+    font-size: 1.2em; /* Control icon size within legend */
+}
+
+/* Clearfix for floated legend */
+.page-main-title,
+.page-subtitle,
+.storymap-container { /* Added storymap-container here too for safety */
+    clear: both;
+}
+
+/* Adjust page-subtitle specifically if needed after clear - Title legend styles added */
+.page-subtitle {
+    font-size: 1.5em; /* text-2xl or similar */
+    font-weight: 600;
+    text-align: center;
+    color: var(--text-dark);
+    margin-top: 1.5rem; 
+    margin-bottom: 1.5rem;
+    /* clear: both; --- No longer needed as legend is gone */
+}
+
+.page-subtitle .title-legend {
+    font-size: 0.7em; /* Smaller font size for the legend part */
+    font-weight: 400; /* Lighter font weight */
+    color: var(--text-secondary, #4B5563);
+    margin-left: 10px; /* Space it out a bit */
+}
+
+.page-subtitle .title-legend .fa-shirt {
+    font-size: 1em; /* Relative to parent span's font size, adjust as needed */
+    margin: 0 2px; /* Small spacing around icons */
+}
+
+/* Storymap Specifieke Stijlen */
+
+.storymap-container {
+    display: flex;
+    flex-direction: row; /* Kolommen naast elkaar */
+    gap: 20px; /* Ruimte tussen de kolommen */
+    padding-bottom: 20px; /* Ruimte aan de onderkant */
+    overflow-x: auto; /* Horizontaal scrollen indien nodig */
+    align-items: flex-start; /* Zorg dat kolommen bovenaan uitlijnen */
+}
+
+.activity-column {
+    background-color: var(--background-light, #fff); /* Behoud wit, of maak het heel lichtgrijs zoals #f9fafb */
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06); /* Subtielere schaduw */
+    padding: 20px;
+    min-width: 320px;
+    flex: 1;
+    border: 1px solid var(--border-color-light, #f0f0f0);
+}
+
+.activity-header {
+    font-size: 1.2em; /* Iets kleiner */
+    font-weight: 600;
+    color: var(--text-dark, #1F2937);
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color, #E5E7EB);
+    display: flex;
+    align-items: center;
+}
+
+.activity-header i.fas {
+    margin-right: 10px;
+    color: var(--primary-blue, #3B82F6); /* Gebruik een themakleur voor iconen */
+    font-size: 1.1em;
+}
+
+.tasks-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Iets meer ruimte tussen de kaartjes */
+}
+
+.storymap-card {
+    background-color: #ffffff;
+    border: 1px solid var(--border-color-light, #e9ecef); /* Iets duidelijkere, maar nog steeds lichte border */
+    /* border-left: 4px solid var(--primary-blue, #3B82F6); */ /* Verwijderde linker border */
+    border-radius: 6px;
+    padding: 18px; /* Iets meer padding */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04); /* Nog subtielere schaduw */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: box-shadow 0.2s ease, transform 0.2s ease; /* Transform toegevoegd voor hover */
+}
+
+.storymap-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.07); /* Iets meer uitgesproken hover schaduw */
+    transform: translateY(-2px); /* Lichte lift bij hover */
+}
+
+.storymap-card > div:first-child { /* Container voor actor en titel */
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.storymap-card-actor {
+    font-size: 0.75em; /* Iets kleiner */
+    color: var(--text-secondary, #4B5563);
+    margin-bottom: 6px; /* Iets meer ruimte */
+    background-color: var(--border-color-light, #f0f3f5); /* Nog lichtere, subtielere achtergrond */
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    font-weight: 500;
+}
+
+.storymap-card-title {
+    font-size: 0.9em; /* Iets kleiner voor compactheid */
+    font-weight: 500;
+    color: var(--text-dark, #1F2937);
+    line-height: 1.4;
+}
+
+.storymap-card-size {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* Voorkom dat de size div krimpt */
+}
+
+.storymap-card-size .fa-shirt {
+    font-size: 1.5em; /* Iets kleiner T-shirt icoon */
+}
+
+/* Kleuren voor T-shirt maten */
+.size-s-icon {
+    color: var(--diagram-icon-frontend-color, #10B981); /* Groen (Emerald) */
+}
+
+.size-m-icon {
+    color: var(--diagram-icon-core-color, #F59E0B); /* Amber */
+}
+
+.size-l-icon {
+    color: var(--diagram-icon-external-color, #0EA5E9); /* Blauw (Sky) */
+    /* Alternatief: een roodtint voor "groot/complex" */
+    /* color: #EF4444; */ /* Rood */
+}
+
+/* Print-specifieke stijlen voor Storymap */
+@media print {
+    @page {
+        size: A4 landscape;
+        margin: 1cm;
+    }
+
+    body {
+        font-size: 9pt;
+        color: #000;
+        background-color: #fff !important;
+    }
+
+    /* Elementen die volledig verborgen moeten worden in print */
+    .sidebar,
+    .page-footer,
+    .page-controls-header,
+    /* .storymap-legend-card is already removed from HTML, so this rule can be removed too or left if other non-print legends might exist */
+    /* .storymap-legend-card { display: none !important; } */
+    .page-main-title { /* Hoofdtitel nu ook verbergen in print, aangezien het uitgecommentarieerd is in HTML */
+        display: none !important;
+    }
+
+    /* .page-main-title {
+        display: block !important; 
+        text-align: center !important;
+        font-size: 16pt !important; 
+        font-weight: 700 !important;
+        margin-top: 0 !important;
+        margin-bottom: 0.5cm !important;
+        page-break-after: avoid !important; 
+        width: 100% !important; 
+    } */
+
+    .page-subtitle { /* Stijl voor H2 subtitels zoals Fase 1 en Fase 2 */
+        display: block !important;
+        text-align: center !important;
+        font-size: 12pt !important;
+        font-weight: 600 !important;
+        margin-top: 0.5cm !important; /* Ruimte boven de subtitel */
+        margin-bottom: 0.3cm !important;
+        /* page-break-before: avoid !important; */ /* REMOVED to allow Fase 2 title to break with its content if needed */
+        page-break-after: avoid !important; /* Houd subtitel bij de volgende content */
+        width: 100% !important;
+    }
+
+    .page-subtitle .title-legend .fa-shirt {
+        font-size: 1em !important; /* Ensure icons are visible in print legend */
+    }
+
+    .storymap-container { /* Geldt voor zowel #poc-storymap-container als #operational-storymap-container */
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 0.5cm !important;
+        overflow-x: visible !important;
+        align-items: flex-start; /* Was stretch, flex-start is beter om te voorkomen dat kolommen onnodig hoog worden */
+        margin-top: 0 !important; 
+        page-break-before: avoid !important; /* Probeer te voorkomen dat de container zelf een nieuwe pagina start als het niet nodig is */
+        width: 100% !important; /* Zorg dat de container de volledige breedte gebruikt */
+    }
+
+    /* Specifiek voor #poc-storymap-container om zeker te zijn dat het direct na de titel en H2 volgt */
+    /* Dit is mogelijk redundant als .storymap-container en .page-subtitle al goed zijn ingesteld */
+    /* #poc-storymap-container {
+        page-break-before: avoid !important;
+        margin-top: 0 !important;
+    } */
+
+    .content-wrapper {
+        margin-left: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+    .main-content {
+        padding: 0 !important;
+        margin-top: 0 !important; /* Zekerstellen dat er geen bovenmarge is */
+    }
+
+    .activity-column {
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+        padding: 0.5cm !important;
+        page-break-inside: avoid !important; /* Probeer kolom niet te splitsen */
+        flex-basis: 23%; /* Verdeel over 4 kolommen, pas aan indien nodig */
+        flex-grow: 1;
+        min-width: 0;
+    }
+    
+    .activity-header {
+        font-size: 10pt !important;
+        padding-bottom: 0.3cm !important;
+        margin-bottom: 0.5cm !important;
+    }
+    .activity-header i.fas {
+        font-size: 1em !important;
+    }
+
+    .storymap-card {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+        padding: 0.4cm !important;
+        page-break-inside: avoid !important;
+    }
+
+    .storymap-card-actor {
+        font-size: 7pt !important;
+        padding: 2px 4px !important;
+        background-color: #f0f0f0 !important;
+    }
+
+    .storymap-card-title {
+        font-size: 8pt !important;
+    }
+
+    .storymap-card-size .fa-shirt {
+        font-size: 1.2em !important;
+    }
+
+    /* More specific styles for #poc-storymap-container to help it fit on page 1 */
+    #poc-storymap-container .activity-column {
+        padding: 0.3cm !important;
+        flex-basis: 30% !important; /* Adjusted for 3 columns */
+        min-width: auto !important;
+    }
+
+    #poc-storymap-container .tasks-container {
+        gap: 0.2cm !important;
+    }
+
+    #poc-storymap-container .storymap-card {
+        padding: 0.25cm !important;
+    }
+
+    #poc-storymap-container .activity-header {
+        font-size: 9pt !important;
+        padding-bottom: 0.2cm !important;
+        margin-bottom: 0.3cm !important;
+    }
+    #poc-storymap-container .activity-header i.fas {
+        font-size: 0.9em !important; /* Slightly smaller icon in header */
+    }
+
+    #poc-storymap-container .storymap-card-title {
+        font-size: 7pt !important;
+        line-height: 1.3 !important;
+    }
+
+    #poc-storymap-container .storymap-card-actor {
+        font-size: 6pt !important;
+        padding: 1px 3px !important;
+        margin-bottom: 4px !important; /* Slightly reduced margin */
+    }
+
+    #poc-storymap-container .storymap-card-size .fa-shirt {
+        font-size: 1em !important;
+    }
+
+    /* Ensure Fase 2 (title and content) starts on a new page */
+    .fase2-print-group {
+        page-break-before: always !important;
+        margin-top: 1cm !important; /* Add some top margin on the new page for the group */
+    }
+
+    /* Remove direct page break from container as parent now handles it */
+    #operational-storymap-container {
+        /* page-break-before: always !important; --- REMOVED */
+        /* margin-top: 1cm !important; --- REMOVED */
+        /* Other styles for #operational-storymap-container can remain if any, or be combined with general .storymap-container print styles */
+    }
+
+    /* Specific compaction styles for #operational-storymap-container (Fase 2) */
+    #operational-storymap-container .activity-column {
+        padding: 0.3cm !important; /* Match PoC section for compactness */
+        /* flex-basis: 23%; is inherited from general .activity-column print style, suitable for 4 columns */
+    }
+
+    #operational-storymap-container .tasks-container {
+        gap: 0.2cm !important;
+    }
+
+    #operational-storymap-container .storymap-card {
+        padding: 0.25cm !important;
+    }
+
+    #operational-storymap-container .activity-header {
+        font-size: 9pt !important;
+        padding-bottom: 0.2cm !important;
+        margin-bottom: 0.3cm !important;
+    }
+
+    #operational-storymap-container .activity-header i.fas {
+        font-size: 0.9em !important;
+    }
+
+    #operational-storymap-container .storymap-card-title {
+        font-size: 7pt !important;
+        line-height: 1.3 !important;
+    }
+
+    #operational-storymap-container .storymap-card-actor {
+        font-size: 6pt !important;
+        padding: 1px 3px !important;
+        margin-bottom: 4px !important;
+    }
+
+    #operational-storymap-container .storymap-card-size .fa-shirt {
+        font-size: 1em !important;
+    }
+} 

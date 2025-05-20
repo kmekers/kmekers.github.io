@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staatsblad</title>
+    <link rel="stylesheet" href="../css/styles.css">      <!-- Algemene stijlen -->
+    <link rel="stylesheet" href="../css/sidebar.css">     <!-- Sidebar stijlen -->
+    <link rel="stylesheet" href="../css/staatsblad.css">  <!-- Specifieke stijlen voor deze pagina -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <nav class="sidebar">
+        <!-- Group 1: Top Logo + Top Nav -->
+        <div>
+            <div class="sidebar-logo-container">
+                 <img src="../images/logoabove.png" alt="Top Logo" class="sidebar-logo-top">
+            </div>
+            <ul class="sidebar-nav-top">
+                <li>
+                    <a href="../index.html" class="nav-item">
+                        <i class="fa-solid fa-house nav-icon"></i>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="ai-consolidatie.html" class="nav-item">
+                        <i class="fa-solid fa-brain nav-icon"></i>
+                        <span class="nav-text">Ai consolidatie</span>
+                    </a>
+                </li>
+                <li>
+                    <!-- Active state for current page -->
+                    <a href="staatsblad.html" class="nav-item active">
+                        <i class="fa-solid fa-newspaper nav-icon"></i>
+                        <span class="nav-text">Staatsblad</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="geschiedenis.html" class="nav-item">
+                        <i class="fa-solid fa-clock-rotate-left nav-icon"></i>
+                        <span class="nav-text">Geschiedenis</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Group 2: Bottom Nav ONLY -->
+        <ul class="sidebar-nav-bottom">
+             <li>
+                <a href="instellingen.html" class="nav-item">
+                    <i class="fa-solid fa-gear nav-icon"></i>
+                    <span class="nav-text">Instellingen</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-arrow-right-from-bracket nav-icon"></i>
+                    <span class="nav-text">Uitloggen</span>
+                </a>
+            </li>
+            <li>
+                <a href="extra-info.html" class="nav-item">
+                    <i class="fa-solid fa-info-circle nav-icon"></i>
+                    <span class="nav-text">Extra Info</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="content-wrapper">
+        <main class="main-content">
+
+            <h1>Belgisch Staatsblad</h1>
+
+            <div class="staatsblad-container">
+
+                <!-- Actieve groep: 4 April 2025 -->
+                <details class="staatsblad-group active-group" data-group-id="2025-04-04" open>
+                    <summary class="staatsblad-date-header">
+                        <i class="fa-solid fa-caret-right"></i>
+                        Staatsblad 4 April 2025
+                    </summary>
+                    <div class="staatsblad-items-list" id="list-2025-04-04">
+                        <!-- Item 1 -->
+                        <div class="staatsblad-item" data-item-id="1">
+                            <div class="item-field field-blz">
+                                <label for="blz-1">Blz.</label>
+                                <input type="text" id="blz-1" value="43070" placeholder="Blz.">
+                            </div>
+                            <div class="item-field field-numac">
+                                <label for="numac-1">Numac</label>
+                                <input type="text" id="numac-1" value="2025012345" placeholder="NUMAC">
+                            </div>
+                            <div class="item-field field-titel">
+                                <label for="titel-1">Titel</label>
+                                <input type="text" id="titel-1" value="Samenwerkingsakkoord Luchtvaartactiviteiten" placeholder="Titel">
+                            </div>
+                            <div class="item-field field-datum">
+                                <label for="datum-1">Bs datum</label>
+                                <input type="date" id="datum-1" value="2025-04-04">
+                            </div>
+                            <div class="item-field field-status">
+                                <label>Status</label>
+                                <span class="status-indicator status-niet-gevalideerd" title="Niet Gevalideerd"></span>
+                            </div>
+                             <div class="item-actions">
+                                <button class="action-btn view-btn" title="Bekijken (niet actief)">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
+                                <button class="action-btn save-btn" title="Opslaan"><i class="fa-solid fa-save"></i></button>
+                                <button class="action-btn delete-btn" title="Verwijderen"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <!-- Item 2 -->
+                        <div class="staatsblad-item" data-item-id="2">
+                            <div class="item-field field-blz">
+                                <label for="blz-2">Blz.</label>
+                                <input type="text" id="blz-2" value="43071" placeholder="Blz.">
+                            </div>
+                            <div class="item-field field-numac">
+                                <label for="numac-2">Numac</label>
+                                <input type="text" id="numac-2" value="2025056789" placeholder="NUMAC">
+                            </div>
+                            <div class="item-field field-titel">
+                                <label for="titel-2">Titel</label>
+                                <input type="text" id="titel-2" value="Samenwerkingsakkoord BLEU Verdeling" placeholder="Titel">
+                            </div>
+                            <div class="item-field field-datum">
+                                <label for="datum-2">Bs datum</label>
+                                <input type="date" id="datum-2" value="2025-04-04">
+                            </div>
+                            <div class="item-field field-status">
+                                <label>Status</label>
+                                <span class="status-indicator status-niet-gevalideerd" title="Niet Gevalideerd"></span>
+                            </div>
+                             <div class="item-actions">
+                                <button class="action-btn view-btn" title="Bekijken (niet actief)">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
+                                <button class="action-btn save-btn" title="Opslaan"><i class="fa-solid fa-save"></i></button>
+                                <button class="action-btn delete-btn" title="Verwijderen"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <!-- Voeg hier meer items toe voor deze datum -->
+                    </div> <!-- End staatsblad-items-list -->
+
+                    <!-- Nieuwe knop sectie -->
+                    <div class="card-footer-action">
+                        <a href="#" class="button-link pdf-button open-pdf-modal-btn" data-pdf-src="../pdf/15_1.pdf">PDF Staatsblad</a>
+                    </div>
+
+                </details>
+
+                <!-- Vorige Publicaties Groep -->
+                <details class="staatsblad-group" id="vorige-publicaties">
+                    <summary class="staatsblad-date-header">
+                        <i class="fa-solid fa-caret-right"></i>
+                        Vorige publicaties
+                    </summary>
+                    <div class="vorige-publicaties-container">
+
+                        <!-- Geneste groep: 3 April 2025 (Bestaand, aangepast) -->
+                        <details class="staatsblad-group nested-group" data-group-id="2025-04-03">
+                             <summary class="staatsblad-date-header nested-header">
+                                <i class="fa-solid fa-caret-right"></i>
+                                Staatsblad 3 April 2025
+                            </summary>
+                            <div class="staatsblad-items-list nested-list">
+                                <!-- Item 3 (Ouder) -->
+                                <div class="staatsblad-item" data-item-id="3">
+                                    <div class="item-field field-blz">
+                                        <label for="blz-3">Blz.</label>
+                                        <input type="text" id="blz-3" value="42001" placeholder="Blz." readonly>
+                                    </div>
+                                    <div class="item-field field-numac">
+                                        <label for="numac-3">Numac</label>
+                                        <input type="text" id="numac-3" value="2025000111" placeholder="NUMAC" readonly>
+                                    </div>
+                                    <div class="item-field field-titel">
+                                        <label for="titel-3">Titel</label>
+                                        <input type="text" id="titel-3" value="Oud Akkoord XYZ" placeholder="Titel" readonly>
+                                    </div>
+                                    <div class="item-field field-datum">
+                                        <label for="datum-3">Bs datum</label>
+                                        <input type="date" id="datum-3" value="2025-04-03" readonly>
+                                    </div>
+                                    <div class="item-field field-status">
+                                        <label>Status</label>
+                                        <span class="status-indicator status-gevalideerd" title="Gevalideerd"></span>
+                                    </div>
+                                     <div class="item-actions">
+                                        <button class="action-btn view-btn" title="Bekijken (niet actief)" disabled>
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div> <!-- End nested-list -->
+                            <div class="card-footer-action">
+                                <a href="#" class="button-link pdf-button">PDF Staatsblad</a>
+                            </div>
+                        </details> <!-- End nested-group 2025-04-03 -->
+
+                        <!-- Geneste groep: 2 April 2025 (Nieuw) -->
+                        <details class="staatsblad-group nested-group" data-group-id="2025-04-02">
+                             <summary class="staatsblad-date-header nested-header">
+                                <i class="fa-solid fa-caret-right"></i>
+                                Staatsblad 2 April 2025
+                            </summary>
+                            <div class="staatsblad-items-list nested-list">
+                                <div class="staatsblad-item" data-item-id="4"> <!-- ID aangepast -->
+                                     <div class="item-field field-blz">
+                                        <label for="blz-4">Blz.</label>
+                                        <input type="text" id="blz-4" value="41850" placeholder="Blz." readonly>
+                                    </div>
+                                    <div class="item-field field-numac">
+                                        <label for="numac-4">Numac</label>
+                                        <input type="text" id="numac-4" value="2025111222" placeholder="NUMAC" readonly>
+                                    </div>
+                                    <div class="item-field field-titel">
+                                        <label for="titel-4">Titel</label>
+                                        <input type="text" id="titel-4" value="Besluit betreffende subsidies" placeholder="Titel" readonly>
+                                    </div>
+                                    <div class="item-field field-datum">
+                                        <label for="datum-4">Bs datum</label>
+                                        <input type="date" id="datum-4" value="2025-04-02" readonly>
+                                    </div>
+                                    <div class="item-field field-status">
+                                        <label>Status</label>
+                                        <span class="status-indicator status-gevalideerd" title="Gevalideerd"></span>
+                                    </div>
+                                     <div class="item-actions">
+                                        <button class="action-btn view-btn" title="Bekijken (niet actief)" disabled>
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div> <!-- End nested-list -->
+                             <div class="card-footer-action">
+                                <a href="#" class="button-link pdf-button">PDF Staatsblad</a>
+                            </div>
+                        </details> <!-- End nested-group 2025-04-02 -->
+
+                        <!-- Geneste groep: 1 April 2025 (Nieuw) -->
+                        <details class="staatsblad-group nested-group" data-group-id="2025-04-01">
+                             <summary class="staatsblad-date-header nested-header">
+                                <i class="fa-solid fa-caret-right"></i>
+                                Staatsblad 1 April 2025
+                            </summary>
+                            <div class="staatsblad-items-list nested-list">
+                                <div class="staatsblad-item" data-item-id="5"> <!-- ID aangepast -->
+                                     <div class="item-field field-blz">
+                                        <label for="blz-5">Blz.</label>
+                                        <input type="text" id="blz-5" value="41700" placeholder="Blz." readonly>
+                                    </div>
+                                    <div class="item-field field-numac">
+                                        <label for="numac-5">Numac</label>
+                                        <input type="text" id="numac-5" value="2025222333" placeholder="NUMAC" readonly>
+                                    </div>
+                                    <div class="item-field field-titel">
+                                        <label for="titel-5">Titel</label>
+                                        <input type="text" id="titel-5" value="Wijziging van decreet X" placeholder="Titel" readonly>
+                                    </div>
+                                    <div class="item-field field-datum">
+                                        <label for="datum-5">Bs datum</label>
+                                        <input type="date" id="datum-5" value="2025-04-01" readonly>
+                                    </div>
+                                    <div class="item-field field-status">
+                                        <label>Status</label>
+                                        <span class="status-indicator status-gevalideerd" title="Gevalideerd"></span>
+                                    </div>
+                                     <div class="item-actions">
+                                        <button class="action-btn view-btn" title="Bekijken (niet actief)" disabled>
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div> <!-- End nested-list -->
+                             <div class="card-footer-action">
+                                <a href="#" class="button-link pdf-button">PDF Staatsblad</a>
+                            </div>
+                        </details> <!-- End nested-group 2025-04-01 -->
+
+                        <!-- Geneste groep: 31 Maart 2025 (Nieuw) -->
+                        <details class="staatsblad-group nested-group" data-group-id="2025-03-31">
+                             <summary class="staatsblad-date-header nested-header">
+                                <i class="fa-solid fa-caret-right"></i>
+                                Staatsblad 31 Maart 2025
+                            </summary>
+                            <div class="staatsblad-items-list nested-list">
+                                <div class="staatsblad-item" data-item-id="6"> <!-- ID aangepast -->
+                                     <div class="item-field field-blz">
+                                        <label for="blz-6">Blz.</label>
+                                        <input type="text" id="blz-6" value="41623" placeholder="Blz." readonly>
+                                    </div>
+                                    <div class="item-field field-numac">
+                                        <label for="numac-6">Numac</label>
+                                        <input type="text" id="numac-6" value="2025333444" placeholder="NUMAC" readonly>
+                                    </div>
+                                    <div class="item-field field-titel">
+                                        <label for="titel-6">Titel</label>
+                                        <input type="text" id="titel-6" value="Reglementering energiepremies" placeholder="Titel" readonly>
+                                    </div>
+                                    <div class="item-field field-datum">
+                                        <label for="datum-6">Bs datum</label>
+                                        <input type="date" id="datum-6" value="2025-03-31" readonly>
+                                    </div>
+                                    <div class="item-field field-status">
+                                        <label>Status</label>
+                                        <span class="status-indicator status-gevalideerd" title="Gevalideerd"></span>
+                                    </div>
+                                     <div class="item-actions">
+                                        <button class="action-btn view-btn" title="Bekijken (niet actief)" disabled>
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div> <!-- End nested-list -->
+                             <div class="card-footer-action">
+                                <a href="#" class="button-link pdf-button">PDF Staatsblad</a>
+                            </div>
+                        </details> <!-- End nested-group 2025-03-31 -->
+
+                        <!-- Geneste groep: 29 Maart 2025 (Bestaand, aangepast) -->
+                        <details class="staatsblad-group nested-group" data-group-id="2025-03-29">
+                             <summary class="staatsblad-date-header nested-header">
+                                <i class="fa-solid fa-caret-right"></i>
+                                Staatsblad 29 Maart 2025
+                            </summary>
+                            <div class="staatsblad-items-list nested-list">
+                                <div class="staatsblad-item" data-item-id="7"> <!-- ID aangepast -->
+                                     <div class="item-field field-blz">
+                                        <label for="blz-7">Blz.</label>
+                                        <input type="text" id="blz-7" value="41500" placeholder="Blz." readonly>
+                                    </div>
+                                    <div class="item-field field-numac">
+                                        <label for="numac-7">Numac</label>
+                                        <input type="text" id="numac-7" value="2025999888" placeholder="NUMAC" readonly>
+                                    </div>
+                                    <div class="item-field field-titel">
+                                        <label for="titel-7">Titel</label>
+                                        <input type="text" id="titel-7" value="Nog een ouder akkoord" placeholder="Titel" readonly>
+                                    </div>
+                                    <div class="item-field field-datum">
+                                        <label for="datum-7">Bs datum</label>
+                                        <input type="date" id="datum-7" value="2025-03-29" readonly>
+                                    </div>
+                                    <div class="item-field field-status">
+                                        <label>Status</label>
+                                        <span class="status-indicator status-gevalideerd" title="Gevalideerd"></span>
+                                    </div>
+                                     <div class="item-actions">
+                                        <button class="action-btn view-btn" title="Bekijken (niet actief)" disabled>
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div> <!-- End nested-list -->
+                             <div class="card-footer-action">
+                                <a href="#" class="button-link pdf-button">PDF Staatsblad</a>
+                            </div>
+                        </details> <!-- End nested-group 2025-03-29 -->
+
+                        <!-- Geneste groep: 28 Maart 2025 (Nieuw) -->
+                        <details class="staatsblad-group nested-group" data-group-id="2025-03-28">
+                             <summary class="staatsblad-date-header nested-header">
+                                <i class="fa-solid fa-caret-right"></i>
+                                Staatsblad 28 Maart 2025
+                            </summary>
+                            <div class="staatsblad-items-list nested-list">
+                                <div class="staatsblad-item" data-item-id="8"> <!-- ID aangepast -->
+                                     <div class="item-field field-blz">
+                                        <label for="blz-8">Blz.</label>
+                                        <input type="text" id="blz-8" value="41432" placeholder="Blz." readonly>
+                                    </div>
+                                    <div class="item-field field-numac">
+                                        <label for="numac-8">Numac</label>
+                                        <input type="text" id="numac-8" value="2025444555" placeholder="NUMAC" readonly>
+                                    </div>
+                                    <div class="item-field field-titel">
+                                        <label for="titel-8">Titel</label>
+                                        <input type="text" id="titel-8" value="Indexering leeflonen" placeholder="Titel" readonly>
+                                    </div>
+                                    <div class="item-field field-datum">
+                                        <label for="datum-8">Bs datum</label>
+                                        <input type="date" id="datum-8" value="2025-03-28" readonly>
+                                    </div>
+                                    <div class="item-field field-status">
+                                        <label>Status</label>
+                                        <span class="status-indicator status-gevalideerd" title="Gevalideerd"></span>
+                                    </div>
+                                     <div class="item-actions">
+                                        <button class="action-btn view-btn" title="Bekijken (niet actief)" disabled>
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div> <!-- End nested-list -->
+                             <div class="card-footer-action">
+                                <a href="#" class="button-link pdf-button">PDF Staatsblad</a>
+                            </div>
+                        </details> <!-- End nested-group 2025-03-28 -->
+
+                        <!-- Geneste groep: 27 Maart 2025 (Nieuw) -->
+                        <details class="staatsblad-group nested-group" data-group-id="2025-03-27">
+                             <summary class="staatsblad-date-header nested-header">
+                                <i class="fa-solid fa-caret-right"></i>
+                                Staatsblad 27 Maart 2025
+                            </summary>
+                            <div class="staatsblad-items-list nested-list">
+                                <div class="staatsblad-item" data-item-id="9"> <!-- ID aangepast -->
+                                     <div class="item-field field-blz">
+                                        <label for="blz-9">Blz.</label>
+                                        <input type="text" id="blz-9" value="41301" placeholder="Blz." readonly>
+                                    </div>
+                                    <div class="item-field field-numac">
+                                        <label for="numac-9">Numac</label>
+                                        <input type="text" id="numac-9" value="2025555666" placeholder="NUMAC" readonly>
+                                    </div>
+                                    <div class="item-field field-titel">
+                                        <label for="titel-9">Titel</label>
+                                        <input type="text" id="titel-9" value="Aanpassing verkeersreglement" placeholder="Titel" readonly>
+                                    </div>
+                                    <div class="item-field field-datum">
+                                        <label for="datum-9">Bs datum</label>
+                                        <input type="date" id="datum-9" value="2025-03-27" readonly>
+                                    </div>
+                                    <div class="item-field field-status">
+                                        <label>Status</label>
+                                        <span class="status-indicator status-gevalideerd" title="Gevalideerd"></span>
+                                    </div>
+                                     <div class="item-actions">
+                                        <button class="action-btn view-btn" title="Bekijken (niet actief)" disabled>
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div> <!-- End nested-list -->
+                             <div class="card-footer-action">
+                                <a href="#" class="button-link pdf-button">PDF Staatsblad</a>
+                            </div>
+                        </details> <!-- End nested-group 2025-03-27 -->
+
+                        <!-- Geneste groep: 26 Maart 2025 (Nieuw) -->
+                        <details class="staatsblad-group nested-group" data-group-id="2025-03-26">
+                             <summary class="staatsblad-date-header nested-header">
+                                <i class="fa-solid fa-caret-right"></i>
+                                Staatsblad 26 Maart 2025
+                            </summary>
+                            <div class="staatsblad-items-list nested-list">
+                                <div class="staatsblad-item" data-item-id="10"> <!-- ID aangepast -->
+                                     <div class="item-field field-blz">
+                                        <label for="blz-10">Blz.</label>
+                                        <input type="text" id="blz-10" value="41255" placeholder="Blz." readonly>
+                                    </div>
+                                    <div class="item-field field-numac">
+                                        <label for="numac-10">Numac</label>
+                                        <input type="text" id="numac-10" value="2025666777" placeholder="NUMAC" readonly>
+                                    </div>
+                                    <div class="item-field field-titel">
+                                        <label for="titel-10">Titel</label>
+                                        <input type="text" id="titel-10" value="Erratum bij wet van ..." placeholder="Titel" readonly>
+                                    </div>
+                                    <div class="item-field field-datum">
+                                        <label for="datum-10">Bs datum</label>
+                                        <input type="date" id="datum-10" value="2025-03-26" readonly>
+                                    </div>
+                                    <div class="item-field field-status">
+                                        <label>Status</label>
+                                        <span class="status-indicator status-gevalideerd" title="Gevalideerd"></span>
+                                    </div>
+                                     <div class="item-actions">
+                                        <button class="action-btn view-btn" title="Bekijken (niet actief)" disabled>
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div> <!-- End nested-list -->
+                             <div class="card-footer-action">
+                                <a href="#" class="button-link pdf-button">PDF Staatsblad</a>
+                            </div>
+                        </details> <!-- End nested-group 2025-03-26 -->
+
+                        <!-- Geneste groep: 25 Maart 2025 (Nieuw) -->
+                        <details class="staatsblad-group nested-group" data-group-id="2025-03-25">
+                             <summary class="staatsblad-date-header nested-header">
+                                <i class="fa-solid fa-caret-right"></i>
+                                Staatsblad 25 Maart 2025
+                            </summary>
+                            <div class="staatsblad-items-list nested-list">
+                                <div class="staatsblad-item" data-item-id="11"> <!-- ID aangepast -->
+                                     <div class="item-field field-blz">
+                                        <label for="blz-11">Blz.</label>
+                                        <input type="text" id="blz-11" value="41198" placeholder="Blz." readonly>
+                                    </div>
+                                    <div class="item-field field-numac">
+                                        <label for="numac-11">Numac</label>
+                                        <input type="text" id="numac-11" value="2025777888" placeholder="NUMAC" readonly>
+                                    </div>
+                                    <div class="item-field field-titel">
+                                        <label for="titel-11">Titel</label>
+                                        <input type="text" id="titel-11" value="Koninklijk Besluit pensioenen" placeholder="Titel" readonly>
+                                    </div>
+                                    <div class="item-field field-datum">
+                                        <label for="datum-11">Bs datum</label>
+                                        <input type="date" id="datum-11" value="2025-03-25" readonly>
+                                    </div>
+                                    <div class="item-field field-status">
+                                        <label>Status</label>
+                                        <span class="status-indicator status-gevalideerd" title="Gevalideerd"></span>
+                                    </div>
+                                     <div class="item-actions">
+                                        <button class="action-btn view-btn" title="Bekijken (niet actief)" disabled>
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div> <!-- End nested-list -->
+                             <div class="card-footer-action">
+                                <a href="#" class="button-link pdf-button">PDF Staatsblad</a>
+                            </div>
+                        </details> <!-- End nested-group 2025-03-25 -->
+
+                        <!-- Geneste groep: 24 Maart 2025 (Nieuw) -->
+                        <details class="staatsblad-group nested-group" data-group-id="2025-03-24">
+                             <summary class="staatsblad-date-header nested-header">
+                                <i class="fa-solid fa-caret-right"></i>
+                                Staatsblad 24 Maart 2025
+                            </summary>
+                            <div class="staatsblad-items-list nested-list">
+                                <div class="staatsblad-item" data-item-id="12"> <!-- ID aangepast -->
+                                     <div class="item-field field-blz">
+                                        <label for="blz-12">Blz.</label>
+                                        <input type="text" id="blz-12" value="41050" placeholder="Blz." readonly>
+                                    </div>
+                                    <div class="item-field field-numac">
+                                        <label for="numac-12">Numac</label>
+                                        <input type="text" id="numac-12" value="2025888999" placeholder="NUMAC" readonly>
+                                    </div>
+                                    <div class="item-field field-titel">
+                                        <label for="titel-12">Titel</label>
+                                        <input type="text" id="titel-12" value="Wet diverse bepalingen" placeholder="Titel" readonly>
+                                    </div>
+                                    <div class="item-field field-datum">
+                                        <label for="datum-12">Bs datum</label>
+                                        <input type="date" id="datum-12" value="2025-03-24" readonly>
+                                    </div>
+                                    <div class="item-field field-status">
+                                        <label>Status</label>
+                                        <span class="status-indicator status-gevalideerd" title="Gevalideerd"></span>
+                                    </div>
+                                     <div class="item-actions">
+                                        <button class="action-btn view-btn" title="Bekijken (niet actief)" disabled>
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div> <!-- End nested-list -->
+                             <div class="card-footer-action">
+                                <a href="#" class="button-link pdf-button">PDF Staatsblad</a>
+                            </div>
+                        </details> <!-- End nested-group 2025-03-24 -->
+
+                        <!-- NIEUW: Dummy Paginatie -->
+                        <div class="pagination-controls">
+                            <button class="pagination-btn prev-btn" title="Vorige" disabled>
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            <span class="page-number active">1</span>
+                            <span class="page-number">2</span>
+                            <span class="page-number">3</span>
+                            <span class="page-dots">...</span>
+                            <span class="page-number">8</span>
+                            <button class="pagination-btn next-btn" title="Volgende">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        <!-- EINDE NIEUW: Dummy Paginatie -->
+
+                    </div> <!-- End vorige-publicaties-container -->
+                </details> <!-- End Vorige Publicaties Groep -->
+
+                <!-- Voeg hier meer actieve datumgroepen toe indien nodig -->
+
+            </div> <!-- End staatsblad-container -->
+
+        </main>
+
+        <footer class="page-footer">
+            <img src="../images/logobelow.jpg" alt="Bottom Logo" class="footer-logo">
+        </footer>
+    </div>
+
+    <!-- NIEUW: PDF Modal Structuur -->
+    <div id="pdf-modal" class="pdf-modal" style="display: none;">
+        <div class="modal-content-pdf">
+            <button class="close-modal-btn" aria-label="Sluiten">
+                <i class="fas fa-times"></i>
+            </button>
+            <iframe id="pdf-viewer" src="" frameborder="0"></iframe>
+        </div>
+    </div>
+    <!-- Einde PDF Modal Structuur -->
+
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/staatsblad.js"></script>
+</body>
+</html> 

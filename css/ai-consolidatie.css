@@ -1,0 +1,2592 @@
+/* Specifieke stijlen voor ai-consolidatie.html */
+
+/* Basis knopstijl (herbruikbaar) - Kan eventueel in styles.css blijven als het algemeen is */
+.button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: 1px solid; /* Border kleur gedefinieerd door specifieke class */
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease; /* Transform toegevoegd */
+    background-color: var(--background-light); /* Standaard witte achtergrond */
+}
+.button i {
+    font-size: 1.1em; /* Iets groter icoon */
+    line-height: 1; /* Voorkom extra hoogte door icoon */
+}
+
+/* Gele knop (Vervangt Primaire knop stijl hier) */
+.button.button-yellow {
+    background-color: var(--primary-yellow);
+    border-color: var(--primary-yellow); /* Border in dezelfde kleur */
+    color: var(--text-dark);
+    font-weight: 600; /* Match confirmation button */
+    padding: 10px 20px; /* Match confirmation button padding */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* Match confirmation button shadow */
+}
+.button.button-yellow:hover {
+    background-color: #e6c000; /* Donkerder geel */
+    border-color: #e6c000;
+    transform: translateY(-1px); /* Lift effect */
+}
+
+/* Secundaire knop (Grijze outline) */
+.button.button-secondary {
+    border-color: var(--border-color, #D1D5DB); /* Gebruik bestaande border kleur */
+    color: var(--text-secondary, #4B5563); /* Gebruik bestaande secundaire tekstkleur */
+}
+.button.button-secondary:hover {
+    background-color: var(--border-color-light, #f3f4f6); /* Lichte grijze achtergrond */
+    border-color: var(--text-secondary, #4B5563);
+    color: var(--text-dark, #1F2937); /* Donkere tekst op hover */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+
+/* Consolidatie Lijst Stijlen */
+.consolidation-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Iets meer ruimte tussen items */
+}
+
+/* Stijl voor het <details> element zelf */
+.consolidation-item {
+    display: block; /* Details is standaard block */
+    background-color: var(--background-light);
+    border: 1px solid var(--border-color-light, #F3F4F6);
+    border-radius: 8px;
+    color: var(--text-dark);
+    text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    overflow: hidden; /* Voorkom dat inhoud buiten border valt */
+}
+
+/* Stijl voor de <summary> (het klikbare deel) */
+.consolidation-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 22px;
+    list-style: none; /* Verwijder standaard marker/pijl */
+    cursor: pointer;
+    transition: background-color 0.2s ease; /* Hover effect op summary */
+}
+/* Verwijder standaard pijl van summary */
+.consolidation-summary::-webkit-details-marker { display: none; }
+.consolidation-summary::marker { display: none; } /* Firefox */
+
+.consolidation-summary:hover {
+    background-color: #f9fafb; /* Zeer lichte achtergrond op hover */
+}
+
+/* Stijl voor de tekst binnen de summary */
+.consolidation-summary span {
+    margin-right: 20px;
+    flex-grow: 1;
+    line-height: 1.45;
+    font-size: 0.95em;
+    font-weight: 500;
+}
+
+/* NIEUW: Stijl voor de info over gedetecteerde wijzigingen */
+.detected-changes-info {
+    font-size: 0.85em; /* Iets kleiner */
+    color: var(--text-secondary, #6B7280); /* Grijsachtige kleur */
+    font-weight: 400; /* Normaal gewicht */
+    margin-left: 15px; /* Ruimte links ervan */
+    margin-right: auto; /* Duwt het pijltje naar rechts */
+    white-space: nowrap; /* Voorkom dat het afbreekt */
+}
+
+/* Stijl voor het icoon binnen de summary */
+.consolidation-summary i.fa-chevron-right {
+    color: var(--text-light);
+    flex-shrink: 0;
+    font-size: 1em;
+    transition: color 0.2s ease, transform 0.3s ease; /* Voeg transform toe aan transitie */
+}
+
+/* Roteer icoon wanneer details open is */
+.consolidation-item[open] > .consolidation-summary i.fa-chevron-right {
+    transform: rotate(90deg);
+    color: var(--icon-color); /* Maak icoon donkerder als open */
+}
+
+/* Hover effect op het hele item (optioneel, kan ook alleen op summary) */
+.consolidation-item:not([open]):hover {
+    border-color: var(--border-color, #E5E7EB);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.07);
+    transform: translateY(-2px);
+}
+/* Zorg dat hover op summary geen extra transform doet */
+.consolidation-item:hover > .consolidation-summary {
+    background-color: #f9fafb;
+}
+/* NIEUW: Verwijder expliciet transformatie als item open is en gehoverd wordt (voor zekerheid) */
+.consolidation-item[open]:hover {
+    transform: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03); /* Behoud de basis schaduw */
+}
+
+
+/* Stijl voor de (nu gevulde) content area */
+.consolidation-content {
+    padding: 20px 25px; /* Iets meer padding */
+    border-top: 1px solid var(--border-color-light);
+    background-color: #fdfdfe; /* Behoud lichte achtergrond voor content area */
+}
+
+.consolidation-content-title {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* --- NIEUW: Tab Headers Container --- */
+.tab-headers-container {
+    display: flex;
+    gap: 20px; /* Zelfde gap als tussen panelen */
+    margin-bottom: -1px; /* Laat tabs overlappen met paneel border */
+    position: relative; /* Nodig voor z-index/overlap */
+    z-index: 1; /* Zorg dat tabs boven paneelrand liggen */
+}
+
+.tab-header-group {
+    flex: 1; /* Neem gelijke breedte */
+    min-width: 0;
+}
+
+/* --- Tab Navigatie Stijlen (Aangepast) --- */
+.tab-nav {
+    display: flex;
+    gap: 5px;
+    /* VERWIJDER: margin-bottom: 15px; */ /* Wordt nu door container geregeld */
+    /* VERWIJDER: min-height: 35px; */ /* Niet meer nodig */
+}
+/* Verwijder specifieke margin voor right-tab-nav */
+/* .tab-nav.right-tab-nav { margin-bottom: 15px; } */
+
+.tab-button {
+    padding: 8px 14px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-bottom: none;
+    background-color: transparent;
+    color: var(--text-secondary);
+    font-size: 0.9em;
+    font-weight: 500;
+    border-radius: 6px 6px 0 0;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.tab-button:hover {
+    color: var(--text-dark);
+    background-color: var(--border-color-light);
+}
+
+.tab-button.active {
+    color: var(--text-dark);
+    background-color: var(--background-light); /* Match paneel achtergrond */
+    border-color: var(--border-color-light);
+    border-bottom-color: var(--background-light); /* Overlap met paneel */
+    font-weight: 600;
+    /* VERWIJDER: position: relative; */
+    /* VERWIJDER: top: 1px; */
+}
+
+/* --- Diff View Layout (Aangepast) --- */
+.diff-view-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+    border: 1px solid var(--border-color-light);
+    /* border-radius: 0 6px 6px 6px; */ /* Nu overal ronde hoeken */
+    border-radius: 6px;
+    /* VERWIJDER: padding: 20px; */ /* Padding zit nu in panelen */
+    background-color: var(--background-light);
+    /* VERWIJDER: position: relative; */
+    /* VERWIJDER: margin-top: -1px; */ /* Overlap wordt door header container gedaan */
+    padding: 20px; /* Padding weer terug IN de container */
+}
+
+.left-panel,
+.right-panel {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    /* VERPLAATST VAN CONTAINER NAAR PANELEN: */
+    /* background-color: var(--background-light); */ /* Niet nodig, container heeft al bg */
+    /* border: 1px solid var(--border-color-light); */ /* Niet nodig, container heeft al border */
+    /* border-radius: 6px; */
+    /* padding: 15px; */ /* Padding zit nu in container */
+    /* box-shadow: 0 1px 3px rgba(0,0,0,0.04); */
+}
+
+/* --- Tab Content & Text Area (Geen wijziging nodig) --- */
+.tab-content {
+    display: none;
+    flex-grow: 1;
+}
+.tab-content.active {
+    display: block;
+}
+
+.text-display-area {
+    border: 1px solid var(--border-color-light);
+    border-radius: 4px;
+    padding: 4px 18px;
+    min-height: 250px;
+    max-height: 500px;
+    background-color: #fff;
+    font-family: monospace;
+    font-size: 0.95em; /* VERGROOT: Tekst iets groter */
+    line-height: 1.6; /* VERGROOT: Meer regelhoogte voor leesbaarheid */
+    overflow-y: auto; /* Zorgt voor verticale scrollbar indien nodig */
+    white-space: pre-wrap;
+    color: var(--text-dark);
+    height: 100%;
+}
+
+/* NIEUW: Stijlen voor Diff Markeringen */
+.diff-added {
+    background-color: var(--status-gevalideerd-light, #D1FAE5); /* Lichte groene achtergrond */
+    color: var(--status-gevalideerd-dark, #065F46); /* Donkergroene tekst */
+    text-decoration: none; /* Geen onderlijning */
+    padding: 0.1em 0; /* Kleine verticale padding */
+    border-radius: 3px;
+}
+
+.diff-removed {
+    background-color: var(--notification-red-light, #FEE2E2); /* Lichte rode achtergrond */
+    color: var(--notification-red-dark, #991B1B); /* Donkerrode tekst */
+    text-decoration: line-through; /* Doorhalen */
+    padding: 0.1em 0;
+    border-radius: 3px;
+}
+
+/* --- Actie Knoppen Onderaan (Aangepast) --- */
+
+/* Verwijder oude stijlen */
+/*
+.bottom-actions,
+.final-actions {
+    display: flex;
+    gap: 10px;
+    padding-top: 15px;
+    margin-top: 15px;
+    border-top: 1px solid var(--border-color-light);
+}
+
+.final-actions {
+    justify-content: flex-end;
+    border-top: none;
+    margin-top: 0;
+    padding-top: 10px;
+}
+*/
+
+/* NIEUW: Stijlen voor de gecombineerde footer */
+.consolidation-actions-footer {
+    display: flex;
+    justify-content: space-between; /* Groepen links en rechts uit elkaar */
+    align-items: center; /* Lijn knoppen verticaal uit */
+    gap: 20px; /* Ruimte tussen linker en rechter groep indien nodig */
+    padding-top: 15px;
+    margin-top: 20px; /* Iets meer ruimte boven de knoppenbalk */
+    border-top: 1px solid var(--border-color-light);
+}
+
+.action-group-left,
+.action-group-right {
+    display: flex;
+    gap: 10px; /* Ruimte tussen knoppen binnen een groep */
+}
+
+/* NIEUW: Stijl voor blauwe secundaire knoppen */
+.button.button-blue-secondary {
+    background-color: var(--background-light); /* Lichte achtergrond */
+    border-color: var(--primary-blue-border, #BEE3F8); /* Lichte blauwe rand */
+    color: var(--primary-blue, #3B82F6); /* Blauwe tekst */
+    font-weight: 500;
+}
+
+.button.button-blue-secondary:hover {
+    background-color: var(--primary-blue-lightest, #EBF8FF); /* Zeer lichte blauwe achtergrond op hover */
+    border-color: var(--primary-blue, #3B82F6); /* Donkerdere blauwe rand op hover */
+    color: var(--primary-blue-dark, #2563EB); /* Iets donkerder blauwe tekst */
+}
+
+.button.button-blue-secondary i {
+    color: var(--primary-blue, #3B82F6); /* Zorg dat icoon ook blauw is */
+}
+
+.button.button-blue-secondary:hover i {
+    color: var(--primary-blue-dark, #2563EB); /* Iets donkerder icoon op hover */
+}
+
+
+/* Bestaande stijlen voor danger/success knoppen blijven */
+.button.button-danger {
+    background-color: var(--notification-red, #EF4444);
+    border-color: var(--notification-red, #EF4444);
+    color: white;
+}
+.button.button-danger:hover {
+    background-color: #DC2626;
+    border-color: #DC2626;
+}
+
+.button.button-success {
+    background-color: var(--status-gevalideerd-bg, #10B981);
+    border-color: var(--status-gevalideerd-bg, #10B981);
+    color: white;
+}
+.button.button-success:hover {
+    background-color: var(--button-success-hover-bg, #059669);
+    border-color: var(--button-success-hover-bg, #059669);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Aangepaste stijl voor bewerkbaar tekstgebied */
+.editable-textarea {
+    /* Inherit of expliciet instellen van basisstijlen */
+    border: 1px solid var(--border-color-light);
+    border-radius: 4px;
+    padding: 4px 18px;
+    min-height: 250px;
+    max-height: 500px;
+    background-color: #fff;
+    font-family: monospace;
+    font-size: 0.95em;
+    line-height: 1.6;
+    color: var(--text-dark);
+    width: 100%; /* Zorg dat het de volledige breedte inneemt */
+    box-sizing: border-box; /* Zorg dat padding/border binnen de width valt */
+
+    /* Specifiek voor textarea */
+    resize: vertical; /* Sta alleen verticaal herschalen toe */
+    overflow-y: auto; /* Behoud scrollbar functionaliteit */
+    white-space: pre-wrap; /* Behoud witruimte */
+
+    /* Reset eventuele browser-specifieke overrides */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none; /* Verwijder focus outline indien gewenst */
+}
+
+/* Optioneel: Voeg een subtiele focus stijl toe als de outline weg is */
+.editable-textarea:focus {
+    border-color: var(--primary-blue, #3B82F6); /* Blauwe rand op focus */
+    box-shadow: 0 0 0 1px var(--primary-blue-light, #93C5FD); /* Lichte blauwe gloed */
+}
+
+/* --- Metadata Modal Stijlen --- */
+.metadata-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.55); /* Iets lichtere overlay dan PDF modal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1040; /* Onder PDF modal, maar boven de rest */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.metadata-modal.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content-metadata {
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 8px;
+    position: relative;
+    width: 80%;
+    max-width: 1100px;
+    min-height: 500px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    overflow: hidden; /* Voorkom dat inhoud buiten modal valt */
+}
+
+.modal-content-metadata h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.4em;
+    color: var(--text-dark);
+    border-bottom: 1px solid var(--border-color-light);
+    padding-bottom: 10px;
+}
+
+/* Gebruik dezelfde sluitknop stijl als PDF modal */
+.modal-content-metadata .close-modal-btn {
+    position: absolute;
+    top: 10px; /* Iets dichterbij */
+    right: 10px;
+    background-color: transparent; /* Geen achtergrond */
+    color: var(--text-secondary); /* Subtielere kleur */
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.modal-content-metadata .close-modal-btn:hover {
+    color: var(--text-dark);
+    background-color: var(--background-hover-light); /* Lichte hover achtergrond */
+}
+
+/* --- Metadata Modal Tab Stijlen --- */
+.modal-tab-nav {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+}
+
+.modal-tab-button {
+    padding: 10px 18px;
+    cursor: pointer;
+    border: none;
+    border-bottom: 3px solid transparent; /* Onderlijn voor actieve tab */
+    background-color: transparent;
+    color: var(--text-secondary);
+    font-size: 0.95em;
+    font-weight: 500;
+    margin-bottom: -1px; /* Laat border overlappen */
+    transition: color 0.2s ease, border-bottom-color 0.2s ease, background-color 0.2s ease;
+}
+
+.modal-tab-button:hover {
+    /* SUBTIELERE HOVER: Alleen tekstkleur aanpassen */
+    color: var(--text-dark, #1F2937); /* Donkerdere tekst op hover */
+    /* Verwijder achtergrond en border van hover */
+    /* background-color: var(--primary-yellow, #F59E0B); */
+    /* border-bottom-color: var(--primary-yellow, #F59E0B); */
+}
+
+.modal-tab-button.active {
+    /* ACTIEF: Donkere tekst, gele onderlijn */
+    color: var(--text-dark, #1F2937); /* Donkere tekst voor contrast */
+    background-color: transparent; /* Geen achtergrond */
+    border-bottom-color: var(--primary-yellow, #F59E0B); /* Duidelijke gele onderlijn */
+    font-weight: 600;
+}
+
+/* Verwijder focus outline specifiek voor actieve tab knoppen */
+.modal-tab-button.active:focus,
+.modal-tab-button.active:focus-visible {
+    outline: none;
+    box-shadow: none; /* Optioneel: verwijder ook eventuele box-shadow focus stijl */
+}
+
+.modal-tab-content-container {
+    flex-grow: 1; /* Neemt resterende ruimte in modal */
+    overflow-y: auto; /* Scrollen indien nodig */
+    padding-right: 10px; /* Ruimte voor scrollbar */
+}
+
+.modal-tab-content {
+    display: none;
+}
+
+.modal-tab-content.active {
+    display: block;
+}
+
+/* --- NIEUW: Stijlen voor Trefwoorden Tab (UI/UX Rework) --- */
+.trefwoorden-grid {
+    display: flex;
+    gap: 25px; /* Ruimte tussen de kolommen */
+    height: 100%;
+    padding-top: 5px; /* Kleine ruimte bovenaan */
+}
+
+.trefwoorden-kolom {
+    flex: 1; /* Beide kolommen nemen gelijke ruimte */
+    min-width: 0; /* Voorkomt overflow in flex items */
+    display: flex;
+    flex-direction: column; /* Stapel elementen binnen kolom */
+    height: 100%; /* Probeer kolomhoogte te vullen */
+}
+
+.kolom-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color-light);
+}
+
+.kolom-header h4 {
+    font-size: 1em;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+/* Suggestie knop in header */
+#suggest-keywords-btn {
+    /* Gebruikt button-yellow en button-xsmall */
+}
+
+/* Loader */
+.keyword-loader { /* ID selector #keyword-loader blijft werken */
+    text-align: center;
+    padding: 30px 0; /* Meer verticale ruimte */
+    width: 100%;
+    /* min-height: 50px; */ /* Niet meer nodig, padding zorgt voor ruimte */
+    box-sizing: border-box;
+    /* Loader dots blijven hetzelfde */
+}
+.loader-dots { display: inline-flex; gap: 8px; }
+.loader-dot { width: 10px; height: 10px; border-radius: 50%; background-color: var(--primary-yellow); animation: bounce-delay 1.4s infinite ease-in-out both; }
+.loader-dot:nth-child(1) { animation-delay: -0.32s; }
+.loader-dot:nth-child(2) { animation-delay: -0.16s; }
+.loader-dot:nth-child(3) { animation-delay: 0s; }
+@keyframes bounce-delay { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
+
+
+/* Suggestie gebied (lijst + paginatie) */
+.suggested-keywords-area {
+    border: 1px solid var(--border-color-light);
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex; /* Maak flex container */
+    flex-direction: column; /* Stapel lijst en paginatie */
+    flex-grow: 1; /* Neem beschikbare ruimte */
+    min-height: 0; /* Belangrijk voor flex-grow in container */
+}
+
+/* Algemene lijst container stijl */
+.keyword-list-container {
+    flex-grow: 1; /* Lijst neemt meeste ruimte */
+    overflow-y: auto;
+    background-color: var(--background-light);
+    position: relative; /* Voor positionering empty state */
+    min-height: 150px; /* Minimale hoogte voor de lijst */
+}
+/* Specifieke stijl voor suggestielijst container */
+.suggested-list-container {
+     background-color: #fcfdff; /* Heel lichtblauw/grijs voor onderscheid */
+}
+/* Specifieke stijl voor definitieve lijst container */
+.final-list-container {
+    /* Geen extra achtergrond nodig, is al wit */
+}
+
+
+/* Empty state bericht */
+.empty-state {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 0.9em;
+    display: flex; /* Blijft flex voor interne uitlijning */
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 80%; /* Voorkom te brede tekst */
+    margin: 20px auto; /* Centreer horizontaal en voeg verticale marge toe */
+    padding: 15px; /* Voeg padding toe */
+}
+.empty-state i {
+    font-size: 1.8em;
+    margin-bottom: 5px;
+    color: var(--border-color); /* Heel licht icoon */
+}
+.empty-state span {
+    line-height: 1.4;
+}
+
+/* NIEUW: Absolute positionering ALLEEN voor empty states BINNEN lijst containers */
+.keyword-list-container .empty-state {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0; /* Reset marge voor absolute positionering */
+    padding: 0; /* Reset padding */
+    width: 80%; /* Behoud breedte beperking */
+}
+
+/* Specifieke padding voor de placeholder buiten de lijst */
+#suggested-placeholder {
+    padding: 30px 15px; /* Meer verticale padding voor placeholder */
+}
+
+
+/* Algemene lijst stijl */
+.keyword-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Algemene lijst item stijl */
+.keyword-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 12px; /* Iets meer padding */
+    font-size: 0.9em;
+    border-bottom: 1px solid var(--border-color-light);
+    transition: background-color 0.15s ease;
+}
+.keyword-list li:last-child { border-bottom: none; }
+.keyword-list li:hover { background-color: #f0f9ff; } /* Lichter blauw op hover */
+
+.keyword-list li span {
+    flex-grow: 1;
+    margin-right: 10px;
+    color: var(--text-dark);
+}
+
+/* Knop om suggestie toe te voegen */
+.add-suggested-keyword-btn {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: var(--primary-blue);
+    cursor: pointer;
+    padding: 3px 5px;
+    border-radius: 4px;
+    font-size: 1.1em;
+    line-height: 1;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+.add-suggested-keyword-btn:hover {
+    color: #fff; /* Witte tekst */
+    background-color: var(--primary-blue); /* Blauwe achtergrond */
+}
+.add-suggested-keyword-btn:disabled,
+.add-suggested-keyword-btn.added { /* Stijl als toegevoegd */
+    color: var(--status-gevalideerd, #10B981); /* Groen vinkje */
+    cursor: default;
+    background-color: transparent;
+}
+.add-suggested-keyword-btn:disabled:hover,
+.add-suggested-keyword-btn.added:hover {
+     background-color: transparent; /* Geen hover effect indien disabled/added */
+}
+
+
+/* Paginatie */
+.keyword-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 10px; /* Compactere padding */
+    font-size: 0.8em; /* Kleinere tekst */
+    background-color: #f8fafc; /* Lichte achtergrond */
+    border-top: 1px solid var(--border-color-light);
+    flex-shrink: 0; /* Voorkom krimpen */
+}
+.keyword-pagination button { /* Gebruikt button-xsmall */
+    min-width: 30px; /* Zorg dat knoppen niet te smal worden */
+    justify-content: center;
+}
+.keyword-pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: var(--background-light);
+}
+#keyword-page-info {
+    color: var(--text-secondary);
+    margin: 0 10px; /* Ruimte rond paginanummer */
+}
+
+/* Sectie voor handmatig toevoegen */
+.add-keyword-section {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px; /* Terug hier */
+    flex-shrink: 0; /* Terug hier */
+}
+
+.keyword-input {
+    flex-grow: 1;
+    padding: 7px 10px; /* Iets compacter */
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 0.9em;
+    flex-shrink: 0;
+}
+.keyword-input:focus {
+    outline: none;
+    border-color: var(--primary-blue, #3B82F6);
+    box-shadow: 0 0 0 1px var(--primary-blue-light, #93C5FD);
+}
+#add-keyword-btn { /* Gebruikt button-xsmall */
+    flex-shrink: 0;
+}
+
+/* Knop om geselecteerd trefwoord te verwijderen */
+.remove-keyword-btn {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    padding: 3px 5px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    line-height: 1;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+.remove-keyword-btn:hover {
+    color: #fff; /* Witte tekst */
+    background-color: var(--notification-red, #EF4444); /* Rode achtergrond */
+}
+
+/* --- Einde Stijlen Trefwoorden Tab --- */
+
+
+/* --- Einde Metadata Modal Stijlen --- */
+
+/* --- NIEUW: Afkeur Modal Stijlen --- */
+.reject-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Iets donkerder overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1060; /* Boven andere modals */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.reject-modal.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content-reject {
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 8px;
+    position: relative;
+    width: 50%; /* Kleiner dan andere modals */
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.modal-content-reject h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+    color: var(--text-dark);
+}
+
+.modal-content-reject p {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--text-secondary);
+    font-size: 0.95em;
+}
+
+/* Gebruik dezelfde close button stijl als metadata modal */
+.modal-content-reject .close-modal-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    color: var(--text-secondary);
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+.modal-content-reject .close-modal-btn:hover {
+    color: var(--text-dark);
+    background-color: var(--background-hover-light);
+}
+
+#reject-reason {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 1em;
+    margin-bottom: 20px;
+    resize: vertical; /* Sta verticale resize toe */
+    min-height: 80px;
+    box-sizing: border-box;
+}
+
+.reject-modal-actions {
+    display: flex;
+    justify-content: flex-end; /* Knoppen rechts uitlijnen */
+    gap: 10px;
+}
+/* --- Einde Afkeur Modal Stijlen --- */
+
+/* Extra kleine knop variant */
+.button.button-xsmall {
+    padding: 4px 10px;
+    font-size: 0.8em;
+}
+.button.button-xsmall i {
+    font-size: 1em;
+}
+
+/* --- NIEUW: Stijlen voor Alle Trefwoorden Modal --- */
+.all-keywords-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Zelfde overlay als metadata */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1070; /* Boven afkeur modal */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.all-keywords-modal.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content-all-keywords {
+    background-color: #fff;
+    padding: 20px 25px;
+    border-radius: 8px;
+    position: relative;
+    width: 60%; /* Iets breder dan afkeur modal */
+    max-width: 700px;
+    max-height: 80vh; /* Beperk hoogte */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    overflow: hidden; /* Voorkom dat inhoud buiten modal valt */
+}
+
+.modal-content-all-keywords h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+    color: var(--text-dark);
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color-light);
+}
+
+/* Gebruik standaard sluitknop */
+.modal-content-all-keywords .close-modal-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    color: var(--text-secondary);
+    border: none; border-radius: 50%; width: 30px; height: 30px;
+    font-size: 1.2rem; line-height: 30px; text-align: center;
+    cursor: pointer; z-index: 10;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+.modal-content-all-keywords .close-modal-btn:hover {
+    color: var(--text-dark);
+    background-color: var(--background-hover-light);
+}
+
+.all-keywords-modal-search {
+    position: relative;
+    margin-bottom: 15px;
+}
+.all-keywords-modal-search i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    font-size: 0.9em;
+}
+.all-keywords-modal-search input {
+    width: 100%;
+    padding: 8px 12px 8px 35px; /* Ruimte voor icoon */
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.95em;
+    box-sizing: border-box;
+}
+.all-keywords-modal-search input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 1px var(--primary-blue-light);
+}
+
+.all-keywords-modal-list-container {
+    flex-grow: 1; /* Neemt beschikbare ruimte */
+    overflow-y: auto; /* Scrollen */
+    border: 1px solid var(--border-color-light);
+    border-radius: 6px;
+    margin-bottom: 15px;
+    background-color: var(--background-light);
+}
+
+#all-keywords-modal-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#all-keywords-modal-list li {
+    padding: 9px 15px;
+    font-size: 0.9em;
+    color: var(--text-dark);
+    cursor: pointer;
+    border-bottom: 1px solid var(--border-color-light);
+    transition: background-color 0.15s ease;
+}
+#all-keywords-modal-list li:last-child {
+    border-bottom: none;
+}
+#all-keywords-modal-list li:hover {
+    background-color: var(--primary-blue-lightest, #EBF8FF);
+}
+/* NIEUW: Stijl voor geselecteerde items in de modal */
+#all-keywords-modal-list li.selected {
+   background-color: var(--primary-blue-light, #BFDBFE); /* Iets donkerder blauw */
+   color: var(--primary-blue-dark, #1E40AF); /* Donkerdere tekst */
+   font-weight: 500;
+}
+/* Optioneel: Icoon toevoegen aan geselecteerd item */
+#all-keywords-modal-list li.selected::before {
+    content: '\f00c'; /* Font Awesome check icon */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-right: 10px;
+    color: var(--primary-blue-dark, #1E40AF);
+}
+
+/* Stijl voor verborgen items (door filter) */
+#all-keywords-modal-list li.hidden {
+    display: none;
+}
+
+.all-keywords-modal-actions {
+    display: flex;
+    justify-content: flex-end; /* Knop rechts */
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color-light);
+}
+/* --- Einde Stijlen Alle Trefwoorden Modal --- */
+
+/* Extra kleine knop variant */
+.button.button-xsmall {
+    padding: 4px 10px;
+    font-size: 0.8em;
+}
+.button.button-xsmall i {
+    font-size: 1em;
+}
+
+/* --- NIEUW: Stijlen voor Metadata Formulier --- */
+.metadata-form {
+    padding: 10px 5px; /* Wat padding rond het formulier */
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Standaard 2 kolommen */
+    gap: 20px 25px; /* Ruimte tussen rijen en kolommen */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px; /* Ruimte tussen label en input */
+}
+
+/* Laat een groep over 2 kolommen spannen */
+.form-group.span-2 {
+    grid-column: span 2;
+}
+
+.form-group label {
+    font-size: 0.85em;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.form-group .required {
+    color: var(--notification-red);
+    margin-left: 2px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.9em;
+    font-family: inherit;
+    background-color: #fff; /* Witte achtergrond voor inputs */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box; /* Zorg dat padding binnen de width valt */
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 2px var(--primary-blue-light);
+}
+
+/* Input met icoon (voor datum) */
+.input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.input-with-icon input[type="date"] {
+    padding-right: 35px; /* Ruimte voor icoon */
+}
+/* Stijl specifiek voor date input om browser pijl te verbergen indien mogelijk */
+.input-with-icon input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+.input-with-icon .input-icon {
+    position: absolute;
+    right: 12px;
+    color: var(--text-light);
+    pointer-events: none; /* Zorg dat icoon niet klikbaar is */
+}
+
+/* Checkbox groep */
+.checkbox-group {
+    flex-direction: row;
+    align-items: center;
+    gap: 25px; /* Ruimte tussen checkbox items */
+    padding-top: 5px; /* Beetje extra ruimte boven */
+}
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.checkbox-item input[type="checkbox"] {
+    width: auto; /* Reset breedte */
+    accent-color: var(--primary-blue); /* Kleur van het vinkje */
+    cursor: pointer;
+}
+.checkbox-item label {
+    font-size: 0.9em; /* Match input font size */
+    font-weight: 400;
+    color: var(--text-dark);
+    cursor: pointer;
+}
+
+/* Readonly input stijl */
+.readonly-input {
+    background-color: var(--background-light);
+    color: var(--text-secondary);
+    cursor: not-allowed;
+    border-color: var(--border-color-light);
+}
+.readonly-input:focus {
+    box-shadow: none;
+    border-color: var(--border-color-light);
+}
+
+/* --- Einde Metadata Formulier Stijlen --- */
+
+/* --- NIEUW: Stijlen voor Artikel Tab Specifiek --- */
+.artikel-metadata-container {
+    padding: 10px 5px; /* Zelfde padding als formulier */
+}
+
+.artikel-top-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto; /* Kolommen voor datum, select, versie */
+    gap: 20px 25px; /* Zelfde gap als form-grid */
+    align-items: flex-end; /* Lijn onderkanten uit */
+    margin-bottom: 30px; /* Ruimte onder de datum/versie sectie */
+}
+
+/* Hergebruik form-group stijl */
+.artikel-top-section .form-group {
+    margin-bottom: 0; /* Geen extra marge onder nodig hier */
+}
+
+/* Specifieke stijl voor versie weergave */
+.version-display-group {
+    justify-content: flex-end; /* Lijn label/tekst onderaan uit */
+    padding-bottom: 9px; /* Lijn uit met onderkant van input/select */
+}
+.version-display-group label {
+    /* Label stijl wordt geërfd */
+}
+.article-version-display {
+    font-size: 0.9em;
+    color: var(--text-light); /* Lichtgrijs voor versie */
+    font-weight: 500;
+    padding: 0 5px; /* Beetje ruimte rond de tekst */
+}
+
+/* Specifieke aanpassingen voor artikel relaties sectie */
+.article-relations-section {
+    margin-top: 0; /* Geen extra marge boven, zit al in container */
+    padding-top: 0;
+    border-top: none; /* Geen extra lijn nodig */
+}
+/* --- Einde Artikel Tab Stijlen --- */
+
+/* --- Stijlen voor Documentrelaties Sectie --- */
+.document-relations-section {
+    margin-top: 30px; /* Ruimte boven de sectie */
+    padding-top: 20px; /* Ruimte boven de titel */
+    border-top: 1px solid var(--border-color-light); /* Scheidingslijn */
+}
+
+.relations-title {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+}
+
+.relations-table-container {
+    max-height: 350px; /* Beperk hoogte en maak scrollbaar */
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.relations-table {
+    width: 100%;
+    border-collapse: collapse; /* Nette borders */
+    font-size: 0.85em; /* Iets kleiner font voor tabel */
+}
+
+.relations-table thead {
+    position: sticky; /* Maak header sticky */
+    top: 0;
+    z-index: 1; /* Zorg dat het boven de body scrollt */
+}
+
+.relations-table th {
+    background-color: var(--primary-blue-lightest, #f0f9ff); /* Lichte blauwe achtergrond */
+    color: var(--primary-blue-dark, #0c4a6e); /* Donkerblauwe tekst */
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--primary-blue, #3B82F6); /* Duidelijke onderlijn */
+    white-space: nowrap; /* Voorkom afbreken headers */
+}
+
+.relations-table td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border-color-light);
+    color: var(--text-secondary);
+    vertical-align: middle; /* Centreer verticaal */
+}
+
+/* Specifieke kolomstijlen */
+.relations-table td:nth-child(1), /* Relatietype */
+.relations-table td:nth-child(3)  /* Aard */
+{
+    color: var(--text-dark);
+    font-weight: 500;
+}
+.relations-table td:nth-child(5) { /* Opschrift */
+    max-width: 300px; /* Beperk breedte */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Voeg ... toe bij te lange tekst */
+}
+.relations-table td:last-child { /* Actie kolom */
+    text-align: center;
+    width: 50px; /* Vaste breedte voor actieknop */
+}
+
+.relations-table tbody tr:hover {
+    background-color: #f9fafb; /* Lichte hover op rijen */
+}
+
+/* Highlight stijl voor een rij */
+.relations-table tbody tr.highlighted-row {
+    background-color: var(--primary-yellow-light, #FEF9C3); /* Lichte gele achtergrond */
+    font-weight: 500;
+}
+.relations-table tbody tr.highlighted-row td {
+    color: var(--text-dark);
+}
+
+/* Stijl voor de verwijderknop */
+.remove-relation-btn {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    padding: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    line-height: 1;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+.remove-relation-btn:hover {
+    color: #fff;
+    background-color: var(--notification-red);
+}
+
+/* Paginatie stijlen */
+.relations-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5px; /* Wat padding rond paginatie */
+    font-size: 0.85em;
+    color: var(--text-secondary);
+}
+
+.pagination-info {
+    /* Stijl voor "235 resultaten" */
+}
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.pagination-btn { /* Hergebruik basisstijl */
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--icon-color);
+    padding: 5px 8px; /* Iets kleiner */
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8em; /* Kleiner icoon */
+    line-height: 1;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.pagination-btn:hover:not([disabled]) {
+    background-color: var(--border-color-light);
+    color: var(--text-dark);
+}
+.pagination-btn[disabled] {
+    color: var(--border-color);
+    cursor: not-allowed;
+}
+
+.page-indicator {
+    padding: 5px 10px;
+    background-color: var(--primary-blue);
+    color: #fff;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.results-per-page {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.results-per-page label {
+    font-size: 0.9em; /* Match tabel font size */
+}
+.results-per-page select {
+    padding: 5px 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 0.9em;
+    background-color: #fff;
+}
+/* --- Einde Documentrelaties Stijlen --- */
+
+
+/* --- Stijlen voor Trefwoorden Tab (UI/UX Rework) --- */
+...(about 400 lines omitted)... 
+
+/* NIEUW: Stijl voor initiele 'greyed out' Valideren knop */
+.button.validate-button-initial {
+    background-color: #D1FAE5; /* Lichtere versie van succes groen */
+    border-color: #A7F3D0; /* Nog lichtere border */
+    color: #065F46; /* Donkerdere groene tekst voor contrast */
+    opacity: 0.7; /* Maak het wat doorzichtiger */
+    cursor: pointer; /* Behoud de pointer cursor */
+    box-shadow: none; /* Geen schaduw initieel */
+}
+.button.validate-button-initial:hover {
+    background-color: #A7F3D0; /* Iets donkerder bij hover */
+    border-color: #6EE7B7;
+    color: #047857;
+    opacity: 0.9;
+    transform: none; /* Geen lift effect initieel */
+}
+/* Zorg dat iconen ook de juiste kleur hebben */
+.button.validate-button-initial i {
+    color: #065F46;
+}
+.button.validate-button-initial:hover i {
+    color: #047857;
+}
+
+/* Stijl voor de content area binnen details */
+.consolidation-content {
+    padding: 20px 25px; /* Iets meer padding */
+    border-top: 1px solid var(--border-color-light);
+    background-color: #fdfdfe; /* Behoud lichte achtergrond voor content area */
+}
+
+.consolidation-content-title {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* --- NIEUW: Tab Headers Container --- */
+.tab-headers-container {
+    display: flex;
+    gap: 20px; /* Zelfde gap als tussen panelen */
+    margin-bottom: -1px; /* Laat tabs overlappen met paneel border */
+    position: relative; /* Nodig voor z-index/overlap */
+    z-index: 1; /* Zorg dat tabs boven paneelrand liggen */
+}
+
+.tab-header-group {
+    flex: 1; /* Neem gelijke breedte */
+    min-width: 0;
+}
+
+/* --- Tab Navigatie Stijlen (Aangepast) --- */
+.tab-nav {
+    display: flex;
+    gap: 5px;
+    /* VERWIJDER: margin-bottom: 15px; */ /* Wordt nu door container geregeld */
+    /* VERWIJDER: min-height: 35px; */ /* Niet meer nodig */
+}
+/* Verwijder specifieke margin voor right-tab-nav */
+/* .tab-nav.right-tab-nav { margin-bottom: 15px; } */
+
+.tab-button {
+    padding: 8px 14px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-bottom: none;
+    background-color: transparent;
+    color: var(--text-secondary);
+    font-size: 0.9em;
+    font-weight: 500;
+    border-radius: 6px 6px 0 0;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.tab-button:hover {
+    color: var(--text-dark);
+    background-color: var(--border-color-light);
+}
+
+.tab-button.active {
+    color: var(--text-dark);
+    background-color: var(--background-light); /* Match paneel achtergrond */
+    border-color: var(--border-color-light);
+    border-bottom-color: var(--background-light); /* Overlap met paneel */
+    font-weight: 600;
+    /* VERWIJDER: position: relative; */
+    /* VERWIJDER: top: 1px; */
+}
+
+/* --- Diff View Layout (Aangepast) --- */
+.diff-view-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+    border: 1px solid var(--border-color-light);
+    /* border-radius: 0 6px 6px 6px; */ /* Nu overal ronde hoeken */
+    border-radius: 6px;
+    /* VERWIJDER: padding: 20px; */ /* Padding zit nu in panelen */
+    background-color: var(--background-light);
+    /* VERWIJDER: position: relative; */
+    /* VERWIJDER: margin-top: -1px; */ /* Overlap wordt door header container gedaan */
+    padding: 20px; /* Padding weer terug IN de container */
+}
+
+.left-panel,
+.right-panel {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    /* VERPLAATST VAN CONTAINER NAAR PANELEN: */
+    /* background-color: var(--background-light); */ /* Niet nodig, container heeft al bg */
+    /* border: 1px solid var(--border-color-light); */ /* Niet nodig, container heeft al border */
+    /* border-radius: 6px; */
+    /* padding: 15px; */ /* Padding zit nu in container */
+    /* box-shadow: 0 1px 3px rgba(0,0,0,0.04); */
+}
+
+/* --- Tab Content & Text Area (Geen wijziging nodig) --- */
+.tab-content {
+    display: none;
+    flex-grow: 1;
+}
+.tab-content.active {
+    display: block;
+}
+
+.text-display-area {
+    border: 1px solid var(--border-color-light);
+    border-radius: 4px;
+    padding: 4px 18px;
+    min-height: 250px;
+    max-height: 500px;
+    background-color: #fff;
+    font-family: monospace;
+    font-size: 0.95em; /* VERGROOT: Tekst iets groter */
+    line-height: 1.6; /* VERGROOT: Meer regelhoogte voor leesbaarheid */
+    overflow-y: auto; /* Zorgt voor verticale scrollbar indien nodig */
+    white-space: pre-wrap;
+    color: var(--text-dark);
+    height: 100%;
+}
+
+/* NIEUW: Stijlen voor Diff Markeringen */
+.diff-added {
+    background-color: var(--status-gevalideerd-light, #D1FAE5); /* Lichte groene achtergrond */
+    color: var(--status-gevalideerd-dark, #065F46); /* Donkergroene tekst */
+    text-decoration: none; /* Geen onderlijning */
+    padding: 0.1em 0; /* Kleine verticale padding */
+    border-radius: 3px;
+}
+
+.diff-removed {
+    background-color: var(--notification-red-light, #FEE2E2); /* Lichte rode achtergrond */
+    color: var(--notification-red-dark, #991B1B); /* Donkerrode tekst */
+    text-decoration: line-through; /* Doorhalen */
+    padding: 0.1em 0;
+    border-radius: 3px;
+}
+
+/* --- Actie Knoppen Onderaan (Aangepast) --- */
+
+/* Verwijder oude stijlen */
+/*
+.bottom-actions,
+.final-actions {
+    display: flex;
+    gap: 10px;
+    padding-top: 15px;
+    margin-top: 15px;
+    border-top: 1px solid var(--border-color-light);
+}
+
+.final-actions {
+    justify-content: flex-end;
+    border-top: none;
+    margin-top: 0;
+    padding-top: 10px;
+}
+*/
+
+/* NIEUW: Stijlen voor de gecombineerde footer */
+.consolidation-actions-footer {
+    display: flex;
+    justify-content: space-between; /* Groepen links en rechts uit elkaar */
+    align-items: center; /* Lijn knoppen verticaal uit */
+    gap: 20px; /* Ruimte tussen linker en rechter groep indien nodig */
+    padding-top: 15px;
+    margin-top: 20px; /* Iets meer ruimte boven de knoppenbalk */
+    border-top: 1px solid var(--border-color-light);
+}
+
+.action-group-left,
+.action-group-right {
+    display: flex;
+    gap: 10px; /* Ruimte tussen knoppen binnen een groep */
+}
+
+/* NIEUW: Stijl voor blauwe secundaire knoppen */
+.button.button-blue-secondary {
+    background-color: var(--background-light); /* Lichte achtergrond */
+    border-color: var(--primary-blue-border, #BEE3F8); /* Lichte blauwe rand */
+    color: var(--primary-blue, #3B82F6); /* Blauwe tekst */
+    font-weight: 500;
+}
+
+.button.button-blue-secondary:hover {
+    background-color: var(--primary-blue-lightest, #EBF8FF); /* Zeer lichte blauwe achtergrond op hover */
+    border-color: var(--primary-blue, #3B82F6); /* Donkerdere blauwe rand op hover */
+    color: var(--primary-blue-dark, #2563EB); /* Iets donkerder blauwe tekst */
+}
+
+.button.button-blue-secondary i {
+    color: var(--primary-blue, #3B82F6); /* Zorg dat icoon ook blauw is */
+}
+
+.button.button-blue-secondary:hover i {
+    color: var(--primary-blue-dark, #2563EB); /* Iets donkerder icoon op hover */
+}
+
+
+/* Bestaande stijlen voor danger/success knoppen blijven */
+.button.button-danger {
+    background-color: var(--notification-red, #EF4444);
+    border-color: var(--notification-red, #EF4444);
+    color: white;
+}
+.button.button-danger:hover {
+    background-color: #DC2626;
+    border-color: #DC2626;
+}
+
+.button.button-success {
+    background-color: var(--status-gevalideerd-bg, #10B981);
+    border-color: var(--status-gevalideerd-bg, #10B981);
+    color: white;
+}
+.button.button-success:hover {
+    background-color: var(--button-success-hover-bg, #059669);
+    border-color: var(--button-success-hover-bg, #059669);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Aangepaste stijl voor bewerkbaar tekstgebied */
+.editable-textarea {
+    /* Inherit of expliciet instellen van basisstijlen */
+    border: 1px solid var(--border-color-light);
+    border-radius: 4px;
+    padding: 4px 18px;
+    min-height: 250px;
+    max-height: 500px;
+    background-color: #fff;
+    font-family: monospace;
+    font-size: 0.95em;
+    line-height: 1.6;
+    color: var(--text-dark);
+    width: 100%; /* Zorg dat het de volledige breedte inneemt */
+    box-sizing: border-box; /* Zorg dat padding/border binnen de width valt */
+
+    /* Specifiek voor textarea */
+    resize: vertical; /* Sta alleen verticaal herschalen toe */
+    overflow-y: auto; /* Behoud scrollbar functionaliteit */
+    white-space: pre-wrap; /* Behoud witruimte */
+
+    /* Reset eventuele browser-specifieke overrides */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none; /* Verwijder focus outline indien gewenst */
+}
+
+/* Optioneel: Voeg een subtiele focus stijl toe als de outline weg is */
+.editable-textarea:focus {
+    border-color: var(--primary-blue, #3B82F6); /* Blauwe rand op focus */
+    box-shadow: 0 0 0 1px var(--primary-blue-light, #93C5FD); /* Lichte blauwe gloed */
+}
+
+/* --- Metadata Modal Stijlen --- */
+.metadata-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.55); /* Iets lichtere overlay dan PDF modal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1040; /* Onder PDF modal, maar boven de rest */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.metadata-modal.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content-metadata {
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 8px;
+    position: relative;
+    width: 80%;
+    max-width: 1100px;
+    min-height: 500px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    overflow: hidden; /* Voorkom dat inhoud buiten modal valt */
+}
+
+.modal-content-metadata h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.4em;
+    color: var(--text-dark);
+    border-bottom: 1px solid var(--border-color-light);
+    padding-bottom: 10px;
+}
+
+/* Gebruik dezelfde sluitknop stijl als PDF modal */
+.modal-content-metadata .close-modal-btn {
+    position: absolute;
+    top: 10px; /* Iets dichterbij */
+    right: 10px;
+    background-color: transparent; /* Geen achtergrond */
+    color: var(--text-secondary); /* Subtielere kleur */
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.modal-content-metadata .close-modal-btn:hover {
+    color: var(--text-dark);
+    background-color: var(--background-hover-light); /* Lichte hover achtergrond */
+}
+
+/* --- Metadata Modal Tab Stijlen --- */
+.modal-tab-nav {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+}
+
+.modal-tab-button {
+    padding: 10px 18px;
+    cursor: pointer;
+    border: none;
+    border-bottom: 3px solid transparent; /* Onderlijn voor actieve tab */
+    background-color: transparent;
+    color: var(--text-secondary);
+    font-size: 0.95em;
+    font-weight: 500;
+    margin-bottom: -1px; /* Laat border overlappen */
+    transition: color 0.2s ease, border-bottom-color 0.2s ease, background-color 0.2s ease;
+}
+
+.modal-tab-button:hover {
+    /* SUBTIELERE HOVER: Alleen tekstkleur aanpassen */
+    color: var(--text-dark, #1F2937); /* Donkerdere tekst op hover */
+    /* Verwijder achtergrond en border van hover */
+    /* background-color: var(--primary-yellow, #F59E0B); */
+    /* border-bottom-color: var(--primary-yellow, #F59E0B); */
+}
+
+.modal-tab-button.active {
+    /* ACTIEF: Donkere tekst, gele onderlijn */
+    color: var(--text-dark, #1F2937); /* Donkere tekst voor contrast */
+    background-color: transparent; /* Geen achtergrond */
+    border-bottom-color: var(--primary-yellow, #F59E0B); /* Duidelijke gele onderlijn */
+    font-weight: 600;
+}
+
+/* Verwijder focus outline specifiek voor actieve tab knoppen */
+.modal-tab-button.active:focus,
+.modal-tab-button.active:focus-visible {
+    outline: none;
+    box-shadow: none; /* Optioneel: verwijder ook eventuele box-shadow focus stijl */
+}
+
+.modal-tab-content-container {
+    flex-grow: 1; /* Neemt resterende ruimte in modal */
+    overflow-y: auto; /* Scrollen indien nodig */
+    padding-right: 10px; /* Ruimte voor scrollbar */
+}
+
+.modal-tab-content {
+    display: none;
+}
+
+.modal-tab-content.active {
+    display: block;
+}
+
+/* --- NIEUW: Stijlen voor Trefwoorden Tab (UI/UX Rework) --- */
+.trefwoorden-grid {
+    display: flex;
+    gap: 25px; /* Ruimte tussen de kolommen */
+    height: 100%;
+    padding-top: 5px; /* Kleine ruimte bovenaan */
+}
+
+.trefwoorden-kolom {
+    flex: 1; /* Beide kolommen nemen gelijke ruimte */
+    min-width: 0; /* Voorkomt overflow in flex items */
+    display: flex;
+    flex-direction: column; /* Stapel elementen binnen kolom */
+    height: 100%; /* Probeer kolomhoogte te vullen */
+}
+
+.kolom-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color-light);
+}
+
+.kolom-header h4 {
+    font-size: 1em;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+/* Suggestie knop in header */
+#suggest-keywords-btn {
+    /* Gebruikt button-yellow en button-xsmall */
+}
+
+/* Loader */
+.keyword-loader { /* ID selector #keyword-loader blijft werken */
+    text-align: center;
+    padding: 30px 0; /* Meer verticale ruimte */
+    width: 100%;
+    /* min-height: 50px; */ /* Niet meer nodig, padding zorgt voor ruimte */
+    box-sizing: border-box;
+    /* Loader dots blijven hetzelfde */
+}
+.loader-dots { display: inline-flex; gap: 8px; }
+.loader-dot { width: 10px; height: 10px; border-radius: 50%; background-color: var(--primary-yellow); animation: bounce-delay 1.4s infinite ease-in-out both; }
+.loader-dot:nth-child(1) { animation-delay: -0.32s; }
+.loader-dot:nth-child(2) { animation-delay: -0.16s; }
+.loader-dot:nth-child(3) { animation-delay: 0s; }
+@keyframes bounce-delay { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
+
+
+/* Suggestie gebied (lijst + paginatie) */
+.suggested-keywords-area {
+    border: 1px solid var(--border-color-light);
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex; /* Maak flex container */
+    flex-direction: column; /* Stapel lijst en paginatie */
+    flex-grow: 1; /* Neem beschikbare ruimte */
+    min-height: 0; /* Belangrijk voor flex-grow in container */
+}
+
+/* Algemene lijst container stijl */
+.keyword-list-container {
+    flex-grow: 1; /* Lijst neemt meeste ruimte */
+    overflow-y: auto;
+    background-color: var(--background-light);
+    position: relative; /* Voor positionering empty state */
+    min-height: 150px; /* Minimale hoogte voor de lijst */
+}
+/* Specifieke stijl voor suggestielijst container */
+.suggested-list-container {
+     background-color: #fcfdff; /* Heel lichtblauw/grijs voor onderscheid */
+}
+/* Specifieke stijl voor definitieve lijst container */
+.final-list-container {
+    /* Geen extra achtergrond nodig, is al wit */
+}
+
+
+/* Empty state bericht */
+.empty-state {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 0.9em;
+    display: flex; /* Blijft flex voor interne uitlijning */
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 80%; /* Voorkom te brede tekst */
+    margin: 20px auto; /* Centreer horizontaal en voeg verticale marge toe */
+    padding: 15px; /* Voeg padding toe */
+}
+.empty-state i {
+    font-size: 1.8em;
+    margin-bottom: 5px;
+    color: var(--border-color); /* Heel licht icoon */
+}
+.empty-state span {
+    line-height: 1.4;
+}
+
+/* NIEUW: Absolute positionering ALLEEN voor empty states BINNEN lijst containers */
+.keyword-list-container .empty-state {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0; /* Reset marge voor absolute positionering */
+    padding: 0; /* Reset padding */
+    width: 80%; /* Behoud breedte beperking */
+}
+
+/* Specifieke padding voor de placeholder buiten de lijst */
+#suggested-placeholder {
+    padding: 30px 15px; /* Meer verticale padding voor placeholder */
+}
+
+
+/* Algemene lijst stijl */
+.keyword-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Algemene lijst item stijl */
+.keyword-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 12px; /* Iets meer padding */
+    font-size: 0.9em;
+    border-bottom: 1px solid var(--border-color-light);
+    transition: background-color 0.15s ease;
+}
+.keyword-list li:last-child { border-bottom: none; }
+.keyword-list li:hover { background-color: #f0f9ff; } /* Lichter blauw op hover */
+
+.keyword-list li span {
+    flex-grow: 1;
+    margin-right: 10px;
+    color: var(--text-dark);
+}
+
+/* Knop om suggestie toe te voegen */
+.add-suggested-keyword-btn {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: var(--primary-blue);
+    cursor: pointer;
+    padding: 3px 5px;
+    border-radius: 4px;
+    font-size: 1.1em;
+    line-height: 1;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+.add-suggested-keyword-btn:hover {
+    color: #fff; /* Witte tekst */
+    background-color: var(--primary-blue); /* Blauwe achtergrond */
+}
+.add-suggested-keyword-btn:disabled,
+.add-suggested-keyword-btn.added { /* Stijl als toegevoegd */
+    color: var(--status-gevalideerd, #10B981); /* Groen vinkje */
+    cursor: default;
+    background-color: transparent;
+}
+.add-suggested-keyword-btn:disabled:hover,
+.add-suggested-keyword-btn.added:hover {
+     background-color: transparent; /* Geen hover effect indien disabled/added */
+}
+
+
+/* Paginatie */
+.keyword-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 10px; /* Compactere padding */
+    font-size: 0.8em; /* Kleinere tekst */
+    background-color: #f8fafc; /* Lichte achtergrond */
+    border-top: 1px solid var(--border-color-light);
+    flex-shrink: 0; /* Voorkom krimpen */
+}
+.keyword-pagination button { /* Gebruikt button-xsmall */
+    min-width: 30px; /* Zorg dat knoppen niet te smal worden */
+    justify-content: center;
+}
+.keyword-pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: var(--background-light);
+}
+#keyword-page-info {
+    color: var(--text-secondary);
+    margin: 0 10px; /* Ruimte rond paginanummer */
+}
+
+/* Sectie voor handmatig toevoegen */
+.add-keyword-section {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px; /* Terug hier */
+    flex-shrink: 0; /* Terug hier */
+}
+
+.keyword-input {
+    flex-grow: 1;
+    padding: 7px 10px; /* Iets compacter */
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 0.9em;
+    flex-shrink: 0;
+}
+.keyword-input:focus {
+    outline: none;
+    border-color: var(--primary-blue, #3B82F6);
+    box-shadow: 0 0 0 1px var(--primary-blue-light, #93C5FD);
+}
+#add-keyword-btn { /* Gebruikt button-xsmall */
+    flex-shrink: 0;
+}
+
+/* Knop om geselecteerd trefwoord te verwijderen */
+.remove-keyword-btn {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    padding: 3px 5px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    line-height: 1;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+.remove-keyword-btn:hover {
+    color: #fff; /* Witte tekst */
+    background-color: var(--notification-red, #EF4444); /* Rode achtergrond */
+}
+
+/* --- Einde Stijlen Trefwoorden Tab --- */
+
+
+/* --- Einde Metadata Modal Stijlen --- */
+
+/* --- NIEUW: Afkeur Modal Stijlen --- */
+.reject-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Iets donkerder overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1060; /* Boven andere modals */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.reject-modal.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content-reject {
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 8px;
+    position: relative;
+    width: 50%; /* Kleiner dan andere modals */
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.modal-content-reject h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+    color: var(--text-dark);
+}
+
+.modal-content-reject p {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--text-secondary);
+    font-size: 0.95em;
+}
+
+/* Gebruik dezelfde close button stijl als metadata modal */
+.modal-content-reject .close-modal-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    color: var(--text-secondary);
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+.modal-content-reject .close-modal-btn:hover {
+    color: var(--text-dark);
+    background-color: var(--background-hover-light);
+}
+
+#reject-reason {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 1em;
+    margin-bottom: 20px;
+    resize: vertical; /* Sta verticale resize toe */
+    min-height: 80px;
+    box-sizing: border-box;
+}
+
+.reject-modal-actions {
+    display: flex;
+    justify-content: flex-end; /* Knoppen rechts uitlijnen */
+    gap: 10px;
+}
+/* --- Einde Afkeur Modal Stijlen --- */
+
+/* Extra kleine knop variant */
+.button.button-xsmall {
+    padding: 4px 10px;
+    font-size: 0.8em;
+}
+.button.button-xsmall i {
+    font-size: 1em;
+}
+
+/* --- NIEUW: Stijlen voor Alle Trefwoorden Modal --- */
+.all-keywords-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Zelfde overlay als metadata */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1070; /* Boven afkeur modal */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.all-keywords-modal.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content-all-keywords {
+    background-color: #fff;
+    padding: 20px 25px;
+    border-radius: 8px;
+    position: relative;
+    width: 60%; /* Iets breder dan afkeur modal */
+    max-width: 700px;
+    max-height: 80vh; /* Beperk hoogte */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    overflow: hidden; /* Voorkom dat inhoud buiten modal valt */
+}
+
+.modal-content-all-keywords h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+    color: var(--text-dark);
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color-light);
+}
+
+/* Gebruik standaard sluitknop */
+.modal-content-all-keywords .close-modal-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    color: var(--text-secondary);
+    border: none; border-radius: 50%; width: 30px; height: 30px;
+    font-size: 1.2rem; line-height: 30px; text-align: center;
+    cursor: pointer; z-index: 10;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+.modal-content-all-keywords .close-modal-btn:hover {
+    color: var(--text-dark);
+    background-color: var(--background-hover-light);
+}
+
+.all-keywords-modal-search {
+    position: relative;
+    margin-bottom: 15px;
+}
+.all-keywords-modal-search i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    font-size: 0.9em;
+}
+.all-keywords-modal-search input {
+    width: 100%;
+    padding: 8px 12px 8px 35px; /* Ruimte voor icoon */
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.95em;
+    box-sizing: border-box;
+}
+.all-keywords-modal-search input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 1px var(--primary-blue-light);
+}
+
+.all-keywords-modal-list-container {
+    flex-grow: 1; /* Neemt beschikbare ruimte */
+    overflow-y: auto; /* Scrollen */
+    border: 1px solid var(--border-color-light);
+    border-radius: 6px;
+    margin-bottom: 15px;
+    background-color: var(--background-light);
+}
+
+#all-keywords-modal-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#all-keywords-modal-list li {
+    padding: 9px 15px;
+    font-size: 0.9em;
+    color: var(--text-dark);
+    cursor: pointer;
+    border-bottom: 1px solid var(--border-color-light);
+    transition: background-color 0.15s ease;
+}
+#all-keywords-modal-list li:last-child {
+    border-bottom: none;
+}
+#all-keywords-modal-list li:hover {
+    background-color: var(--primary-blue-lightest, #EBF8FF);
+}
+/* NIEUW: Stijl voor geselecteerde items in de modal */
+#all-keywords-modal-list li.selected {
+   background-color: var(--primary-blue-light, #BFDBFE); /* Iets donkerder blauw */
+   color: var(--primary-blue-dark, #1E40AF); /* Donkerdere tekst */
+   font-weight: 500;
+}
+/* Optioneel: Icoon toevoegen aan geselecteerd item */
+#all-keywords-modal-list li.selected::before {
+    content: '\f00c'; /* Font Awesome check icon */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-right: 10px;
+    color: var(--primary-blue-dark, #1E40AF);
+}
+
+/* Stijl voor verborgen items (door filter) */
+#all-keywords-modal-list li.hidden {
+    display: none;
+}
+
+.all-keywords-modal-actions {
+    display: flex;
+    justify-content: flex-end; /* Knop rechts */
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color-light);
+}
+/* --- Einde Stijlen Alle Trefwoorden Modal --- */
+
+/* Extra kleine knop variant */
+.button.button-xsmall {
+    padding: 4px 10px;
+    font-size: 0.8em;
+}
+.button.button-xsmall i {
+    font-size: 1em;
+}
+
+/* --- NIEUW: Stijlen voor Metadata Formulier --- */
+.metadata-form {
+    padding: 10px 5px; /* Wat padding rond het formulier */
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Standaard 2 kolommen */
+    gap: 20px 25px; /* Ruimte tussen rijen en kolommen */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px; /* Ruimte tussen label en input */
+}
+
+/* Laat een groep over 2 kolommen spannen */
+.form-group.span-2 {
+    grid-column: span 2;
+}
+
+.form-group label {
+    font-size: 0.85em;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.form-group .required {
+    color: var(--notification-red);
+    margin-left: 2px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.9em;
+    font-family: inherit;
+    background-color: #fff; /* Witte achtergrond voor inputs */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box; /* Zorg dat padding binnen de width valt */
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 2px var(--primary-blue-light);
+}
+
+/* Input met icoon (voor datum) */
+.input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.input-with-icon input[type="date"] {
+    padding-right: 35px; /* Ruimte voor icoon */
+}
+/* Stijl specifiek voor date input om browser pijl te verbergen indien mogelijk */
+.input-with-icon input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+.input-with-icon .input-icon {
+    position: absolute;
+    right: 12px;
+    color: var(--text-light);
+    pointer-events: none; /* Zorg dat icoon niet klikbaar is */
+}
+
+/* Checkbox groep */
+.checkbox-group {
+    flex-direction: row;
+    align-items: center;
+    gap: 25px; /* Ruimte tussen checkbox items */
+    padding-top: 5px; /* Beetje extra ruimte boven */
+}
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.checkbox-item input[type="checkbox"] {
+    width: auto; /* Reset breedte */
+    accent-color: var(--primary-blue); /* Kleur van het vinkje */
+    cursor: pointer;
+}
+.checkbox-item label {
+    font-size: 0.9em; /* Match input font size */
+    font-weight: 400;
+    color: var(--text-dark);
+    cursor: pointer;
+}
+
+/* Readonly input stijl */
+.readonly-input {
+    background-color: var(--background-light);
+    color: var(--text-secondary);
+    cursor: not-allowed;
+    border-color: var(--border-color-light);
+}
+.readonly-input:focus {
+    box-shadow: none;
+    border-color: var(--border-color-light);
+}
+
+/* --- Einde Metadata Formulier Stijlen --- */
+
+/* --- NIEUW: Stijlen voor Artikel Tab Specifiek --- */
+.artikel-metadata-container {
+    padding: 10px 5px; /* Zelfde padding als formulier */
+}
+
+.artikel-top-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto; /* Kolommen voor datum, select, versie */
+    gap: 20px 25px; /* Zelfde gap als form-grid */
+    align-items: flex-end; /* Lijn onderkanten uit */
+    margin-bottom: 30px; /* Ruimte onder de datum/versie sectie */
+}
+
+/* Hergebruik form-group stijl */
+.artikel-top-section .form-group {
+    margin-bottom: 0; /* Geen extra marge onder nodig hier */
+}
+
+/* Specifieke stijl voor versie weergave */
+.version-display-group {
+    justify-content: flex-end; /* Lijn label/tekst onderaan uit */
+    padding-bottom: 9px; /* Lijn uit met onderkant van input/select */
+}
+.version-display-group label {
+    /* Label stijl wordt geërfd */
+}
+.article-version-display {
+    font-size: 0.9em;
+    color: var(--text-light); /* Lichtgrijs voor versie */
+    font-weight: 500;
+    padding: 0 5px; /* Beetje ruimte rond de tekst */
+}
+
+/* Specifieke aanpassingen voor artikel relaties sectie */
+.article-relations-section {
+    margin-top: 0; /* Geen extra marge boven, zit al in container */
+    padding-top: 0;
+    border-top: none; /* Geen extra lijn nodig */
+}
+/* --- Einde Artikel Tab Stijlen --- */
+
+/* --- Stijlen voor Documentrelaties Sectie --- */
+.document-relations-section {
+    margin-top: 30px; /* Ruimte boven de sectie */
+    padding-top: 20px; /* Ruimte boven de titel */
+    border-top: 1px solid var(--border-color-light); /* Scheidingslijn */
+}
+
+.relations-title {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+}
+
+.relations-table-container {
+    max-height: 350px; /* Beperk hoogte en maak scrollbaar */
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.relations-table {
+    width: 100%;
+    border-collapse: collapse; /* Nette borders */
+    font-size: 0.85em; /* Iets kleiner font voor tabel */
+}
+
+.relations-table thead {
+    position: sticky; /* Maak header sticky */
+    top: 0;
+    z-index: 1; /* Zorg dat het boven de body scrollt */
+}
+
+.relations-table th {
+    background-color: var(--primary-blue-lightest, #f0f9ff); /* Lichte blauwe achtergrond */
+    color: var(--primary-blue-dark, #0c4a6e); /* Donkerblauwe tekst */
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--primary-blue, #3B82F6); /* Duidelijke onderlijn */
+    white-space: nowrap; /* Voorkom afbreken headers */
+}
+
+.relations-table td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border-color-light);
+    color: var(--text-secondary);
+    vertical-align: middle; /* Centreer verticaal */
+}
+
+/* Specifieke kolomstijlen */
+.relations-table td:nth-child(1), /* Relatietype */
+.relations-table td:nth-child(3)  /* Aard */
+{
+    color: var(--text-dark);
+    font-weight: 500;
+}
+.relations-table td:nth-child(5) { /* Opschrift */
+    max-width: 300px; /* Beperk breedte */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Voeg ... toe bij te lange tekst */
+}
+.relations-table td:last-child { /* Actie kolom */
+    text-align: center;
+    width: 50px; /* Vaste breedte voor actieknop */
+}
+
+.relations-table tbody tr:hover {
+    background-color: #f9fafb; /* Lichte hover op rijen */
+}
+
+/* Highlight stijl voor een rij */
+.relations-table tbody tr.highlighted-row {
+    background-color: var(--primary-yellow-light, #FEF9C3); /* Lichte gele achtergrond */
+    font-weight: 500;
+}
+.relations-table tbody tr.highlighted-row td {
+    color: var(--text-dark);
+}
+
+/* Stijl voor de verwijderknop */
+.remove-relation-btn {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    padding: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    line-height: 1;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+.remove-relation-btn:hover {
+    color: #fff;
+    background-color: var(--notification-red);
+}
+
+/* Paginatie stijlen */
+.relations-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5px; /* Wat padding rond paginatie */
+    font-size: 0.85em;
+    color: var(--text-secondary);
+}
+
+.pagination-info {
+    /* Stijl voor "235 resultaten" */
+}
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.pagination-btn { /* Hergebruik basisstijl */
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--icon-color);
+    padding: 5px 8px; /* Iets kleiner */
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8em; /* Kleiner icoon */
+    line-height: 1;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.pagination-btn:hover:not([disabled]) {
+    background-color: var(--border-color-light);
+    color: var(--text-dark);
+}
+.pagination-btn[disabled] {
+    color: var(--border-color);
+    cursor: not-allowed;
+}
+
+.page-indicator {
+    padding: 5px 10px;
+    background-color: var(--primary-blue);
+    color: #fff;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.results-per-page {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.results-per-page label {
+    font-size: 0.9em; /* Match tabel font size */
+}
+.results-per-page select {
+    padding: 5px 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 0.9em;
+    background-color: #fff;
+}
+/* --- Einde Documentrelaties Stijlen --- */
+
+
+/* --- Stijlen voor Trefwoorden Tab (UI/UX Rework) --- */
+...(about 400 lines omitted)... 

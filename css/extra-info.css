@@ -1,0 +1,124 @@
+/* Stijl voor de uitklapbare kaart - nu een link-card */
+.info-card-link { /* Was .info-card */
+    display: block;
+    background-color: var(--background-light);
+    border: 1px solid var(--border-color-light);
+    border-radius: 8px;
+    color: var(--text-dark);
+    text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    /* cursor: pointer; -- niet meer nodig voor <a> */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.info-card-link:hover {
+    background-color: #f9fafb; /* Subtiele hover */
+    border-color: var(--border-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.info-card-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 22px;
+    /* list-style: none; -- niet meer nodig */
+    /* cursor: pointer; -- niet meer nodig */
+    transition: background-color 0.2s ease;
+    font-weight: 500;
+    font-size: 1.1em;
+}
+
+/* Verwijder :open specifieke stijlen als die er waren voor de pijl */
+.info-card-summary .fa-chevron-right {
+    transition: transform 0.2s ease-in-out;
+    color: var(--primary-blue); /* Maak pijl consistent blauw */
+}
+
+/* .info-card[open] > .info-card-summary .fa-chevron-right {
+    transform: rotate(90deg);
+} */
+
+/* .info-card-content { -- Deze klasse wordt niet meer direct gebruikt op extra-info.html
+    padding: 1.5rem; 
+    border-top: 1px solid var(--border-color-light);
+}
+
+@media (min-width: 768px) { 
+    .info-card-content {
+        padding: 2.5rem; 
+    }
+} */
+
+/* De .page-header stijl voor extra-info.html (indien nodig, anders wordt het door styles.css afgehandeld) */
+/* Deze pagina gebruikt een andere structuur voor de header dan architectuur/storymap */
+.page-header { /* Dit is de container voor de h1 op extra-info.html */
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color-light);
+}
+
+.page-header h1 {
+    font-size: 1.875rem; /* text-3xl */
+    font-weight: 700; /* bold */
+    color: var(--text-dark);
+    /* Geen page-actions hier, dus geen flexbox nodig zoals bij .page-controls-header */
+}
+
+/* Broodkruimelpad stijl */
+/* .breadcrumb { */
+    /* margin-bottom: 20px; */ /* Verwijderd - .page-controls-header beheert de marge onder de balk */
+/*    font-size: 0.9em;
+}
+
+.breadcrumb a {
+    color: var(--primary-blue);
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb .fas {
+    margin-right: 5px;
+} */
+
+/* Container voor broodkruimelpad en printknop */
+/* .page-controls-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+} */
+
+/* Architectuur Diagram Stijlen */
+/* .architecture-diagram-wrapper {
+    max-width: 80rem; */ /* max-w-7xl */
+/*    margin-left: auto;
+    margin-right: auto;
+} */
+
+/* Nieuwe generieke stijl voor hoofdcontenttitels */
+/* .page-main-title {
+    font-size: 1.875rem; */ /* text-3xl */
+/*    font-weight: bold;
+    text-align: center;
+    color: var(--text-dark);
+    margin-top: 1rem; */ /* Ruimte na de page-controls-header */
+/*    margin-bottom: 2.5rem; */ /* Ruimte voor de content begint */
+/* } */
+
+/* .architecture-layers-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem; */ /* gap-8 */
+/* } */
+
+/* ... (ALLE ANDERE ARCHITECTUUR-SPECIFIEKE STIJLEN EN DE VOLLEDIGE @media print {} BLOCK MOETEN HIER VERWIJDERD WORDEN) ... */
+/* Zorg ervoor dat ALLE stijlen vanaf ".breadcrumb" tot en met het einde van de @media print {} block hier verwijderd zijn. */
+/* Het bestand css/extra-info.css zou na opschoning alleen de .info-card-link stijlen en eventueel de .page-header stijlen voor extra-info.html zelf moeten bevatten. */
+
+/* EINDE VERWIJDERING */

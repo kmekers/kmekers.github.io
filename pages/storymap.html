@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Story Map</title>
+    <!-- Link naar je CSS bestanden -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="stylesheet" href="../css/storymap.css"> <!-- Nieuw CSS-bestand voor de storymap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .storymap-card-estimation {
+            color: #2563EB; /* Tailwind blue-600 for a nice color */
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+            font-style: italic;
+        }
+
+        @media print {
+            .storymap-card-estimation {
+                font-size: 0.65rem; /* Smaller font size for printing */
+                color: #374151; /* Darker gray for print readability, if blue is too light */
+            }
+        }
+
+        /* Added styles for the cost table */
+        .cost-section {
+            background-color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin-top: 2rem; /* Added for spacing */
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .cost-section h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937; /* gray-800 */
+            margin-bottom: 0.75rem;
+        }
+        .cost-table {
+            width: 100%;
+            margin-top: 1rem;
+            border-collapse: collapse;
+        }
+        .cost-table th, .cost-table td {
+            border: 1px solid #e5e7eb; /* gray-200 */
+            padding: 0.75rem; 
+            text-align: left;
+            font-size: 0.875rem; 
+        }
+        .cost-table th {
+            background-color: #f3f4f6; /* gray-100 */
+            font-weight: 600; 
+            color: #374151; /* gray-700 */
+        }
+        .cost-table td {
+            color: #4b5563; /* gray-600 */
+        }
+        .cost-table tbody tr:nth-child(even) {
+            background-color: #f9fafb; /* gray-50 */
+        }
+        .cost-table tfoot td {
+            font-weight: 700; 
+            color: #1f2937; /* gray-800 */
+        }
+        @media (max-width: 768px) {
+            .cost-table {
+                display: block;
+                overflow-x: auto; 
+                white-space: nowrap;
+            }
+        }
+        /* Ensure each cost section starts on a new page when printing */
+        @media print {
+            .cost-section {
+                page-break-before: always;
+                box-shadow: none !important; /* Remove box-shadow for printing */
+            }
+            .storymap-card-estimation {
+                font-size: 0.65rem; /* Smaller font size for printing */
+                color: #374151; /* Darker gray for print readability, if blue is too light */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <!-- Group 1: Top Logo + Top Nav -->
+        <div>
+            <div class="sidebar-logo-container">
+                 <img src="../images/logoabove.png" alt="Top Logo" class="sidebar-logo-top">
+            </div>
+            <ul class="sidebar-nav-top">
+                <li>
+                    <a href="../index.html" class="nav-item">
+                        <i class="fa-solid fa-house nav-icon"></i>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="ai-consolidatie.html" class="nav-item">
+                        <i class="fa-solid fa-brain nav-icon"></i>
+                        <span class="nav-text">Ai consolidatie</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="staatsblad.html" class="nav-item">
+                        <i class="fa-solid fa-newspaper nav-icon"></i>
+                        <span class="nav-text">Staatsblad</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="geschiedenis.html" class="nav-item">
+                        <i class="fa-solid fa-history nav-icon"></i>
+                        <span class="nav-text">Geschiedenis</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Group 2: Bottom Nav ONLY -->
+        <ul class="sidebar-nav-bottom">
+             <li>
+                <a href="instellingen.html" class="nav-item">
+                    <i class="fa-solid fa-gear nav-icon"></i>
+                    <span class="nav-text">Instellingen</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-item"> <!-- Placeholder/JS action -->
+                    <i class="fa-solid fa-arrow-right-from-bracket nav-icon"></i>
+                    <span class="nav-text">Uitloggen</span>
+                </a>
+            </li>
+            <li>
+                <a href="extra-info.html" class="nav-item active"> <!-- Extra Info is active -->
+                    <i class="fa-solid fa-info-circle nav-icon"></i>
+                    <span class="nav-text">Extra Info</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="content-wrapper">
+        <main class="main-content">
+            <div class="page-controls-header">
+                <div class="breadcrumb">
+                    <a href="extra-info.html"><i class="fas fa-arrow-left"></i> Terug naar Extra Info</a>
+                </div>
+                <div> <!-- Wrapper voor knoppen rechts -->
+                    <button id="print-storymap-button" class="button button-warning">
+                        <i class="fas fa-print"></i> Print Story Map
+                    </button>
+                    <button id="enter-focus-mode-button-storymap" class="button button-icon-only" title="Focus modus">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Legend card is REMOVED from here -->
+
+            <!-- Main page title (remains as is) -->
+            <!-- <h1 class="page-main-title">Story map poc agent</h1> -->
+
+            <!-- New PoC Section - Title Updated -->
+            <h2 class="page-subtitle">Fase 1: Proof of concept AI Agent <span class="title-legend">(<i class="fas fa-shirt size-s-icon"></i> S, <i class="fas fa-shirt size-m-icon"></i> M, <i class="fas fa-shirt size-l-icon"></i> L = Grootte)</span></h2>
+            <div class="storymap-container" id="poc-storymap-container">
+                <div class="activity-column">
+                    <div class="activity-header">
+                        <i class="fas fa-clipboard-list"></i>PoC setup & planning
+                    </div>
+                    <div class="tasks-container">
+                        <div class="storymap-card">
+                            <div>
+                                <div class="storymap-card-actor">Projectteam</div>
+                                <div class="storymap-card-title">Definiëren PoC scope & validatiecriteria (o.b.v. 'Vlaamse Codex Agent' architectuur)</div>
+                                <div class="storymap-card-estimation">Geschatte duur: 3 dagen</div>
+                            </div>
+                            <div class="storymap-card-size"><i class="fas fa-shirt size-m-icon"></i></div>
+                        </div>
+                        <div class="storymap-card">
+                            <div>
+                                <div class="storymap-card-actor">Projectteam</div>
+                                <div class="storymap-card-title">Verzamelen historische data (drukproefaanvragen, Frank's consolidaties als ground truth)</div>
+                                <div class="storymap-card-estimation">Geschatte duur: 1 dag</div>
+                            </div>
+                            <div class="storymap-card-size"><i class="fas fa-shirt size-s-icon"></i></div>
+                        </div>
+                        <div class="storymap-card">
+                            <div>
+                                <div class="storymap-card-actor">Ontwikkelingsteam</div>
+                                <div class="storymap-card-title">Sandbox opzetten (Digitaal Vlaanderen) voor agent experimenten</div>
+                                <div class="storymap-card-estimation">Geschatte duur: 3 dagen</div>
+                            </div>
+                            <div class="storymap-card-size"><i class="fas fa-shirt size-m-icon"></i></div>
+                        </div>
+                        <div class="storymap-card">
+                            <div>
+                                <div class="storymap-card-actor">Projectteam</div>
+                                <div class="storymap-card-title">Definiëren/finaliseren architectuur AI agent (middleware, tools, prompts)</div>
+                                <div class="storymap-card-estimation">Geschatte duur: 5 dagen</div>
+                            </div>
+                            <div class="storymap-card-size"><i class="fas fa-shirt size-l-icon"></i></div>
+                        </div>
+                        <div class="storymap-card">
+                            <div>
+                                <div class="storymap-card-actor">Ontwikkelteam/Vendor (Novado)</div>
+                                <div class="storymap-card-title">Analyseren (en mitigeren) van HTML/CSS in API data voor AI-input</div>
+                                <div class="storymap-card-estimation">Geschatte duur: 2 dagen</div>
+                            </div>
+                            <div class="storymap-card-size"><i class="fas fa-shirt size-s-icon"></i></div>
+                        </div>
+                        <div class="storymap-card">
+                            <div>
+                                <div class="storymap-card-actor">Projectteam</div>
+                                <div class="storymap-card-title">Mappen huidig datamodel voor AI agent gebruik</div>
+                                <div class="storymap-card-estimation">Geschatte duur: 2 dagen</div>
+                            </div>
+                            <div class="storymap-card-size"><i class="fas fa-shirt size-s-icon"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="activity-column">
+                    <div class="activity-header">
+                        <i class="fas fa-vial"></i>Agent ontwikkeling
+                    </div>
+                    <div class="tasks-container">
+                        <div class="storymap-card">
+                            <div>
+                                <div class="storymap-card-actor">Ontwikkelteam</div>
+                                <div class="storymap-card-title">Set up back end logica met connecties naar DB of Vlaamse Codex API</div>
+                                <div class="storymap-card-estimation">Geschatte duur: 5 dagen</div>
+                            </div>
+                            <div class="storymap-card-size"><i class="fas fa-shirt size-l-icon"></i></div>
+                        </div>
+                        <div class="storymap-card">
+                            <div>
+                                <div class="storymap-card-actor">Ontwikkelteam</div>
+                                <div class="storymap-card-title">Cloud omgeving opzetten met Gen AI api</div>
+                                <div class="storymap-card-estimation">Geschatte duur: 5 dagen</div>
+                            </div>
+                            <div class="storymap-card-size"><i class="fas fa-shirt size-l-icon"></i></div>
+                        </div>
+                        <div class="storymap-card">
+                            <div>
+                                <div class="storymap-card-actor">Ontwikkelteam</div>
+                                <div class="storymap-card-title">Database voor agent</div>
+                                <div class="storymap-card-estimation">Geschatte duur: 2 dagen</div>
+                            </div>
+                            <div class="storymap-card-size"><i class="fas fa-shirt size-m-icon"></i></div>
+                        </div>
+                        <div class="storymap-card">
+                            <div>
+                                <div class="storymap-card-actor">Ontwikkelteam/Prompt Engineer</div>
+                                <div class="storymap-card-title">Systemprompt + tooldefinities</div>
+                                <div class="storymap-card-estimation">Geschatte duur: 6 dagen</div>
+                            </div>
+                            <div class="storymap-card-size"><i class="fas fa-shirt size-l-icon"></i></div>
+                        </div>
+                        <div class="storymap-card">
+                            <div>
+                                <div class="storymap-card-actor">Ontwikkelteam</div>
+                                <div class="storymap-card-title">Ontwikkelen/implementeren van de AI agent core (middleware & orkestratie logica)</div>
+                                <div class="storymap-card-estimation">Geschatte duur: 6 dagen</div>
+                            </div>
+                            <div class="storymap-card-size"><i class="fas fa-shirt size-l-icon"></i></div>
+                        </div>
+                        <div class="storymap-card">
+                            <div>
+                                <div class="storymap-card-actor">Ontwikkelteam</div>
+                                <div class="storymap-card-title">Ontwikkelen/integreren van de gedefinieerde AI-tools (API-calls, scraping, etc.)</div>
+                                <div class="storymap-card-estimation">Geschatte duur: 6 dagen</div>
+                            </div>
+                            <div class="storymap-card-size"><i class="fas fa-shirt size-l-icon"></i></div>
+                        </div>
+                        <div class="storymap-card">
+                            <div>
+                                <div class="storymap-card-actor">Projectteam/Ontwikkelteam</div>
+                                <div class="storymap-card-title">Ground truth opzetten voor meerdere tests per consolidatie</div>
+                                <div class="storymap-card-estimation">Geschatte duur: 3 dagen</div>
+                            </div>
+                            <div class="storymap-card-size"><i class="fas fa-shirt size-m-icon"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="activity-column">
+                    <div class="activity-header">
+                        <i class="fas fa-tools"></i>Testen en iteratief verbeteren
+                    </div>
+                    <div class="tasks-container">
+                        <div class="storymap-card">
+                            <div>
+                                <div class="storymap-card-actor">Ontwikkelteam/Prompt Engineer</div>
+                                <div class="storymap-card-title">Iteratief verfijnen system prompts & toolbeschrijvingen </div>
+                                <div class="storymap-card-estimation">Geschatte duur: 6 dagen</div>
+                            </div>
+                            <div class="storymap-card-size"><i class="fas fa-shirt size-l-icon"></i></div>
+                        </div>
+                        <div class="storymap-card">
+                            <div>
+                                <div class="storymap-card-actor">Ontwikkelteam/Projectteam</div>
+                                <div class="storymap-card-title">Uitvoeren van uitgebreide testsets tegen ground truth</div>
+                                <div class="storymap-card-estimation">Geschatte duur: 4 dagen</div>
+                            </div>
+                            <div class="storymap-card-size"><i class="fas fa-shirt size-l-icon"></i></div>
+                        </div>
+                        <div class="storymap-card">
+                            <div>
+                                <div class="storymap-card-actor">Ontwikkelteam</div>
+                                <div class="storymap-card-title">Analyseren van prestaties, nauwkeurigheid & foutsituaties</div>
+                                <div class="storymap-card-estimation">Geschatte duur: 2 dagen</div>
+                            </div>
+                            <div class="storymap-card-size"><i class="fas fa-shirt size-s-icon"></i></div>
+                        </div>
+                        <div class="storymap-card">
+                            <div>
+                                <div class="storymap-card-actor">Ontwikkelteam</div>
+                                <div class="storymap-card-title">Iteratief verbeteren van agent core, middleware & tool-effectiviteit</div>
+                                <div class="storymap-card-estimation">Geschatte duur: 6 dagen</div>
+                            </div>
+                            <div class="storymap-card-size"><i class="fas fa-shirt size-l-icon"></i></div>
+                        </div>
+                        <div class="storymap-card">
+                            <div>
+                                <div class="storymap-card-actor">Projectteam</div>
+                                <div class="storymap-card-title">Documenteren van testresultaten, bevindingen & geleerde lessen</div>
+                                <div class="storymap-card-estimation">Geschatte duur: 1 dag</div>
+                            </div>
+                            <div class="storymap-card-size"><i class="fas fa-shirt size-s-icon"></i></div>
+                        </div>
+                        <div class="storymap-card">
+                            <div>
+                                <div class="storymap-card-actor">Projectteam</div>
+                                <div class="storymap-card-title">Finale evaluatie PoC & go/no-go besluit voor MVP-ontwikkeling</div>
+                                <div class="storymap-card-estimation">Geschatte duur: 2 dagen</div>
+                            </div>
+                            <div class="storymap-card-size"><i class="fas fa-shirt size-m-icon"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of New PoC Section -->
+
+            <!-- Wrapper for Fase 2 title and content for print control -->
+            <div class="fase2-print-group">
+                <!-- Fase 2 Title Updated -->
+                <h2 class="page-subtitle">Fase 2: De Consolidator <span class="title-legend">(<i class="fas fa-shirt size-s-icon"></i> S, <i class="fas fa-shirt size-m-icon"></i> M, <i class="fas fa-shirt size-l-icon"></i> L = Grootte)</span></h2>
+
+                <div class="storymap-container" id="operational-storymap-container">
+
+                    <div class="activity-column">
+                        <div class="activity-header">
+                            <i class="fas fa-download"></i>Input & Monitoring
+                        </div>
+                        <div class="tasks-container">
+                            <div class="storymap-card">
+                                <div>
+                                    <div class="storymap-card-actor">Systeem/Proces</div>
+                                    <div class="storymap-card-title">Dagelijks scrapen van Belgisch Staatsblad</div>
+                                    <div class="storymap-card-estimation">Geschatte duur: 5 dagen</div>
+                                </div>
+                                <div class="storymap-card-size"><i class="fas fa-shirt size-m-icon"></i></div>
+                            </div>
+                            <div class="storymap-card">
+                                <div>
+                                    <div class="storymap-card-actor">Systeem/Proces</div>
+                                    <div class="storymap-card-title">[MVP] Integratie Vlaamse Codex API</div>
+                                    <div class="storymap-card-estimation">Geschatte duur: 10 dagen</div>
+                                </div>
+                                <div class="storymap-card-size"><i class="fas fa-shirt size-l-icon"></i></div>
+                            </div>
+                            <div class="storymap-card">
+                                <div>
+                                    <div class="storymap-card-actor">Systeem/Proces</div>
+                                    <div class="storymap-card-title">[MVP] Detecteren van publicatiedata en te publiceren documenten via rule-based software</div>
+                                    <div class="storymap-card-estimation">Geschatte duur: 3 dagen</div>
+                                </div>
+                                <div class="storymap-card-size"><i class="fas fa-shirt size-s-icon"></i></div>
+                            </div>
+                             <div class="storymap-card">
+                                <div>
+                                    <div class="storymap-card-actor">Systeem/Proces</div>
+                                    <div class="storymap-card-title">Verwerken van andere inputbronnen (bijlagen, etc.)</div>
+                                    <div class="storymap-card-estimation">Geschatte duur: 5 dagen</div>
+                                </div>
+                                <div class="storymap-card-size"><i class="fas fa-shirt size-m-icon"></i></div>
+                            </div>
+                            <div class="storymap-card">
+                                <div>
+                                    <div class="storymap-card-actor">Medewerker</div>
+                                    <div class="storymap-card-title">Notificaties ontvangen van nieuwe/gewijzigde items in dashboard</div>
+                                    <div class="storymap-card-estimation">Geschatte duur: 2 dagen</div>
+                                </div>
+                                <div class="storymap-card-size"><i class="fas fa-shirt size-s-icon"></i></div>
+                            </div>
+                            <div class="storymap-card">
+                                <div>
+                                    <div class="storymap-card-actor">Systeem/Proces</div>
+                                    <div class="storymap-card-title"> Melding sturen via e-mail bij nieuwe input</div>
+                                    <div class="storymap-card-estimation">Geschatte duur: 2 dagen</div>
+                                </div>
+                                <div class="storymap-card-size"><i class="fas fa-shirt size-s-icon"></i></div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="activity-column">
+                        <div class="activity-header">
+                            <i class="fas fa-cogs"></i>Verwerking & Consolidatie
+                        </div>
+                        <div class="tasks-container">
+                            <div class="storymap-card">
+                                <div>
+                                    <div class="storymap-card-actor">Systeem/Proces</div>
+                                    <div class="storymap-card-title">Extraheren van relevante info uit Staatsblad na publicatie</div>
+                                    <div class="storymap-card-estimation">Geschatte duur: 5 dagen</div>
+                                </div>
+                                <div class="storymap-card-size"><i class="fas fa-shirt size-m-icon"></i></div>
+                            </div>
+                            <div class="storymap-card">
+                                <div>
+                                    <div class="storymap-card-actor">Systeem/Proces</div>
+                                    <div class="storymap-card-title">[MVP] Ophalen van artikels, documenten & vorige metadata van Vlaamse Codex API</div>
+                                    <div class="storymap-card-estimation">Geschatte duur: 3 dagen</div>
+                                </div>
+                                <div class="storymap-card-size"><i class="fas fa-shirt size-s-icon"></i></div>
+                            </div>
+                            <div class="storymap-card">
+                                <div>
+                                    <div class="storymap-card-actor">AI Agent</div>
+                                    <div class="storymap-card-title">[MVP] Analyseren van door te voeren artikelwijzigingen </div>
+                                    <div class="storymap-card-estimation">Geschatte duur: 7 dagen</div>
+                                </div>
+                                <div class="storymap-card-size"><i class="fas fa-shirt size-m-icon"></i></div>
+                            </div>
+                            <div class="storymap-card">
+                                <div>
+                                    <div class="storymap-card-actor">AI Agent</div>
+                                    <div class="storymap-card-title">[MVP] Genereren van consolidatievoorstel per artikel</div>
+                                    <div class="storymap-card-estimation">Geschatte duur: 12 dagen</div>
+                                </div>
+                                <div class="storymap-card-size"><i class="fas fa-shirt size-l-icon"></i></div>
+                            </div>
+                            <div class="storymap-card">
+                                <div>
+                                    <div class="storymap-card-actor">Backend Systeem</div>
+                                    <div class="storymap-card-title">[MVP] "diff" view (vergelijking origineel vs. AI-voorstel)</div>
+                                    <div class="storymap-card-estimation">Geschatte duur: 7 dagen</div>
+                                </div>
+                                <div class="storymap-card-size"><i class="fas fa-shirt size-m-icon"></i></div>
+                            </div>
+                            <div class="storymap-card">
+                                <div>
+                                    <div class="storymap-card-actor">Systeem/Proces & AI Agent</div>
+                                    <div class="storymap-card-title">Automatisch genereren/aanvullen van metadata (rule-based & AI)</div>
+                                    <div class="storymap-card-estimation">Geschatte duur: 12 dagen</div>
+                                </div>
+                                <div class="storymap-card-size"><i class="fas fa-shirt size-l-icon"></i></div>
+                            </div>
+                            <div class="storymap-card">
+                                <div>
+                                    <div class="storymap-card-actor">Systeem/Proces</div>
+                                    <div class="storymap-card-title">[MVP] Automatisch versiebeheer van documenten en artikelen, overnemen uit datamodel</div>
+                                    <div class="storymap-card-estimation">Geschatte duur: 3 dagen</div>
+                                </div>
+                                <div class="storymap-card-size"><i class="fas fa-shirt size-s-icon"></i></div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="activity-column">
+                        <div class="activity-header">
+                            <i class="fas fa-user-check"></i>Validatie & Feedback
+                        </div>
+                        <div class="tasks-container">
+                            <div class="storymap-card">
+                                <div>
+                                    <div class="storymap-card-actor">Medewerker</div>
+                                    <div class="storymap-card-title">[MVP] Bekijken van AI consolidatievoorstel en "diff view" in frontend</div>
+                                    <div class="storymap-card-estimation">Geschatte duur: 3 dagen</div>
+                                </div>
+                                <div class="storymap-card-size"><i class="fas fa-shirt size-s-icon"></i></div>
+                            </div>
+                            <div class="storymap-card">
+                                <div>
+                                    <div class="storymap-card-actor">Medewerker</div>
+                                    <div class="storymap-card-title">[MVP] Valideren/Goedkeuren van de voorgestelde consolidatie</div>
+                                    <div class="storymap-card-estimation">Geschatte duur: 2 dagen</div>
+                                </div>
+                                <div class="storymap-card-size"><i class="fas fa-shirt size-s-icon"></i></div>
+                            </div>
+                            <div class="storymap-card">
+                                <div>
+                                    <div class="storymap-card-actor">Medewerker</div>
+                                    <div class="storymap-card-title">[MVP] Afkeuren van consolidatie met opgave van reden</div>
+                                    <div class="storymap-card-estimation">Geschatte duur: 2 dagen</div>
+                                </div>
+                                <div class="storymap-card-size"><i class="fas fa-shirt size-s-icon"></i></div>
+                            </div>
+                            <div class="storymap-card">
+                                <div>
+                                    <div class="storymap-card-actor">Medewerker</div>
+                                    <div class="storymap-card-title">[MVP] Manueel aanpassen/corrigeren van de geconsolideerde tekst</div>
+                                    <div class="storymap-card-estimation">Geschatte duur: 3 dagen</div>
+                                </div>
+                                <div class="storymap-card-size"><i class="fas fa-shirt size-s-icon"></i></div>
+                            </div>
+                            <div class="storymap-card">
+                                <div>
+                                    <div class="storymap-card-actor">Medewerker</div>
+                                    <div class="storymap-card-title">Beheren, valideren en aanvullen van metadata (trefwoorden, relaties, etc.)</div>
+                                    <div class="storymap-card-estimation">Geschatte duur: 10 dagen</div>
+                                </div>
+                                <div class="storymap-card-size"><i class="fas fa-shirt size-l-icon"></i></div>
+                            </div>
+                             <div class="storymap-card">
+                                <div>
+                                    <div class="storymap-card-actor">Medewerker</div>
+                                    <div class="storymap-card-title">Bekijken van gerelateerde brondocumenten en bijlagen</div>
+                                    <div class="storymap-card-estimation">Geschatte duur: 2 dagen</div>
+                                </div>
+                                <div class="storymap-card-size"><i class="fas fa-shirt size-s-icon"></i></div>
+                            </div>
+                            <div class="storymap-card">
+                                <div>
+                                    <div class="storymap-card-actor">Systeem/Proces</div>
+                                    <div class="storymap-card-title">[MVP] Feedback (afkeuringen, aanpassingen) opslaan voor analyse</div>
+                                    <div class="storymap-card-estimation">Geschatte duur: 3 dagen</div>
+                                </div>
+                                <div class="storymap-card-size"><i class="fas fa-shirt size-s-icon"></i></div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="activity-column">
+                        <div class="activity-header">
+                            <i class="fas fa-upload"></i>Publicatie & Archivering
+                        </div>
+                        <div class="tasks-container">
+                            <div class="storymap-card">
+                                <div>
+                                    <div class="storymap-card-actor">Systeem/Proces</div>
+                                    <div class="storymap-card-title">[MVP] Push naar database Vlaamse codex met huidig datamodel</div>
+                                    <div class="storymap-card-estimation">Geschatte duur: 7 dagen</div>
+                                </div>
+                                <div class="storymap-card-size"><i class="fas fa-shirt size-m-icon"></i></div>
+                            </div>
+                            <div class="storymap-card">
+                                <div>
+                                    <div class="storymap-card-actor">Systeem/Proces</div>
+                                    <div class="storymap-card-title">[MVP] Logica om via database naar huidige beheerssoftware te gaan</div>
+                                    <div class="storymap-card-estimation">Geschatte duur: 7 dagen</div>
+                                </div>
+                                <div class="storymap-card-size"><i class="fas fa-shirt size-m-icon"></i></div>
+                            </div>
+                            <div class="storymap-card">
+                                <div>
+                                    <div class="storymap-card-actor">Systeem/Proces</div>
+                                    <div class="storymap-card-title">[MVP] Archiveren van gevalideerde en afgekeurde consolidaties en metadata</div>
+                                    <div class="storymap-card-estimation">Geschatte duur: 3 dagen</div>
+                                </div>
+                                <div class="storymap-card-size"><i class="fas fa-shirt size-s-icon"></i></div>
+                            </div>
+                            <div class="storymap-card">
+                                <div>
+                                    <div class="storymap-card-actor">Medewerker</div>
+                                    <div class="storymap-card-title">[MVP] Raadplegen van consolidatiegeschiedenis en status</div>
+                                    <div class="storymap-card-estimation">Geschatte duur: 3 dagen</div>
+                                </div>
+                                <div class="storymap-card-size"><i class="fas fa-shirt size-s-icon"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- einde .storymap-container -->
+            </div> <!-- Close .fase2-print-group -->
+
+            <div class="cost-section">
+                <h3>Kostenberekening fase 1: PoC (voor 3 maanden)</h3>
+                <div class="overflow-x-auto">
+                    <table class="cost-table">
+                        <thead>
+                            <tr>
+                                <th>Profiel</th>
+                                <th>Salaris (jaar)</th>
+                                <th>Uren per week (PoC)</th>
+                                <th>Totale kosten per week</th>
+                                <th>Totale kosten per maand (gem.)</th>
+                                <th>Totale kosten voor 3 maanden</th>
+                                <th>Taken (focus PoC)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Project manager</td>
+                                <td>€ 100.000</td>
+                                <td>2</td>
+                                <td>€ 109</td>
+                                <td>€ 472</td>
+                                <td>€ 1.417</td>
+                                <td>PoC coördinatie, setup, review</td>
+                            </tr>
+                            <tr>
+                                <td>Techlead (arch)</td>
+                                <td>€ 100.000</td>
+                                <td>4</td>
+                                <td>€ 217</td>
+                                <td>€ 940</td>
+                                <td>€ 2.821</td>
+                                <td>Architectuur (deel), PoC begeleiding, hands-on (deel)</td>
+                            </tr>
+                            <tr>
+                                <td>Developer (meerdere)</td>
+                                <td>€ 100.000</td>
+                                <td>28</td>
+                                <td>€ 1.520</td>
+                                <td>€ 6.587</td>
+                                <td>€ 19.760</td>
+                                <td>PoC ontwikkeling, hackathons, deel AI experimenten, overname deel architectuurtaken</td>
+                            </tr>
+                            <tr>
+                                <td>Data scientist</td>
+                                <td>€ 100.000</td>
+                                <td>6</td>
+                                <td>€ 326</td>
+                                <td>€ 1.413</td>
+                                <td>€ 4.238</td>
+                                <td>Kern AI PoC werk (focus), experimenten</td>
+                            </tr>
+                            <tr>
+                                <td>Functioneel/business analist</td>
+                                <td>€ 100.000</td>
+                                <td>4</td>
+                                <td>€ 217</td>
+                                <td>€ 940</td>
+                                <td>€ 2.821</td>
+                                <td>Scope, criteria, workshop facilitatie</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">Totaal fase 1 (PoC)</td>
+                                <td>44</td>
+                                <td>€ 2.389</td>
+                                <td>€ 10.352</td>
+                                <td>€ 31.057</td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <div class="cost-section">
+                <h3>Kostenberekening fase 2: Personeel (voor 8 maanden)</h3>
+                <div class="overflow-x-auto">
+                    <table class="cost-table">
+                        <thead>
+                            <tr>
+                                <th>Profiel</th>
+                                <th>Salaris (jaar)</th>
+                                <th>Uren per week</th>
+                                <th>Totale kosten per week</th>
+                                <th>Totale kosten per maand</th>
+                                <th>Totale kosten voor 8 maanden</th>
+                                <th>Taken</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Project Manager</td>
+                                <td>€ 100.000</td>
+                                <td>4</td>
+                                <td>€ 217</td>
+                                <td>€ 942</td>
+                                <td>€ 7.536</td>
+                                <td>Strategische leiding, stakeholdermanagement</td>
+                            </tr>
+                            <tr>
+                                <td>Techlead (arch)</td>
+                                <td>€ 100.000</td>
+                                <td>4</td>
+                                <td>€ 217</td>
+                                <td>€ 942</td>
+                                <td>€ 7.536</td>
+                                <td>Architectuur, technische beslissingen, code reviews</td>
+                            </tr>
+                            <tr>
+                                <td>Developer</td>
+                                <td>€ 100.000</td>
+                                <td>40</td>
+                                <td>€ 2.174</td>
+                                <td>€ 9.420</td>
+                                <td>€ 75.362</td>
+                                <td>Ontwikkeling AI-integratie en core features, ml ops</td>
+                            </tr>
+                            <tr>
+                                <td>Developer (Extra)</td>
+                                <td>€ 100.000</td>
+                                <td>40</td>
+                                <td>€ 2.174</td>
+                                <td>€ 9.420</td>
+                                <td>€ 75.362</td>
+                                <td>Frontend, UX implementatie, API ontwikkeling</td>
+                            </tr>
+                            <tr>
+                                <td>Data Scientist</td>
+                                <td>€ 100.000</td>
+                                <td>6</td>
+                                <td>€ 326</td>
+                                <td>€ 1.413</td>
+                                <td>€ 11.304</td>
+                                <td>Modelontwikkeling, training, fine-tuning</td>
+                            </tr>
+                            <tr>
+                                <td>Functioneel/business analist</td>
+                                <td>€ 100.000</td>
+                                <td>4</td>
+                                <td>€ 217</td>
+                                <td>€ 942</td>
+                                <td>€ 7.536</td>
+                                <td>Scrum meetings, stories</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">Totaal fase 2 personeel</td>
+                                <td>98</td>
+                                <td>€ 5.325</td>
+                                <td>€ 23.079</td>
+                                <td>€ 184.636</td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <div class="cost-section">
+                <h3>Kostenberekening fase 2: Infrastructuur & licenties (voor 8 maanden)</h3>
+                <div class="overflow-x-auto">
+                    <table class="cost-table">
+                        <thead>
+                            <tr>
+                                <th>Omschrijving</th>
+                                <th>Kosten per maand</th>
+                                <th>Kosten voor 8 maanden</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Cloud infrastructure</td>
+                                <td>€ 1.000</td>
+                                <td>€ 8.000</td>
+                                <td>Azure hosting, storage, compute</td>
+                            </tr>
+                            <tr>
+                                <td>Software licenties</td>
+                                <td>€ 300</td>
+                                <td>€ 2.400</td>
+                                <td>Development tools, monitoring</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>Totaal infra fase 2</td>
+                                <td>€ 1.300</td>
+                                <td>€ 10.400</td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="page-footer">
+            <img src="../images/logobelow.jpg" alt="Bottom Logo" class="footer-logo">
+        </footer>
+    </div>
+
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/focus-mode.js"></script>
+    <script src="../js/storymap.js"></script> <!-- Nieuw JS-bestand voor storymap functionaliteit -->
+</body>
+</html> 

@@ -1,0 +1,342 @@
+/* Specifieke stijlen voor staatsblad.html */
+
+/* Zorg ervoor dat de container direct onder de H1 start (H1 heeft al margin-bottom) */
+.staatsblad-container {
+    margin-top: 0;
+    /* VERWIJDER/COMMENTAAR: max-width: 1200px; */
+    /* VERWIJDER/COMMENTAAR: margin-left: auto; */ /* Onderdeel van margin: 0 auto; */
+    /* VERWIJDER/COMMENTAAR: margin-right: auto; */ /* Onderdeel van margin: 0 auto; */
+    /* VERWIJDER/COMMENTAAR: padding: 0 15px; */ /* Padding zit al in .main-content */
+}
+
+.staatsblad-group {
+    background-color: var(--background-light);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    overflow: hidden; /* Voorkomt dat inhoud buiten de border valt */
+}
+
+.staatsblad-date-header {
+    padding: 15px 20px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #f9fafb; /* Lichte achtergrond voor header */
+    border-bottom: 1px solid var(--border-color);
+    list-style: none; /* Verwijder standaard pijl */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.2s ease;
+}
+.staatsblad-date-header:hover {
+    background-color: #f3f4f6;
+}
+
+/* Verwijder standaard pijl van summary */
+.staatsblad-date-header::-webkit-details-marker {
+    display: none;
+}
+.staatsblad-date-header::marker { /* Firefox */
+    display: none;
+}
+
+/* Stijl voor het icoon */
+.staatsblad-date-header i {
+    transition: transform 0.3s ease;
+    color: var(--icon-color);
+}
+
+/* Roteer icoon wanneer details open is */
+.staatsblad-group[open] > summary i {
+    transform: rotate(90deg);
+}
+
+.staatsblad-items-list {
+    padding: 15px 20px; /* Padding binnen de content area */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Ruimte tussen items */
+}
+
+.staatsblad-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end; /* Lijn items uit aan de onderkant voor betere uitlijning met verschillende hoogtes */
+    gap: 15px 20px; /* Row gap, Column gap */
+    padding: 15px 0; /* Meer verticale padding */
+    border-bottom: 1px dashed var(--border-color-light);
+}
+.staatsblad-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.item-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.item-field label {
+    font-size: 0.8em;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.item-field input[type="text"],
+.item-field input[type="date"],
+.item-field select {
+    padding: 8px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.9em;
+    font-family: inherit;
+    background-color: var(--background-light);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.item-field input:focus,
+.item-field select:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+/* Specifieke breedtes voor velden */
+.item-field.field-blz input {
+    width: 80px;
+}
+.item-field.field-numac input {
+    width: 150px;
+}
+.item-field.field-titel {
+    flex-grow: 1;
+    min-width: 250px;
+}
+.item-field.field-titel input {
+    width: 100%;
+}
+.item-field.field-datum input {
+    width: 140px;
+}
+/* Verwijder stijl voor select */
+/* .item-field.field-status select {
+    width: 160px;
+} */
+
+/* Nieuwe stijlen voor Status Indicator */
+.item-field.field-status {
+    justify-content: flex-end;
+    min-width: 80px;
+    padding-bottom: 8px;
+}
+
+.status-indicator {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%; /* Maak het een cirkel */
+    background-color: grey; /* Fallback kleur */
+    margin-top: 4px; /* Ruimte onder label */
+    cursor: default; /* Geen speciale cursor */
+    transition: background-color 0.3s ease;
+}
+
+.status-indicator.status-niet-gevalideerd {
+    background-color: var(--notification-red); /* Rood */
+}
+
+.status-indicator.status-gevalideerd {
+    background-color: #22c55e; /* Groen (Tailwind green-500) */
+}
+
+/* Actie knoppen aan het einde */
+.item-actions {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+    padding-left: 15px;
+    align-self: flex-end;
+    padding-bottom: 8px;
+}
+
+.action-btn {
+    background: none;
+    border: 1px solid transparent;
+    color: var(--icon-color);
+    padding: 6px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    line-height: 1;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.action-btn:hover {
+    background-color: var(--border-color-light);
+    color: var(--text-dark);
+}
+/* Verwijder hover stijl voor save knop kleur, feedback is nu de indicator */
+/* .action-btn.save-btn:hover {
+    color: var(--primary-blue);
+} */
+.action-btn.delete-btn:hover {
+    color: var(--notification-red);
+}
+/* Optioneel: Voeg een specifieke hover state toe voor de view knop indien gewenst */
+/* .action-btn.view-btn:hover {
+    color: var(--primary-blue);
+} */
+
+/* Nieuwe stijlen voor de PDF knop sectie */
+.card-footer-action {
+    padding: 15px 20px; /* Zelfde horizontale padding als items-list */
+    border-top: 1px solid var(--border-color); /* Scheidingslijn boven de knop */
+    background-color: #fdfdfe; /* Heel lichte achtergrond om het te onderscheiden */
+    text-align: right; /* Lijn knop rechts uit */
+}
+
+/* Stijl voor de PDF knop zelf (gebaseerd op confirmation-button in styles.css) */
+.button-link.pdf-button {
+    display: inline-block;
+    padding: 10px 20px; /* Iets kleiner dan confirmation button */
+    background-color: var(--primary-yellow);
+    color: var(--text-dark);
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9em; /* Iets kleiner */
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.button-link.pdf-button:hover {
+    background-color: #e6c000; /* Donkerder geel */
+    transform: translateY(-1px);
+}
+
+/* Container voor geneste groepen binnen "Vorige" */
+.vorige-publicaties-container {
+    padding: 15px 20px; /* Padding rondom de geneste groepen */
+    background-color: #f9fafb; /* Iets andere achtergrond dan actieve items */
+    border-top: 1px solid var(--border-color); /* Lijn boven de eerste geneste groep */
+}
+
+/* Stijl voor geneste groepen */
+.staatsblad-group.nested-group {
+    margin-bottom: 15px; /* Iets minder ruimte tussen geneste groepen */
+    border: 1px solid var(--border-color-light); /* Lichtere border */
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03); /* Subtiele schaduw */
+}
+.staatsblad-group.nested-group:last-child {
+    margin-bottom: 0; /* Geen marge onder de laatste */
+}
+
+/* Header van geneste groepen */
+.staatsblad-date-header.nested-header {
+    background-color: #fdfdfe; /* Nog lichtere achtergrond voor header */
+    font-weight: 500; /* Iets minder zwaar font */
+    font-size: 0.95em;
+    padding: 12px 15px; /* Iets minder padding */
+}
+.staatsblad-date-header.nested-header:hover {
+    background-color: #f3f4f6;
+}
+
+/* Lijst binnen geneste groepen */
+.staatsblad-items-list.nested-list {
+    padding: 10px 15px; /* Iets minder padding */
+    background-color: var(--background-light); /* Witte achtergrond voor items */
+}
+
+/* Items binnen geneste lijst (eventueel aanpassingen) */
+.nested-list .staatsblad-item {
+    /* Misschien minder padding of kleinere gap? */
+    gap: 10px 15px;
+    padding: 10px 0;
+}
+
+/* Zorg dat de footer actie ook werkt in geneste groepen */
+.nested-group .card-footer-action {
+    /* Stijlen worden geërfd, maar je kunt hier aanpassingen doen indien nodig */
+    padding: 10px 15px;
+    background-color: #fdfdfe;
+}
+
+/* Readonly velden in vorige publicaties */
+.vorige-publicaties-container input[readonly],
+.vorige-publicaties-container input.readonly-input /* Voeg toe voor consistentie */
+{
+    background-color: #f9fafb; /* Lichte grijze achtergrond */
+    border-color: var(--border-color-light); /* Lichtere border */
+    color: var(--text-secondary); /* Iets lichtere tekst */
+    cursor: default; /* Geen text cursor */
+    box-shadow: none; /* Geen focus shadow */
+    pointer-events: none; /* Voorkom interactie */
+}
+
+/* --- NIEUW: Paginatie Stijlen --- */
+.pagination-controls {
+    display: flex;
+    justify-content: center; /* Centreer de items horizontaal */
+    align-items: center;
+    gap: 8px; /* Ruimte tussen de elementen */
+    padding: 20px 0 10px 0; /* Ruimte boven en onder de paginatie */
+    margin-top: 15px; /* Extra ruimte boven de paginatie, na de laatste groep */
+    border-top: 1px solid var(--border-color-light); /* Subtiele lijn boven paginatie */
+}
+
+.pagination-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--icon-color);
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    line-height: 1;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.pagination-btn:hover:not([disabled]) {
+    background-color: var(--border-color-light);
+    color: var(--text-dark);
+    border-color: var(--border-color);
+}
+
+.pagination-btn[disabled] {
+    color: var(--border-color); /* Maak uitgeschakelde knop lichter */
+    cursor: not-allowed;
+    border-color: var(--border-color-light);
+}
+
+.page-number {
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.page-number:hover {
+    background-color: var(--border-color-light);
+    color: var(--text-dark);
+}
+
+.page-number.active {
+    background-color: var(--primary-yellow);
+    color: var(--text-dark);
+    font-weight: 600;
+    cursor: default;
+}
+.page-number.active:hover {
+     background-color: var(--primary-yellow); /* Behoud kleur op hover */
+}
+
+.page-dots {
+    color: var(--text-light);
+    padding: 6px 4px;
+    font-size: 0.9em;
+}
+/* --- EINDE NIEUW: Paginatie Stijlen --- */ 

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instellingen</title> <!-- Changed Title -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <!-- Add Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <nav class="sidebar">
+        <!-- Group 1: Top Logo + Top Nav -->
+        <div>
+            <div class="sidebar-logo-container">
+                 <!-- Update src to the correct top logo path -->
+                 <img src="../images/logoabove.png" alt="Top Logo" class="sidebar-logo-top">
+            </div>
+            <ul class="sidebar-nav-top">
+                <li>
+                    <a href="../index.html" class="nav-item">
+                        <i class="fa-solid fa-house nav-icon"></i>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="ai-consolidatie.html" class="nav-item">
+                        <i class="fa-solid fa-brain nav-icon"></i>
+                        <span class="nav-text">Ai consolidatie</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="staatsblad.html" class="nav-item">
+                        <i class="fa-solid fa-newspaper nav-icon"></i>
+                        <span class="nav-text">Staatsblad</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="geschiedenis.html" class="nav-item">
+                        <i class="fa-solid fa-clock-rotate-left nav-icon"></i>
+                        <span class="nav-text">Geschiedenis</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Group 2: Bottom Nav ONLY -->
+        <ul class="sidebar-nav-bottom">
+             <li>
+                <a href="instellingen.html" class="nav-item active"> <!-- Instellingen is active -->
+                    <i class="fa-solid fa-gear nav-icon"></i>
+                    <span class="nav-text">Instellingen</span>
+                </a>
+            </li>
+            <li>
+                <!-- Assuming logout might be a JS action or link elsewhere -->
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-arrow-right-from-bracket nav-icon"></i>
+                    <span class="nav-text">Uitloggen</span>
+                </a>
+            </li>
+            <!-- NIEUW: Extra Info item hier toegevoegd -->
+            <li>
+                <a href="extra-info.html" class="nav-item">
+                    <i class="fa-solid fa-info-circle nav-icon"></i>
+                    <span class="nav-text">Extra Info</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- ADD content-wrapper -->
+    <div class="content-wrapper">
+        <main class="main-content">
+
+            <h1>Instellingen</h1> <!-- Direct onder main -->
+
+            <!-- Voeg hier de content voor de instellingen pagina toe -->
+            <p>Hier komen de instellingen.</p>
+
+        </main>
+
+        <!-- ADD footer -->
+        <footer class="page-footer">
+            <img src="../images/logobelow.jpg" alt="Bottom Logo" class="footer-logo">
+        </footer>
+    </div> <!-- CLOSE content-wrapper -->
+
+    <script src="../js/sidebar.js"></script>
+</body>
+</html> 
