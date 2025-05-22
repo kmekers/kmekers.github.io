@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const complexCheckbox = document.getElementById('complexCheckbox');
     const complexInfoArea = document.querySelector('.complex-info-area');
     const complexitySection = document.querySelector('.complexity-section');
+    const complexConsolidationActions = document.getElementById('complexConsolidationActions');
+    const startComplexConsolidationButton = document.getElementById('startComplexConsolidationButton');
 
     // Define the plan steps (Keep this specific to the dashboard)
     const planSteps = [
@@ -31,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
 
     // Only run uploader logic if ALL elements exist
-    if (uploadCard && uploadCardContent && uploadMainArea && uploadArea && fileInput && loaderMessage && feedbackSection && chatWindow && chatInput && chatInputArea && sendButton && resetButton && processingIndicator && progressBar && progressSteps.length > 0 && confirmationCard && complexCheckbox && complexInfoArea && complexitySection) {
+    if (uploadCard && uploadCardContent && uploadMainArea && uploadArea && fileInput && loaderMessage && feedbackSection && chatWindow && chatInput && chatInputArea && sendButton && resetButton && processingIndicator && progressBar && progressSteps.length > 0 && confirmationCard && complexCheckbox && complexInfoArea && complexitySection && complexConsolidationActions && startComplexConsolidationButton) {
 
         // Function to add a message to the chat window
         function addChatMessage(message, type = 'agent') {
@@ -47,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Hide all main views first
             uploadMainArea.style.display = 'none';
             complexitySection.style.display = 'none'; // Hide complexity section by default
+            complexConsolidationActions.style.display = 'none'; // Hide complex actions by default
             loaderMessage.style.display = 'none';
             feedbackSection.style.display = 'none';
             confirmationCard.style.display = 'none';
@@ -58,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Ensure complex info area is hidden based on checkbox state initially
                 complexInfoArea.style.display = complexCheckbox.checked ? 'flex' : 'none';
                 complexitySection.classList.toggle('complex-active', complexCheckbox.checked);
+                updateComplexConsolidationUI(); // Update button state
             } else if (viewToShow === 'loader') {
                 loaderMessage.style.display = 'flex';
             } else if (viewToShow === 'feedback') {
@@ -76,6 +80,8 @@ document.addEventListener('DOMContentLoaded', function() {
             complexCheckbox.checked = false;
             complexInfoArea.style.display = 'none';
             complexitySection.classList.remove('complex-active');
+            // complexConsolidationActions.style.display = 'none'; // Handled by updateComplexConsolidationUI
+            // startComplexConsolidationButton.disabled = true; // Handled by updateComplexConsolidationUI
 
             // Reset file input and chat elements
             fileInput.value = '';
@@ -93,6 +99,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Show the initial upload view
             showView('upload');
+            updateComplexConsolidationUI(); // Ensure correct button state on reset
+        }
+
+        // --- Update Complex Consolidation UI ---
+        function updateComplexConsolidationUI() {
+            if (complexCheckbox.checked) {
+                complexConsolidationActions.style.display = 'block';
+                startComplexConsolidationButton.disabled = !(fileInput.files && fileInput.files.length > 0);
+            } else {
+                complexConsolidationActions.style.display = 'none';
+                startComplexConsolidationButton.disabled = true;
+            }
         }
 
         // Trigger file input when the upload area is clicked
@@ -102,30 +120,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Handle file selection
         fileInput.addEventListener('change', (event) => {
+            updateComplexConsolidationUI(); // Update button state first based on file presence
+
             if (event.target.files && event.target.files.length > 0) {
-                showView('loader'); // Show loader view
+                if (!complexCheckbox.checked) { // Only start automatically if NOT complex
+                    showView('loader'); // Show loader view
 
-                // --- Simulate backend processing ---
-                setTimeout(() => {
-                    loaderMessage.style.display = 'none';
-                    chatWindow.innerHTML = '';
-                    let planMessage = "Ok, hier is het voorgestelde plan:\n\n";
-                    planSteps.forEach(step => {
-                        planMessage += `- ${step}\n`;
-                    });
-                    planMessage += "\nGeef eventuele aanpassingen door of stel vragen.";
-                    addChatMessage(planMessage, 'agent');
+                    // --- Simulate backend processing ---
+                    setTimeout(() => {
+                        loaderMessage.style.display = 'none';
+                        chatWindow.innerHTML = '';
+                        let planMessage = "Ok, hier is het voorgestelde plan:\n\n";
+                        planSteps.forEach(step => {
+                            planMessage += `- ${step}\n`;
+                        });
+                        planMessage += "\nGeef eventuele aanpassingen door of stel vragen.";
+                        addChatMessage(planMessage, 'agent');
 
-                    showView('feedback'); // Show feedback view
-                    chatInputArea.style.display = 'flex';
-                    processingIndicator.style.display = 'none';
-                    if(chatInput) chatInput.disabled = false;
-                    if(sendButton) sendButton.disabled = false;
-                    if(resetButton) resetButton.disabled = false;
+                        showView('feedback'); // Show feedback view
+                        chatInputArea.style.display = 'flex';
+                        processingIndicator.style.display = 'none';
+                        if(chatInput) chatInput.disabled = false;
+                        if(sendButton) sendButton.disabled = false;
+                        if(resetButton) resetButton.disabled = false;
 
-                }, 2000);
+                    }, 2000);
+                } else {
+                    // For complex consolidation, file is selected, button is enabled by updateComplexConsolidationUI.
+                    // User will click the 'Start' button.
+                    console.log('File selected for complex consolidation. Waiting for user to click Start.');
+                }
             } else {
                 console.log('File selection cancelled.');
+                // updateComplexConsolidationUI(); // Already called at the beginning of the event listener
             }
         });
 
@@ -154,6 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
         complexCheckbox.addEventListener('change', () => {
             complexInfoArea.style.display = complexCheckbox.checked ? 'flex' : 'none';
             complexitySection.classList.toggle('complex-active', complexCheckbox.checked);
+            updateComplexConsolidationUI(); // Update button state
         });
 
         // --- Chat Send Logic ---
@@ -212,14 +240,51 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
+        // --- Start Complex Consolidation Button Logic ---
+        startComplexConsolidationButton.addEventListener('click', () => {
+            if (!startComplexConsolidationButton.disabled) {
+                console.log('Start Complex Consolidation button clicked.');
+                // Add logic to start complex consolidation process
+                // This might involve similar steps to the normal sendButton,
+                // but perhaps with different initial messages or processing.
+
+                // For now, let's simulate a simple loading and then feedback state
+                showView('loader');
+                loaderMessage.querySelector('span').textContent = 'Agent start complexe consolidatie...'; // Customize loader
+
+                setTimeout(() => {
+                    chatWindow.innerHTML = ''; // Clear previous chat
+                    // Restore the original plan steps display
+                    let planMessage = "Ok, hier is het voorgestelde plan voor de complexe consolidatie:\n\n";
+                    planSteps.forEach(step => {
+                        planMessage += `- ${step}\n`;
+                    });
+                    planMessage += "\nGeef eventuele aanpassingen door of stel vragen.";
+                    addChatMessage(planMessage, 'agent');
+
+                    showView('feedback');
+                    chatInputArea.style.display = 'flex';
+                    processingIndicator.style.display = 'none';
+                    if(chatInput) chatInput.disabled = false;
+                    if(sendButton) sendButton.disabled = false; // Or maybe this button should be different/disabled
+                    if(resetButton) resetButton.disabled = false;
+
+                    // Adjust UI for complex flow if needed
+                    // For example, hide the normal send button and show a specific one for complex feedback
+
+                }, 2000); // Simulate planning time
+            }
+        });
+
     } else {
         // Updated error log
         console.error("One or more dashboard elements not found. Uploader/Feedback logic inactive.", {
-            uploadCard, uploadCardContent, uploadMainArea, uploadArea, fileInput, loaderMessage, feedbackSection, chatWindow, chatInput, chatInputArea, sendButton, resetButton, processingIndicator, progressBar, progressSteps: progressSteps.length, confirmationCard, complexCheckbox, complexInfoArea, complexitySection
+            uploadCard, uploadCardContent, uploadMainArea, uploadArea, fileInput, loaderMessage, feedbackSection, chatWindow, chatInput, chatInputArea, sendButton, resetButton, processingIndicator, progressBar, progressSteps: progressSteps.length, confirmationCard, complexCheckbox, complexInfoArea, complexitySection, complexConsolidationActions, startComplexConsolidationButton
         });
     }
 
     // --- Initial State ---
     resetUploadCard(); // Set the initial view correctly
+    updateComplexConsolidationUI(); // Set initial state of complex UI
 
 }); // End DOMContentLoaded 
